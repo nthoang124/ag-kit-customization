@@ -1,78 +1,82 @@
 ---
 description: Workflow để tùy chỉnh Rule/Workflow an toàn, có phân tích tác động và xác nhận của user.
 type: procedure
+risk: safe
+source: self
 required_skills: [rules-workflows]
 inputs: ["User Requirement", "Existing Rules"]
 outputs: ["Updated Rule/Workflow"]
 ---
 
-# Workflow Tùy chỉnh Hành vi (Custom Behavior)
+# Workflow Tùy chỉnh Hành vi (`/custom-behavior`)
 
-## Hướng dẫn sử dụng công cụ
+## Khi nào dùng (When to Use)
 
-| Tool | Khi nào dùng | Ví dụ |
-| :--- | :--- | :--- |
-| `find_by_name` | Bước 1: Tìm xem rule/workflow đã tồn tại chưa | `Pattern="*security*", SearchDirectory=".agent/rules"` |
-| `view_file` | Bước 2: Đọc nội dung hiện tại để so sánh | `AbsolutePath="/.../.agent/rules/security.md"` |
-| `notify_user` | Bước 3: Trình bày phân tích và hỏi xác nhận | `Message="Em tìm thấy rule cũ. Anh có muốn ghi đè không?"` |
-| `write_to_file` | Bước 4: Tạo hoặc ghi đè file | `Overwrite=true` |
+- Thêm rule mới cho agent (VD: "Luôn dùng TypeScript strict mode").
+- Sửa đổi workflow hiện có.
+- Tạo workflow mới cho use case cụ thể.
+
+## KHÔNG dùng khi (When NOT to Use)
+
+- Chỉ cần hỏi về rules → Dùng `/ask`.
+- Cần code feature → Dùng `/cook` hoặc `/development`.
+- Cần research trước khi quyết định rule → Dùng `/research` trước.
 
 ---
 
-## Bước 1: Nhận diện & Tìm kiếm
+## Các bước thực hiện
+
+### Bước 1: Nhận diện & Tìm kiếm
 
 // turbo
 
-> 💡 **Tip**: Đừng đoán là file không tồn tại. Luôn tìm kiếm trước.
+1.  Phân tích ý định user.
+2.  Tìm Rule/Workflow hiện có: `find_by_name` trong `.agent/rules/` và `.agent/workflows/`.
 
-1.  Phân tích yêu cầu của user để xác định _ý định_ (VD: "Thêm linting chặt hơn", "Bỏ qua test khi deploy").
-2.  Tìm kiếm Rule hoặc Workflow hiện có có thể liên quan.
-    -   Rules: tìm trong `.agent/rules/`
-    -   Workflows: tìm trong `.agent/workflows/`
+### Bước 2: Phân tích Tác động
 
----
+**Mới** → Draft nội dung mới.
+**Đã tồn tại** → Đọc, so sánh, nhận diện xung đột, đưa ra khuyến nghị.
 
-## Bước 2: Phân tích Tác động
+### Bước 3: User Xác nhận
 
-> 💡 **Tip**: Nếu file tồn tại, PHẢI đọc và so sánh với yêu cầu.
-
-**Tình huống A: Mục tiêu CHƯA tồn tại:**
-
-1.  Kiểm tra xem có template nào trong `.agent/assets/` hoặc `references/` dùng làm base được không.
-2.  Draft nội dung mới trong bộ nhớ.
-
-**Tình huống B: Mục tiêu ĐÃ tồn tại:**
-
-1.  **Đọc** nội dung hiện tại của file.
-2.  **So sánh** yêu cầu của User vs Nội dung hiện tại.
-3.  **Nhận diện Xung đột**:
-    -   Việc này có phá vỡ ràng buộc hiện có không?
-    -   Đây là "Breaking Change" hay chỉ là "Enhancement"?
-4.  **Đưa ra Khuyến nghị**:
-    -   _Thích ứng_: "Em đề xuất tạo file mới `custom-X.md` để tránh phá vỡ chuẩn X."
-    -   _Ghi đè_: "Việc này khớp nhu cầu của anh, nhưng sẽ bỏ qua bước kiểm tra an toàn Y."
-
----
-
-## Bước 3: User Xác nhận
-
-> 💡 **Tip**: Phải nói rõ những gì sẽ thay đổi.
-
-1.  **Thông báo User** tóm tắt phân tích.
-    -   Nếu **Mới**: "Em sẽ tạo rule mới [filename] để [làm X]."
-    -   Nếu **Sửa đổi**: "Em sẽ sửa [filename]. \n**Hiện tại**: [Tóm tắt cũ]\n**Đề xuất**: [Tóm tắt mới]\n**Tác động**: [Cảnh báo side effects]"
+1.  Thông báo tóm tắt phân tích.
 2.  **CHỜ** user approve.
 
+### Bước 4: Thực thi
+
+1.  Tạo/sửa file.
+2.  **Validate**: Đọc lại đảm bảo đúng cú pháp (Markdown/YAML frontmatter).
+
+### Bước 5: Verification
+
+1.  Kiểm tra tùy chỉnh hoạt động như mong đợi.
+
 ---
 
-## Bước 4: Thực thi
+## Ví dụ Copy-Paste
 
-1.  Thực hiện thao tác file (`write_to_file` hoặc `replace_file_content`).
-2.  **Validate**: Đọc lại file để đảm bảo đúng cú pháp (Markdown/YAML frontmatter).
-3.  **Đăng ký**: Nếu là rule, nhắc user xem họ có cần kích hoạt thủ công không (trừ khi là `always_on`).
+```text
+# Thêm rule mới
+/custom-behavior Thêm rule: mọi API endpoint phải có 
+rate limiting middleware. File: .agent/rules/api-security.md
+
+# Sửa workflow
+/custom-behavior Sửa /git-commit: thêm bước chạy 
+`npm run test:affected` trước khi commit.
+```
 
 ---
 
-## Bước 5: Verification
+## Giới hạn (Limitations)
 
-1.  Kiểm tra xem tùy chỉnh có hoạt động như mong đợi không (nếu được, chạy dry-run hoặc nhờ user test).
+- **Cần user approve** — không tự ý thay đổi rules/workflows.
+- **Không undo tự động** — nếu rule mới gây vấn đề, cần sửa thủ công.
+- **Phụ thuộc cấu trúc .agent/** — rule/workflow phải đúng format frontmatter.
+
+---
+
+## Workflow liên quan
+
+- `/ask` — Hỏi về rules hiện tại.
+- `/review-docs` — Review rule/workflow sau khi tạo.

@@ -1,6 +1,8 @@
 ---
 name: product-manager
 description: Use when defining product vision, agile roadmapping, prioritization (RICE/Kano), or user-centric discovery.
+risk: none
+source: self
 license: MIT
 metadata:
   version: "2.1"
@@ -11,6 +13,24 @@ metadata:
 # Product Management Standards
 
 This skill provides strategic product management guidelines for defining product vision, agile roadmapping, and user-centric discovery.
+
+## When to Use
+
+- Tạo Product Roadmap và OKRs.
+- Viết PRD (Product Requirements Document).
+- Prioritize features (RICE, Kano, MoSCoW).
+- Sprint planning và backlog grooming.
+- Task decomposition (document → stories → tasks).
+- Review và critique BA documents.
+
+## When NOT to Use
+
+- Viết technical specs chi tiết → Dùng `business-analysis`.
+- Code implementation → Dùng `backend-developer` / `frontend-developer`.
+- Architecture decisions → Dùng `lead-architect`.
+- Test planning → Dùng `qa-tester`.
+
+---
 
 ## Core Philosophy
 
@@ -145,3 +165,57 @@ _See `references/domain-guides.md` for deep dives._
 - "Create tasks from this PRD..." -> _Load `references/task-decomposition.md` for granular tasks_
 - "Create a PRD for..." -> _Load `templates/prd-strategic.md`_
 - "Prioritize these features..." -> _Use RICE/MoSCoW from `references/strategic-frameworks.md`_
+
+---
+
+## Ví dụ Copy-Paste
+
+```text
+# Tạo PRD
+@product-manager Tạo PRD cho tính năng User Analytics Dashboard:
+- Target: SaaS B2B, 500 enterprise users
+- Core metrics: DAU, retention, feature adoption
+- Timeline: Q2 2026
+
+# Prioritize backlog
+@product-manager Sắp xếp 15 features theo RICE framework.
+Team: 5 devs, Sprint 2 tuần.
+
+# Break down PRD
+@product-manager Decompose PRD Payment Module 
+thành Epics → Stories → Tasks.
+Mỗi task ≤ 8 giờ.
+```
+
+**Expected Output (RICE Prioritization):**
+
+```markdown
+## Backlog Prioritization — RICE Framework
+
+| # | Feature | Reach | Impact | Confidence | Effort | Score |
+|:--|:---|:---:|:---:|:---:|:---:|:---:|
+| 1 | SSO Integration | 500 | 3 | 90% | 3w | **45.0** |
+| 2 | Export PDF Reports | 200 | 2 | 80% | 1w | **32.0** |
+| 3 | Dark Mode | 400 | 1 | 95% | 2w | **19.0** |
+
+**Sprint 1 Recommendation**: SSO Integration + Export PDF (fit 4w sprint)
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Không code** — chỉ tạo documents, không implement.
+- **Cần user input cho priorities** — RICE scores cần business context từ user.
+- **Domain knowledge hạn chế** — cần research cho domains đặc thù (FinTech, HealthTech).
+- **Không thay thế PM thật** — output là draft, cần stakeholder review.
+- **Sprint velocity estimate** — chỉ ước lượng, cần historical data chính xác.
+
+---
+
+## Related Skills
+
+- `business-analysis` — Deep technical specs từ requirements.
+- `lead-architect` — Technical feasibility cho features.
+- `designer` — UI/UX cho user stories.
+- `qa-tester` — Acceptance criteria → test cases.

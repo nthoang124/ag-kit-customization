@@ -1,11 +1,31 @@
 ---
 name: skill-creator
 description: Use when creating new skills, updating existing skills, or packaging skills for distribution.
+risk: safe
+source: self
+metadata:
+  version: "1.0"
+allowed-tools: read_file write_to_file run_command list_dir
 ---
 
 # Skill Creation Standards
 
 Create and manage Agent Skills for Antigravity/Gemini CLI.
+
+## When to Use
+
+- Tạo skill mới cho Agent.
+- Nâng cấp/restructure skill hiện có.
+- Validate skill structure và quality.
+- Package skill cho distribution.
+
+## When NOT to Use
+
+- Tạo workflows/rules → Dùng `rules-workflows`.
+- Code business logic → Dùng `backend-developer` / `frontend-developer`.
+- Tạo documentation → Dùng `business-analysis`.
+
+---
 
 ## About Agent Skills
 
@@ -307,3 +327,66 @@ After upgrading a skill, report using this format:
 - [ ] Structure verified
 - [ ] User reviewed
 ```
+
+---
+
+## Ví dụ Copy-Paste
+
+```text
+# Tạo skill mới
+@skill-creator Tạo skill "database-admin" cho DBA tasks:
+- PostgreSQL performance tuning
+- Backup/restore procedures
+- Migration management
+```
+
+**Expected Output (SKILL.md structure):**
+
+```markdown
+---
+name: database-admin
+description: Use for PostgreSQL performance tuning, backup/restore, and migration management.
+risk: critical
+source: self
+metadata:
+  version: "1.0"
+allowed-tools: run_command search_web
+---
+
+# Database Administration Standards
+
+## When to Use
+- PostgreSQL query optimization (EXPLAIN ANALYZE).
+- Backup/restore procedures.
+- Schema migrations.
+
+## When NOT to Use
+- API/Backend code → Dùng `backend-developer`.
+
+## Core Responsibilities
+...
+
+## Giới hạn (Limitations)
+...
+
+## Related Skills
+- `backend-developer` — App code using the DB.
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Chỉ tạo/sửa files** — không deploy skills lên marketplace.
+- **Validation script cần Python** — `quick_validate.py` yêu cầu Python 3.x.
+- **Token limit** — SKILL.md nên < 5000 tokens, quá lớn sẽ nhồi context.
+- **Không test thực tế** — chỉ validate structure, không test skill trong runtime.
+- **User review bắt buộc** — skill mới cần user approve trước khi sử dụng.
+
+---
+
+## Related Skills
+
+- `rules-workflows` — Tạo workflows (Process), không phải skills (Knowledge).
+- `lead-architect` — Khi skill cần architectural patterns.
+- `qa-tester` — Validate skill output quality.

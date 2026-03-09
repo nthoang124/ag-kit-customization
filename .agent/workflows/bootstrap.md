@@ -1,100 +1,97 @@
 ---
 description: Thiết lập cấu trúc dự án, cài đặt dependencies, và cấu hình môi trường dựa trên spec kiến trúc.
 type: procedure
+risk: critical
+source: self
 required_skills: [lead-architect, devops-engineer, frontend-developer, backend-developer, product-manager]
 inputs: ["docs/030-Specs/Architecture/SDD-*.md"]
 outputs: ["Initialized Project", "CI/CD Config", "Env Config"]
 ---
 
-# Workflow Khởi tạo Dự án (Bootstrap)
+# Workflow Khởi tạo Dự án (`/bootstrap`)
 
 > [!IMPORTANT]
 > **Điều kiện tiên quyết**: Đảm bảo SDD đã tồn tại trong `docs/030-Specs/Architecture/`.
 
+## Khi nào dùng (When to Use)
+
+- Dự án mới cần setup từ đầu (framework, deps, config).
+- Thêm stack mới vào dự án hiện có (VD: thêm backend vào project frontend-only).
+- Setup lại môi trường phát triển (CI/CD, linting, hooks).
+
+## KHÔNG dùng khi (When NOT to Use)
+
+- Dự án đã chạy ổn định → Không cần bootstrap lại.
+- Chỉ cần install 1-2 thư viện → Dùng `npm install` trực tiếp.
+- Chỉ cần update deps → Dùng `/development` với task update.
+- Chưa có SDD/Architecture docs → Dùng `/brainstorm` + `/documentation` trước.
+
 ---
 
-## Hướng dẫn sử dụng MCP
+## Các bước thực hiện
 
-| MCP Tool | Khi nào dùng |
-| :--- | :--- |
-| `context7_resolve-library-id` | Tìm tên package chính xác |
-| `context7_query-docs` | Nghiên cứu các bước cài đặt/cấu hình |
-
----
-
-## Bước 1: Khởi tạo Framework & Cấu trúc
+### Bước 1: Khởi tạo Framework & Cấu trúc
 
 // turbo
 
-1.  **Adopt `[lead-architect]` persona** để:
-    -   Định nghĩa cấu trúc root (Monorepo vs Polyrepo).
-    -   Khởi tạo base project (VD: `git init`, `npx create-next-app`).
-    -   Tạo khung thư mục dựa trên SDD.
+1.  **Adopt `[lead-architect]` persona**: Monorepo vs Polyrepo, init project, tạo khung thư mục.
 2.  **Verify**: Đảm bảo quá trình khởi tạo hoàn tất.
 
----
-
-## Bước 2: Công cụ Maintenance & Chất lượng
+### Bước 2: Công cụ Maintenance & Chất lượng
 
 // turbo
 
-> 💡 **Vai trò**: DevOps Engineer đảm bảo "Trải nghiệm Phát triển" (DX) tốt.
+1.  **Adopt `[devops-engineer]` persona**: ESLint, Prettier, TypeScript, Husky, Lint-staged, CI/CD.
+2.  Verify: Chạy `npm run lint` và đảm bảo hooks hoạt động.
 
-1.  **Adopt `[devops-engineer]` persona** để cài đặt & cấu hình:
-    -   **Quality Tools**: ESLint, Prettier, TypeScript config.
-    -   **Git Hooks**: Husky, Lint-staged, Commitlint.
-    -   **CI/CD**: Github Actions (build/test cơ bản).
-2.  Verify: Chạy `npm run lint` và đảm bảo hooks hoạt động khi commit.
-
----
-
-## Bước 3: Setup Frontend
+### Bước 3: Setup Frontend
 
 // turbo
 
-> 💡 **Vai trò**: Frontend Developer quản lý phía UI/Client.
+1.  **Adopt `[frontend-developer]` persona**: UI framework, State manager, Structure, Assets.
+2.  **Verify**: `package.json` đã có đầy đủ deps.
 
-1.  **Adopt `[frontend-developer]` persona** để:
-    -   **UI Ecosystem**: Cài đặt TailwindCSS, Radix/Shadcn, Framer Motion.
-    -   **State Manager**: Zustand/Jotai/Redux.
-    -   **Structure**: Setup `src/components`, `src/hooks`, `src/pages` (hoặc `app`).
-    -   **Assets**: Cấu hình font loaders, image optimization.
-2.  **Verify**: Đảm bảo các thư viện đã được thêm vào `package.json`.
-
----
-
-## Bước 4: Setup Backend
+### Bước 4: Setup Backend
 
 // turbo
 
-> 💡 **Vai trò**: Backend Developer quản lý phía Data/Server.
+1.  **Adopt `[backend-developer]` persona**: Database, API, Validation, Environment.
+2.  **Verify**: Kết nối database thành công.
 
-1.  **Adopt `[backend-developer]` persona** để:
-    -   **Database**: Setup Prisma/Drizzle/Supabase client.
-    -   **API**: Cấu hình API routes/Server Actions.
-    -   **Validation**: Cài đặt Zod/Valibot.
-    -   **Environment**: Tạo `.env.example` và validate `.env` keys.
-2.  **Verify**: Đảm bảo kết nối database thành công (nếu có thể).
-
----
-
-## Bước 5: Validation Cuối cùng
+### Bước 5: Validation Cuối cùng
 
 // turbo
 
-1.  **Adopt `[devops-engineer]` persona** để:
-    -   Chạy full build `npm run build`.
-    -   Test Type-checking `tsc --noEmit`.
-2.  **Adopt `[product-manager]` persona** để cập nhật trạng thái Roadmap sang "In Progress".
+1.  Chạy full build `npm run build` + Type-checking `tsc --noEmit`.
 
 ---
 
-## Quick Reference
+## Ví dụ Copy-Paste
 
-| Bước | Skill | Hành động |
-| :--- | :--- | :--- |
-| 1 | lead-architect | Framework & Structure Init |
-| 2 | devops-engineer | Husky, Linter, CI/CD |
-| 3 | frontend-developer | Tailwind, Components, State |
-| 4 | backend-developer | DB, API, Env |
-| 5 | devops-engineer | Final Build Check |
+```text
+# Bootstrap dự án Next.js mới
+/bootstrap Thiết lập dự án Next.js 15 + Supabase + TailwindCSS + Shadcn UI 
+theo SDD-FarmTrace.md. Monorepo với Turborepo.
+
+# Bootstrap thêm backend cho dự án frontend
+/bootstrap Thêm FastAPI backend vào dự án React hiện có: 
+PostgreSQL + Prisma + JWT auth + Docker.
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Yêu cầu SDD/Architecture trước** — nếu chưa có, dùng `/brainstorm` + `/documentation`.
+- **Chỉ setup, KHÔNG code business logic** — dùng `/cook` hoặc `/implement-feature` sau.
+- **Framework-specific** — quy trình thay đổi tuỳ tech stack (Next.js vs FastAPI vs Go).
+- **Không setup production deployment** — chỉ dev environment.
+- **Cần quyền admin** để install global tools (nếu cần).
+
+---
+
+## Workflow liên quan
+
+- `/brainstorm` — Tạo PRD/Roadmap trước bootstrap.
+- `/documentation` — Tạo SDD trước bootstrap.
+- `/cook` / `/implement-feature` — Code feature sau khi bootstrap xong.

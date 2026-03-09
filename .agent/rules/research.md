@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: Always apply when starting new tasks, invoking workflows, or using skills that require specialized knowledge or deep insight.
+description: Luôn áp dụng khi bắt đầu task mới, gọi workflow, hoặc dùng skill cần kiến thức chuyên sâu.
 ---
 
 # Deep Research & Insight Gathering Rule

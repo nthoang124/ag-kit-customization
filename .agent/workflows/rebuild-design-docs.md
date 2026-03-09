@@ -1,75 +1,84 @@
 ---
-description: Phân tích code và tài liệu hiện có để tái tạo toàn bộ tài liệu thiết kế phần mềm mới, nhất quán, có tính hệ thống, phục vụ onboarding, review kiến trúc và mở rộng dự án.
+description: Phân tích code và tài liệu hiện có để tái tạo toàn bộ tài liệu thiết kế phần mềm.
+type: procedure
+risk: safe
+source: self
+required_skills: [lead-architect, backend-developer]
+inputs: ["Codebase", "Existing Docs"]
+outputs: ["docs/040-Design/*"]
 ---
 
-## Mục tiêu
-Chuẩn hóa lại toàn bộ tài liệu thiết kế dự án bằng cách tạo một bộ tài liệu mới, tách biệt, phản ánh đúng hiện trạng và định hướng tương lai.
+# Workflow Tái tạo Design Docs (`/rebuild-design-docs`)
 
----
+## Khi nào dùng (When to Use)
 
-## Bước 1: Phân tích hiện trạng
-- Quét cấu trúc thư mục project
-- Xác định các module chính
-- Đọc code ở mức kiến trúc (không đi quá chi tiết implementation)
-- Đọc tài liệu hiện có để phát hiện:
-  - Mâu thuẫn
-  - Nội dung lỗi thời
-  - Phần thiếu hoặc không rõ ràng
+- Tài liệu thiết kế hiện có bị lỗi thời hoặc mâu thuẫn nghiêm trọng.
+- Cần onboarding tài liệu cho team mới.
+- Chuẩn bị audit kiến trúc hoặc review dự án lớn.
 
----
+## KHÔNG dùng khi (When NOT to Use)
 
-## Bước 2: Xác định nguồn thông tin
-- KHÔNG coi code là source of truth duy nhất
-- Tổng hợp thông tin từ:
-  - Code
-  - Tài liệu cũ
-  - Cấu trúc project
-  - Naming, flow, pattern thể hiện gián tiếp
-- Nếu thiếu thông tin:
-  - Đánh dấu "Giả định / TODO"
-  - Hoặc đề xuất hướng thiết kế hợp lý
+- Chỉ cần update vài file docs → Dùng `/update-docs`.
+- Tạo docs cho code mới → Dùng `/documentation`.
+- Chỉ cần review docs → Dùng `/review-docs`.
 
 ---
 
-## Bước 3: Đề xuất cấu trúc tài liệu mới
-- Tạo thư mục mới: /docs/design-v2
-- Không chỉnh sửa tài liệu cũ
-- Mỗi loại tài liệu là 1 file markdown riêng
-- Không trùng lặp nội dung giữa các file
+## Các bước thực hiện
+
+### Bước 1: Phân tích hiện trạng
+
+1.  Quét cấu trúc thư mục, xác định modules chính.
+2.  Đọc code ở mức kiến trúc (không đi quá chi tiết implementation).
+3.  Phát hiện mâu thuẫn, nội dung lỗi thời, phần thiếu.
+
+### Bước 2: Xác định nguồn thông tin
+
+1.  Tổng hợp từ: Code + Docs cũ + Cấu trúc project + Naming/flow patterns.
+2.  Nếu thiếu → Đánh dấu "Giả định / TODO".
+
+### Bước 3: Đề xuất cấu trúc mới
+
+1.  Tạo thư mục mới: `docs/040-Design/` (nếu chưa tồn tại).
+2.  KHÔNG chỉnh sửa tài liệu cũ.
+
+### Bước 4: Tạo tài liệu
+
+Bắt buộc:
+- `00-overview.md`, `01-architecture.md`, `02-module-design.md`, `03-api-design.md`
+- `04-database-design.md`, `05-business-flow.md`, `06-non-functional.md`, `07-assumptions-and-limits.md`
+
+### Bước 5: Viết nội dung chi tiết
+
+Mỗi file: Mục đích → Phạm vi → Nội dung chính. Ưu tiên tư duy thiết kế.
 
 ---
 
-## Bước 4: Tạo danh sách file
-Bắt buộc bao gồm:
-- 00-overview.md
-- 01-architecture.md
-- 02-module-design.md
-- 03-api-design.md
-- 04-database-design.md
-- 05-business-flow.md
-- 06-non-functional.md
-- 07-assumptions-and-limits.md
+## Ví dụ Copy-Paste
+
+```text
+# Rebuild toàn bộ design docs
+/rebuild-design-docs Tái tạo toàn bộ tài liệu thiết kế cho FarmTrace.
+Code hiện tại đã phát triển xa hơn docs cũ, cần chuẩn hóa lại.
+
+# Rebuild cho onboarding
+/rebuild-design-docs Tạo lại design docs phục vụ onboarding 2 dev mới.
+Focus: architecture overview, API design, database schema.
+```
 
 ---
 
-## Bước 5: Viết nội dung chi tiết
-Mỗi file phải có:
-- Mục đích
-- Phạm vi
-- Nội dung chính
-- Viết rõ ràng, có hệ thống, dễ đọc cho dev mới
-- Ưu tiên kiến trúc và tư duy thiết kế, không sa đà code
+## Giới hạn (Limitations)
+
+- **Không suy đoán nghiệp vụ** nếu không có bằng chứng → ghi rõ.
+- **Không chỉnh sửa docs cũ** — tạo bộ mới hoàn toàn.
+- **Phụ thuộc code quality** — code lộn xộn = docs khó mô tả.
+- **Không tự verify** — cần human review sau khi hoàn thành.
 
 ---
 
-## Tiêu chí hoàn thành
-- Dev mới đọc tài liệu có thể hiểu hệ thống mà không cần đọc code
-- Có thể dùng để review kiến trúc hoặc audit
-- Là nền tảng để refactor hoặc mở rộng dự án trong tương lai
+## Workflow liên quan
 
----
-
-## Quy tắc
-- Không suy đoán nghiệp vụ nếu không có bằng chứng
-- Nếu thiếu thông tin → ghi rõ
-- Luôn phản hồi bằng tiếng Việt
+- `/documentation` — Tạo docs mode forward/reverse.
+- `/update-docs` — Cập nhật nhanh docs.
+- `/project-review` — Audit dự án trước khi rebuild.

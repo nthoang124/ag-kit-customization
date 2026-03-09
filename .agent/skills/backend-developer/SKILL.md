@@ -1,6 +1,8 @@
 ---
 name: backend-developer
 description: Use when designing APIs, Architecture, Security, or Scalability for Node, Python, Go, or Java backend systems.
+risk: critical
+source: self
 license: MIT
 metadata:
   version: "2.0"
@@ -13,6 +15,23 @@ metadata:
 # Backend Development Standards
 
 This skill provides expert guidelines for building robust, scalable, and secure distributed systems.
+
+## When to Use
+
+- Thiết kế REST/GraphQL APIs.
+- Database schema design và migrations.
+- Authentication/Authorization (JWT, OAuth2, RBAC).
+- Viết backend code (Node.js, Python, Go, Java).
+- Input validation, error handling, security hardening.
+
+## When NOT to Use
+
+- Frontend/UI code → Dùng `frontend-developer`.
+- System architecture decisions → Dùng `lead-architect`.
+- CI/CD/Deploy → Dùng `devops-engineer`.
+- Test planning → Dùng `qa-tester`.
+
+---
 
 ## Core Philosophy
 
@@ -36,6 +55,8 @@ This skill provides expert guidelines for building robust, scalable, and secure 
 | **Node.js (NestJS)**          | `references/node-nestjs.md`      |
 | **Python (Django)**           | `references/python-django.md`    |
 | **Python (FastAPI)**          | `references/python-fastapi.md`   |
+| **Python (Flask)**            | `references/python-flask.md`     |
+| **Python (General/Scripts)**  | `references/python-patterns.md`  |
 | **Go (Gin)**                  | `references/go-gin.md`           |
 | **Go (Echo)**                 | `references/go-echo.md`          |
 | **Java (Spring Boot)**        | `references/java-springboot.md`  |
@@ -85,3 +106,121 @@ This skill provides expert guidelines for building robust, scalable, and secure 
 - **Code Reviews**: Be pedantic about security, performance (N+1 queries), and readability.
 - **Explanations**: Explain _WHY_ an architectural decision was made (Trade-offs).
 - **Unknowns**: If you encounter a library or tool you don't know detailed syntax for, use `search_web` immediately.
+
+## 5. Python-Specific Patterns
+
+### Project Structure (FastAPI)
+
+```
+app/
+├── main.py              # FastAPI app instance
+├── api/
+│   ├── v1/
+│   │   ├── routes/      # Endpoint definitions
+│   │   └── deps.py      # Dependencies (auth, db session)
+├── core/
+│   ├── config.py        # Pydantic Settings
+│   └── security.py      # JWT, hashing
+├── models/              # SQLAlchemy / SQLModel
+├── schemas/             # Pydantic request/response
+├── services/            # Business logic
+└── repositories/        # DB queries
+```
+
+### Python Best Practices
+
+- **Type hints everywhere** — `def get_user(user_id: int) -> User:`
+- **Pydantic for validation** — Never trust raw dicts from API input.
+- **Async where it matters** — I/O-bound (DB, HTTP) = async. CPU-bound = sync.
+- **Virtual envs** — Always `python -m venv .venv` or use Poetry/uv.
+- **Requirements pinned** — `requirements.txt` with exact versions or `poetry.lock`.
+
+### Python Anti-Patterns
+
+- ❌ `import *` — Never. Always explicit imports.
+- ❌ Bare `except:` — Always catch specific exceptions.
+- ❌ Mutable default args — `def f(items=[])` → `def f(items=None)`.
+- ❌ Global state — Use dependency injection (FastAPI `Depends()`).
+- ❌ `print()` for logging — Use `logging` module or `structlog`.
+
+---
+
+## Ví dụ Copy-Paste
+
+```text
+# Tạo REST API
+@backend-developer Tạo CRUD API cho module Products:
+- GET /api/products (list, pagination, filter)
+- POST /api/products (create, validation)
+- PATCH /api/products/:id (partial update)
+- DELETE /api/products/:id (soft delete)
+Stack: NestJS + Prisma + PostgreSQL
+
+# Database design
+@backend-developer Thiết kế schema cho multi-tenant SaaS:
+- Tenant isolation: row-level security
+- Users, Roles, Permissions
+- Audit log
+```
+
+**Expected Output (NestJS):**
+
+```typescript
+// products.controller.ts
+@Controller('products')
+export class ProductsController {
+  @Get()
+  async findAll(
+    @Query() query: PaginationDto,
+  ): Promise<PaginatedResult<Product>> {
+    return this.productsService.findAll(query);
+  }
+
+  @Post()
+  async create(
+    @Body() dto: CreateProductDto, // Zod validated
+  ): Promise<Product> {
+    return this.productsService.create(dto);
+  }
+}
+```
+
+---
+
+## ⚠️ Best Practices & Common Pitfalls
+
+### ✅ Do
+
+- **Validate inputs at boundary** — Zod/Joi/Pydantic at controller level.
+- **Use transactions** — Multi-table writes MUST be atomic.
+- **Index foreign keys** — Always. No exceptions.
+- **Return consistent error format** — `{ error: string, code: string, details?: any }`.
+- **Log structured JSON** — Not `console.log('error happened')`.
+
+### ❌ Don’t
+
+- **Don’t expose internal errors** — Never send stack traces to clients.
+- **Don’t trust client data** — Re-validate even if frontend validates.
+- **Don’t use `SELECT *`** — Explicit columns always.
+- **Don’t skip migrations** — Never ALTER TABLE manually in production.
+- **Don’t hardcode secrets** — Use `.env` + validation at startup.
+
+---
+
+## Giới hạn (Limitations)
+
+- **Cần stack cụ thể** — phải biết framework trước khi generate code.
+- **Không deploy** — chỉ code, không deploy lên server.
+- **Không manage infrastructure** — dùng `devops-engineer` cho infra.
+- **Limited testing** — viết unit/integration tests nhưng không full coverage.
+- **Search web cho libraries mới** — training data có thể outdated.
+
+---
+
+## Related Skills
+
+- `lead-architect` — Architectural decisions trước khi implement.
+- `frontend-developer` — API contract handoff.
+- `qa-tester` — Test APIs và business logic.
+- `devops-engineer` — Deploy và containerize.
+- `data-engineer` — Khi cần data pipelines và ETL.

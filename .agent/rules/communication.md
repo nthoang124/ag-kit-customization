@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: Always apply this rule. Enforce Vietnamese language in all interactions.
+description: Luôn áp dụng. Bắt buộc sử dụng tiếng Việt trong mọi tương tác.
 ---
 
 # Quy tắc Giao tiếp (Communication Rules)

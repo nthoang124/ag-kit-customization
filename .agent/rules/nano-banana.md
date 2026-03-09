@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: Apply this rule when generating images, icons, or visual assets using generate_image tool.
+description: Áp dụng khi tạo hình ảnh, icon, hoặc tài nguyên trực quan bằng công cụ generate_image.
 ---
 
 # Generate Image Usage Guide

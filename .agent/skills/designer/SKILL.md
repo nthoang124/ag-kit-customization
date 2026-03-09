@@ -1,11 +1,34 @@
 ---
 name: designer
 description: Use when building UI, branding, design systems, or auditing accessibility/UX.
+risk: safe
+source: self
+metadata:
+  version: "1.0"
+allowed-tools: generate_image search_web read_url_content run_command
 ---
 
 # Frontend Design Standards
 
 Expert-level design guidance for creating memorable, production-grade interfaces.
+
+## When to Use
+
+- Thiết kế UI components, pages, layouts.
+- Tạo brand identity (logos, colors, typography).
+- Design system tokens và patterns.
+- Accessibility audit (WCAG compliance).
+- Tạo visual assets (icons, illustrations) với `generate_image`.
+- Motion design specs cho animations.
+
+## When NOT to Use
+
+- Frontend code implementation → Dùng `frontend-developer`.
+- Backend/API → Dùng `backend-developer`.
+- Product requirements → Dùng `product-manager`.
+- UI/UX research chuyên sâu → Dùng `researcher`.
+
+---
 
 ## Core Design Principles
 
@@ -110,3 +133,55 @@ Distinct visual aesthetics to drive design direction:
 | Template    | Path                              | Purpose                                                                                                  |
 | ----------- | --------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | Motion Spec | `templates/design-motion-spec.md` | Motion Specification - animation timeline, triggers, easing. Use for handoff animation specs to frontend |
+
+---
+
+## Ví dụ Copy-Paste
+
+```text
+# Thiết kế UI component
+@designer Thiết kế Pricing Card cho SaaS:
+- 3 tiers: Free, Pro, Enterprise
+- Dark mode, glassmorphism style
+- Highlight tier phổ biến nhất
+```
+
+**Expected Output (Design Spec):**
+
+```markdown
+## Pricing Card Design Spec
+
+### Design Tokens
+- `--card-bg`: rgba(255,255,255,0.05) (glass effect)
+- `--card-border`: rgba(255,255,255,0.1)
+- `--highlight-gradient`: linear-gradient(135deg, #6366f1, #8b5cf6)
+- `--card-radius`: 24px
+- `--blur`: backdrop-filter: blur(20px)
+
+### Layout
+- 3 cards, center card 10% larger (highlighted)
+- Gap: 24px, responsive: stack on mobile
+- Highlight badge: "Most Popular" pill
+
+### Motion
+- Hover: translateY(-8px), shadow increase, 300ms ease
+- Highlight card: subtle pulse glow (2s infinite)
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Không code CSS/JS** — tạo design specs, `frontend-developer` implement.
+- **Assets cần background removal** — script `remove_background.py` cần Python + dependencies.
+- **generate_image có hạn chế** — không tạo được text chính xác trong hình.
+- **Không prototype interactive** — chỉ static design, không Figma prototype.
+- **Color accuracy** — màu trong generate_image có thể khác hex mong muốn.
+
+---
+
+## Related Skills
+
+- `frontend-developer` — Implement designs thành code.
+- `product-manager` — Requirements và user personas.
+- `business-analysis` — User flows và use cases.

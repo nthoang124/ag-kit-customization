@@ -1,7 +1,9 @@
 ---
 description: Review nhanh các thay đổi trước khi merge (Diff Review).
 type: procedure
-required_skills: [lead-architect, backend-developer, security-specialist]
+risk: none
+source: self
+required_skills: [lead-architect, backend-developer]
 inputs: ["Git Diff", "Branch Name", "PR"]
 outputs: ["Review Comments", "Approval/Rejection"]
 ---
@@ -11,39 +13,73 @@ outputs: ["Review Comments", "Approval/Rejection"]
 > [!IMPORTANT]
 > **TIÊU CHÍ**: Clean Code, Security, Performance, và Tuân thủ Rules.
 
+## Khi nào dùng (When to Use)
+
+- Review code từ PR trước khi merge.
+- Self-review code trước khi commit.
+- Review code từ AI hoặc junior developer.
+
+## KHÔNG dùng khi (When NOT to Use)
+
+- Review toàn bộ dự án (architecture, docs, tests) → Dùng `/project-review`.
+- Review tài liệu → Dùng `/review-docs`.
+- Debug code → Dùng `/debug`.
+
 ---
 
-## Bước 1: Diff & Context Analysis
+## Các bước thực hiện
+
+### Bước 1: Diff & Context Analysis
 
 // turbo
 
 1.  **Lấy Diff**:
-    -   Nếu review local: `git diff dev...HEAD` (hoặc branch hiện tại).
-    -   Nếu review file: `read_file`.
-2.  **Adopt `[lead-architect]`**:
-    -   Đánh giá sự phù hợp với cấu trúc dự án.
-    -   Phát hiện "Smell Code" (Hàm quá dài, biến đặt tên sai standard, logic lặp).
+    -   Review local: `git diff dev...HEAD`.
+    -   Review file: `view_file`.
+2.  **Adopt `[lead-architect]`**: Đánh giá cấu trúc, phát hiện Code Smell.
 
----
-
-## Bước 2: Deep Dive (Logic & Security)
+### Bước 2: Deep Dive (Logic & Security)
 
 // turbo
 
-1.  **Adopt `[backend-developer]` (hoặc Frontend)**:
-    -   Kiểm tra logic nghiệp vụ.
-    -   Edge cases: Null safety, try-catch sót.
-2.  **Adopt `[security-specialist]`**:
-    -   Quét lỗi bảo mật: SQLi, XSS, lộ secrets.
-    -   Kiểm tra permission/auth check.
+1.  **Logic**: Kiểm tra nghiệp vụ, edge cases, null safety, error handling.
+2.  **Security**: SQLi, XSS, lộ secrets, permission/auth check.
+
+### Bước 3: Report & Verdict
+
+1.  **Phân loại Comments**: `[CRITICAL]`, `[MAJOR]`, `[MINOR]`, `[NITPICK]`.
+2.  **Đề xuất**:
+    -   Reject: Nếu có lỗi Critical/Major.
+    -   Approve: Nếu chỉ có Minor/Nitpick.
+3.  **Action**: Notify kết quả review cho user.
 
 ---
 
-## Bước 3: Report & Verdict
+## Ví dụ Copy-Paste
 
-1.  **Tổng hợp Comments**:
-    -   Phân loại: `[CRITICAL]`, `[MAJOR]`, `[MINOR]`, `[NITPICK]`.
-2.  **Đề xuất**:
-    -   Reject: Nếu có lỗi Critical/Major.
-    -   Approve: Nếu chỉ có Minor/Nitpick (hoặc không lỗi).
-3.  **Action**: Notify kết quả review cho user.
+```text
+# Review PR
+/code-review Review PR #42: feat/user-auth. 
+Focus: security (JWT implementation), performance (query optimization).
+
+# Self-review
+/code-review Review code hiện tại trên branch feat/dashboard 
+trước khi tạo PR.
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Chỉ review code** — không review docs, tests, hoặc architecture.
+- **Không sửa code** — chỉ đưa ra comments, user tự fix.
+- **Phụ thuộc vào diff** — nếu diff quá lớn (> 500 dòng), review sẽ bị sơ sài.
+- **Không thay thế human reviewer** — AI review bổ sung, không thay thế.
+
+---
+
+## Workflow liên quan
+
+- `/project-review` — Review toàn diện dự án.
+- `/review-docs` — Review tài liệu.
+- `/git-pr` — Tạo PR sau khi code đã review.

@@ -1,11 +1,33 @@
 ---
 name: business-analysis
 description: Use for deep requirements analysis, technical specifications, agile documentation, or architecture/design reviews.
+risk: none
+source: self
+metadata:
+  version: "1.0"
+allowed-tools: read_file list_dir search_web read_url_content
 ---
 
 # Business Analysis Standards
 
 This skill defines the standards for bridging the gap between abstract business goals and concrete technical implementation.
+
+## When to Use
+
+- Viết PRD, BRD, Technical Specs, User Stories.
+- Phân tích requirements và gap analysis.
+- Vẽ diagrams (Sequence, State, Class, ERD).
+- Review và critique business documents.
+- Tạo use cases với happy/negative/edge paths.
+
+## When NOT to Use
+
+- Code implementation → Dùng `backend-developer` / `frontend-developer`.
+- Product strategy/roadmap → Dùng `product-manager`.
+- Architecture design → Dùng `lead-architect`.
+- Test planning → Dùng `qa-tester`.
+
+---
 
 ## 🧠 Core Mindset & Philosophy
 
@@ -108,3 +130,67 @@ If asked for a "Student Gradebook":
 4.  **Spec**: Define `grades` table (student_id, assignment_id, score, weight).
 
 ---
+
+## Ví dụ Copy-Paste
+
+```text
+# Viết PRD
+@business-analysis Viết PRD chi tiết cho tính năng Gradebook:
+- Domain: EdTech LMS
+- Users: Teachers, Students, Parents
+- Core flows: Enter grades, View report, Export PDF
+
+# Gap analysis
+@business-analysis Phân tích gap giữa requirements và current implementation
+cho module Inventory Management.
+
+# Vẽ diagram
+@business-analysis Tạo Sequence Diagram cho flow:
+User login → MFA verify → Dashboard load → Data fetch
+```
+
+**Expected Output (Sequence Diagram):**
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant FE as Frontend
+    participant Auth as AuthService
+    participant MFA as MFA Provider
+    participant API as API Gateway
+    participant DB as Database
+
+    U->>FE: Enter credentials
+    FE->>Auth: POST /auth/login
+    Auth->>DB: Validate user
+    Auth-->>FE: 200 (MFA required)
+    FE->>U: Show MFA input
+    U->>FE: Enter OTP
+    FE->>Auth: POST /auth/mfa/verify
+    Auth->>MFA: Verify OTP
+    MFA-->>Auth: Valid
+    Auth-->>FE: 200 + JWT token
+    FE->>API: GET /dashboard (Bearer token)
+    API->>DB: Fetch user data
+    DB-->>API: Data
+    API-->>FE: 200 + Dashboard data
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Không code** — chỉ tạo documents và diagrams, không implement.
+- **Mermaid syntax có thể outdated** — luôn `search_web` verify syntax trước.
+- **Cần domain knowledge** — câu hỏi domain-specific cần user input.
+- **Diagrams không render** — tạo Mermaid code, user tự render.
+- **Obsidian-specific features** — wiki-links chỉ hoạt động trong Obsidian.
+
+---
+
+## Related Skills
+
+- `product-manager` — Strategy và prioritization input.
+- `lead-architect` — Technical architecture alignment.
+- `qa-tester` — Test cases từ requirements.
+- `designer` — UI/UX alignment cho user flows.

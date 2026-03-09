@@ -1,6 +1,8 @@
 ---
 name: frontend-developer
 description: Use when implementing frontend code, optimizing performance, or ensuring strict adherence to documentation/references.
+risk: safe
+source: self
 license: MIT
 metadata:
   version: "3.1"
@@ -15,6 +17,23 @@ allowed-tools: read_file list_dir search_web read_url_content
 # Frontend Development Standards
 
 This skill provides expert-level guidelines for frontend code quality, runtime performance, and pixel-perfect implementation.
+
+## When to Use
+
+- Viết React/Vue/Angular/Svelte components.
+- Tối ưu Web Vitals (LCP, FID, CLS).
+- Implement responsive layouts và animations.
+- Accessibility (WCAG) compliance.
+- Frontend code review.
+
+## When NOT to Use
+
+- Backend/API code → Dùng `backend-developer`.
+- UI/UX design decisions → Dùng `designer`.
+- Test planning → Dùng `qa-tester`.
+- CI/CD → Dùng `devops-engineer`.
+
+---
 
 ## 🛑 THE GOLDEN RULE: "Quote First"
 
@@ -109,3 +128,68 @@ Before showing code to the user, run this mental audit:
 - **Resumability (Qwik)**: Do not execute JS just to hydrate.
 
 ---
+
+## Ví dụ Copy-Paste
+
+```text
+# Component implementation
+@frontend-developer Tạo responsive Product Card component:
+- Image (lazy load), Title, Price, Rating stars
+- Hover animation, Add to cart button
+- Stack: React + Tailwind CSS
+
+# Performance optimization
+@frontend-developer Tối ưu trang Dashboard:
+- Bundle size hiện tại > 500KB
+- LCP > 4s, CLS > 0.25
+- Cần lazy loading, code splitting, image optimization
+```
+
+**Expected Output (React + Tailwind):**
+
+```tsx
+export function ProductCard({ product }: { product: Product }) {
+  return (
+    <div className="group relative overflow-hidden rounded-2xl
+                    bg-white shadow-md transition-all
+                    hover:shadow-xl hover:-translate-y-1">
+      <img
+        src={product.image}
+        alt={product.name}
+        loading="lazy"
+        className="h-48 w-full object-cover"
+      />
+      <div className="p-4">
+        <h3 className="font-semibold truncate">{product.name}</h3>
+        <p className="text-lg font-bold text-indigo-600">
+          ${product.price}
+        </p>
+        <StarRating value={product.rating} />
+        <button className="mt-3 w-full rounded-lg bg-indigo-600
+                          py-2 text-white transition
+                          hover:bg-indigo-700">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Giới hạn (Limitations)
+
+- **Cần evidence/docs** — không code khi không có nguồn tham chiếu.
+- **Không design** — implement design, không tạo design decisions.
+- **Không run visual tests** — không có browser, cần user verify UI.
+- **Framework updates nhanh** — luôn `search_web` cho latest patterns.
+- **Không backend** — chỉ frontend, API calls qua fetch/axios.
+
+---
+
+## Related Skills
+
+- `designer` — Visual design specs và design tokens handoff.
+- `backend-developer` — API contract và data models.
+- `qa-tester` — E2E tests cho UI components.

@@ -1,26 +1,34 @@
 ---
 description: Phân tích ý tưởng cùng user và tạo các tài liệu sơ bộ mức cao (Roadmap, PRD).
 type: procedure
-required_skills: [research, product-manager]
+risk: none
+source: self
+required_skills: [researcher, product-manager]
 inputs: ["User Idea", "Market Trends"]
 outputs: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md"]
+context_from: []
+context_to: ["/plan", "/documentation", "/implement-feature"]
+context_artifacts:
+  receives: []
+  produces: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md", "docs/050-Research/research-insights.md"]
 ---
 
-# Workflow Brainstorm
+# Workflow Brainstorm (`/brainstorm`)
 
 > [!IMPORTANT]
 > **BẮT BUỘC**: Đọc `.agent/rules/documents.md` trước khi tạo bất kỳ tài liệu nào.
 
----
+## Khi nào dùng (When to Use)
 
-## Hướng dẫn sử dụng MCP
+- Bắt đầu dự án mới, cần Roadmap và PRD.
+- User có ý tưởng mới cần phân tích tính khả thi.
+- Cần nghiên cứu thị trường/đối thủ trước khi quyết định hướng đi.
 
-| MCP Tool | Khi nào dùng | Ví dụ |
-| :--- | :--- | :--- |
-| `sequential-thinking` | Phân tích yêu cầu, phụ thuộc tính năng, đánh đổi | Chia nhỏ request mơ hồ |
-| `context7_resolve-library-id` | Tìm ID thư viện trước khi tra cứu | "mermaid js" |
-| `context7_query-docs` | Nghiên cứu pattern, API thư viện, best practices | "How to setup auth in Next.js" |
-| `search_web` | Nghiên cứu chủ động các pattern triển khai | "best architecture for agentic systems" |
+## KHÔNG dùng khi (When NOT to Use)
+
+- Đã có PRD/Roadmap rõ ràng → Dùng `/plan` hoặc `/implement-feature`.
+- Chỉ cần lên technical plan → Dùng `/plan`.
+- Cần code ngay → Dùng `/cook` hoặc `/code`.
 
 ---
 
@@ -30,72 +38,104 @@ outputs: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md"]
 
 > 💡 **BẮT BUỘC**: Tuân thủ `.agent/rules/research.md` trước khi bắt đầu lên ý tưởng.
 
-1.  **Adopt `[research]` persona** (via `search_web` + `read_url_content`) để:
+1.  **Adopt `[research]` persona** (via `search_web` + `read_url_content`):
     -   Xác định 5-10 xu hướng chính trong domain dự án.
     -   Tìm các ví dụ "best-in-class" của sản phẩm tương tự.
     -   Nhận diện các cạm bẫy phổ biến và "Wow Factors" hiện đại.
 2.  Tạo artifact `research-insights.md` trong `docs/050-Research/`.
 3.  **Action**: Gọi `notify_user` để user review kết quả nghiên cứu.
 
----
-
-## Thứ tự Ưu tiên Tài liệu
-
-```
-Priority 0: Roadmap       ← Quy hoạch Dự án & Dòng thời gian
-Priority 1: PRD           ← Tổng quan Chiến lược
-```
-
----
-
 ## Bước 2: Làm rõ & Thấu hiểu
-
-**Vai trò: Product Manager**
 
 > [!NOTE]
 > Bước này là **BẮT BUỘC**. KHÔNG ĐƯỢC đi tiếp nếu chưa có xác nhận của user.
 
-> 💡 **MCP**: Sử dụng `sequential-thinking` để phân tích các yêu cầu mơ hồ hoặc phức tạp.
-
-1.  **Adopt `[product-manager]` persona** để:
+1.  **Adopt `[product-manager]` persona**:
     -   Tóm tắt mức độ hiểu.
     -   Tạo câu hỏi làm rõ (clarification questions).
-2.  Tạo artifact `clarification-questions.md`.
-3.  **Action**: Gọi `notify_user` để user review.
-
----
+2.  **Action**: Gọi `notify_user` để user review.
 
 ## Bước 3: Tạo Roadmap
 
 // turbo
 
-> 💡 **MCP**: Sử dụng `sequential-thinking` cho việc lên kế hoạch theo giai đoạn và đánh giá rủi ro.
-
-1.  **Adopt `[product-manager]` persona** để soạn thảo:
-    -   Timeline dự án và các cột mốc (milestones).
-    -   Phân chia giai đoạn (MVP, v1.0, v2.0).
-    -   Các deliverables chính theo từng giai đoạn.
+1.  **Adopt `[product-manager]` persona**: Timeline, milestones, deliverables.
 2.  Tạo artifact `draft-roadmap.md`.
 3.  Sau khi approve → Lưu vào `docs/010-Planning/Roadmap-{ProjectName}.md`.
-4.  **Action**: Gọi `notify_user` để user phản hồi.
-
----
 
 ## Bước 4: Tạo PRD
 
 // turbo
 
-1.  **Adopt `[product-manager]` persona** để soạn thảo:
-    -   Mục tiêu kinh doanh và chỉ số thành công.
-    -   Đối tượng mục tiêu/User personas.
-    -   Độ ưu tiên tính năng (MoSCoW).
+1.  **Adopt `[product-manager]` persona**: Mục tiêu kinh doanh, User personas, MoSCoW prioritization.
 2.  Tạo artifact `draft-prd.md`.
 3.  Sau khi approve → Lưu vào `docs/020-Requirements/PRD-{ProjectName}.md`.
-4.  **Action**: Gọi `notify_user` để user phản hồi.
+
+## Bước 5: Chuyển tiếp
+
+1.  Trình bày tóm tắt các artifact đã tạo.
+2.  Đề xuất bước tiếp theo: Chạy `/documentation` hoặc `/plan`.
 
 ---
 
-## Bước 5: Chuyển tiếp sang Documentation
+## Ví dụ Copy-Paste
 
-1.  Trình bày tóm tắt các artifact đã tạo (Roadmap, PRD).
-2.  Đề xuất bước tiếp theo: Chạy `/documentation` để tạo đặc tả chi tiết (SDD, Epics, Stories).
+```text
+# Brainstorm dự án mới
+/brainstorm Ý tưởng: App quản lý trang trại thông minh (IoT sensors, 
+tracking vật nuôi, dự báo mùa vụ). Target: Nông dân Việt Nam.
+
+# Brainstorm tính năng mới
+/brainstorm Thêm module AI Assistant cho FarmTrace: 
+tự động đề xuất lịch chăm sóc dựa trên dữ liệu sensor.
+```
+
+---
+
+## Context Protocol
+
+> Tuân thủ `_workflow-protocol.md`.
+
+### Nhận Context (Input)
+- **Từ `{{args}}`**: Ý tưởng sản phẩm, mô tả domain, target user.
+- **Đây là workflow đầu chuỗi** — thường không nhận artifact từ workflow khác.
+
+### Truyền Context (Output)
+- **Cho `/plan`**: `docs/020-Requirements/PRD-*.md` — PRD để lập kế hoạch kỹ thuật.
+- **Cho `/documentation`**: `docs/010-Planning/Roadmap-*.md` — Roadmap để tạo specs.
+- **Cho `/implement-feature`**: PRD với User Stories.
+
+### Fallback
+- Nếu user không cung cấp đủ ý tưởng → Hỏi clarification questions (Bước 2).
+
+---
+
+## Error Recovery
+
+> Tuân thủ `_workflow-protocol.md` — 3 cấp: Self-Heal → Rollback Step → Escalate.
+
+### Recovery Map
+
+| Step lỗi | Cấp 1: Self-Heal | Cấp 2: Rollback | Cấp 3: Escalate |
+|:---|:---|:---|:---|
+| Bước 1: Research | Retry search 3x | N/A (đầu chuỗi) | Hỏi user cung cấp tài liệu |
+| Bước 3: Roadmap | Sửa format/logic 3x | → Bước 2 (re-clarify) | Notify user |
+| Bước 4: PRD | Sửa nội dung 3x | → Bước 2 (re-clarify) | Notify user |
+
+---
+
+## Giới hạn (Limitations)
+
+- **Chỉ tạo tài liệu mức cao** — không chi tiết kỹ thuật (dùng `/plan` cho phần đó).
+- **Research phụ thuộc kết nối mạng** — nếu offline, bỏ qua Bước 1.
+- **Không tự tạo specs kỹ thuật** — dùng `/documentation` sau brainstorm.
+- **Không thay thế Product Manager thực** — output cần được validate bởi stakeholder.
+
+---
+
+## Workflow liên quan
+
+- `/plan` — Lập kế hoạch kỹ thuật sau khi có PRD.
+- `/documentation` — Tạo specs chi tiết từ PRD.
+- `/implement-feature` — Triển khai feature từ PRD.
+- `/research` — Nghiên cứu sâu 1 chủ đề cụ thể.

@@ -1,6 +1,6 @@
 ---
 trigger: model_decision
-description: Always apply when creating, organizing, reading or modifying documentation files
+description: Luôn áp dụng khi tạo, tổ chức, đọc hoặc chỉnh sửa tài liệu
 ---
 
 # Documentation Structure Rule
@@ -26,7 +26,8 @@ description: Always apply when creating, organizing, reading or modifying docume
 │ BEFORE creating any document, ask yourself:                 │
 ├─────────────────────────────────────────────────────────────┤
 │ 1. Does docs/ folder exist?                                 │
-│    NO  → Create folder structure (see Required Structure)   │
+│    NO  → Create FULL folder structure (see Required          │
+│          Structure). Use mkdir -p for all folders.           │
 │    YES → Continue                                           │
 ├─────────────────────────────────────────────────────────────┤
 │ 2. What type of document is this?                           │
@@ -71,6 +72,8 @@ description: Always apply when creating, organizing, reading or modifying docume
 |                      | Test Case           | `docs/035-QA/Test-Cases/`              | `TC-{Feature}-{NNN}.md`    |
 | **040-Design**       | Design System       | `docs/040-Design/Design-System/`       | `{Component}.md`           |
 |                      | Wireframe           | `docs/040-Design/Wireframes/`          | `WF-{Screen}-{Device}.png` |
+| **045-Tasks**        | Task List           | `docs/045-Tasks/`                      | `Task-{FeatureName}.md`    |
+|                      | Completed Task      | `docs/045-Tasks/Completed/`            | `Task-{FeatureName}.md`    |
 | **050-Research**     | Research/Analysis   | `docs/050-Research/`                   | `Analysis-{Topic}.md`      |
 | **060-Manuals**      | User Guide          | `docs/060-Manuals/User-Guide/`         | `{Topic}.md`               |
 |                      | Admin Guide         | `docs/060-Manuals/Admin-Guide/`        | `{Topic}.md`               |
@@ -122,6 +125,10 @@ docs/
 │   ├── Design-System/
 │   ├── Specs/
 │   └── Assets/
+│
+├── 045-Tasks/                          # Task Tracking & Breakdown
+│   ├── Tasks-MOC.md                    # REQUIRED MOC
+│   └── Completed/                      # Finished tasks moved here
 │
 ├── 050-Research/                       # Discovery & Analysis
 │   ├── Research-MOC.md                 # REQUIRED MOC
