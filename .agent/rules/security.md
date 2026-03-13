@@ -14,6 +14,7 @@ description: Luôn áp dụng khi viết code liên quan xử lý dữ liệu, x
 - **LUÔN LUÔN** sử dụng Environment Variables (`process.env.VARIABLE`).
 - **BẮT BUỘC** thêm `.env` vào `.gitignore`.
 - **KIỂM TRA** `package.json` scripts đảm bảo không lộ secrets trong commands.
+- **[XAI GUARDRAIL]**: **TUYỆT ĐỐI KHÔNG** in ra nguyên bản các credentials/secrets khi đang giải thích lý do lỗi cho người dùng (Xem chi tiết tại `explainability.md`). Bắt buộc dùng ký tự che lấp (masking).
 
 ```typescript
 // ❌ TUYỆT ĐỐI KHÔNG

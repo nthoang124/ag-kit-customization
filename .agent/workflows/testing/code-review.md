@@ -44,6 +44,9 @@ outputs: ["Review Comments", "Approval/Rejection"]
 
 1.  **Logic**: Kiểm tra nghiệp vụ, edge cases, null safety, error handling.
 2.  **Security**: SQLi, XSS, lộ secrets, permission/auth check.
+3.  **[XAI] Lộ trình Lập luận & Điểm Đóng góp (Reasoning & Attribution)**:
+    - Nếu có Code Smell, Lỗi hoặc Lỗ hổng, **BẮT BUỘC** chỉ định cụ thể _dòng mã_ (File:Line) hoặc hàm làm phát sinh lỗi.
+    - Cung cấp ngữ cảnh tại sao dòng code này có nguy cơ hỏng hóc hoặc vi phạm bảo mật.
 
 ### Bước 3: Report & Verdict
 

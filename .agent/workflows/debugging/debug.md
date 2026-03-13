@@ -48,33 +48,45 @@ context_artifacts:
 
 ---
 
-## Các bước thực hiện
+## Các bước thực hiện (4-Phase Systematic Debugging)
 
-### Bước 1: Tạo Giả thuyết (Hypothesis)
+> [!CAUTION]
+> **THE IRON LAW**: KHÔNG ĐƯỢC PHÉP đề xuất biến đổi code (Fix) NẾU CHƯA hoàn thành Phase 1 (Root Cause Investigation). Sửa triệu chứng (Symptom fixes) là thất bại.
 
-1.  **Adopt `[qa-tester]` persona**: Liệt kê các nguyên nhân có thể.
-    -   *Ví dụ*: "H1: FE gửi sai format date", "H2: DB chưa index", "H3: Logic validate ngược".
-2.  Sắp xếp theo khả năng (Likelihood).
+### Phase 1: Điều tra Nguyên Nhân Gốc rễ (Root Cause Investigation)
 
-### Bước 2: Đo đạc & Tái hiện (Measure & Reproduce)
+⚠️ **TRƯỚC KHI thử bất kỳ Fix nào:**
 
-1.  Thêm log vào các điểm nghi vấn.
-2.  Viết script/test case minimal để tái hiện.
-3.  Chạy script, thu thập log.
-4.  Log chứng minh giả thuyết → Bước 3. Không → Quay lại Bước 1.
+1. **Đọc kỹ Error Message**: Xem tất cả lỗi, cảnh báo, dòng báo lỗi. Đừng bỏ sót.
+2. **Tái hiện ổn định (Reproduce Consistently)**: Phải tạo ra các bước tái hiện chắc chắn 100%. Nếu không tái hiện được, đừng đoán. Giả lập test-case nếu có thể.
+3. **Trace Data Flow (Lập vết dữ liệu)**:
+   - Thêm log tại các ranh giới (*boundary*) giữa các component.
+   - Trace ngược (backward tracing) từ điểm vỡ lỗi lên nơi giá trị sai xuất phát.
+4. **Kiểm tra Thay đổi Gần Đây (Recent Changes)**: Git diff, dependency, config mới.
 
-### Bước 3: Triển khai Fix
+### Phase 2: Phân Tích Mẫu (Pattern Analysis)
+
+*Nếu bạn định áp dụng một pattern:*
+1. **Working Examples**: Tìm đoạn code đang hoạt động tốt làm tham chiếu.
+2. **So sánh**: So sánh tìm khác biệt giữa code đang chạy tốt và code bị vỡ lỗi (Dù là khác biệt nhỏ nhất).
+3. **Dependencies**: Hiểu rõ các file/tài nguyên mà block code này đang phụ thuộc.
+
+### Phase 3: Giả Thuyết & Kiểm Chứng (Hypothesis & Testing)
+
+1. **Sinh 1 Giả thuyết duy nhất**: "Tôi nghĩ X là cause do Y."
+2. **[XAI] Lộ trình Lập luận**: BẮT BUỘC trình bày chuỗi logic cụ thể ("Vì thấy log X ở hàm Y, cộng với việc diff Z mới được thêm vào, nên suy ra lỗi ở biến W").
+3. **Test cục bộ/tối thiểu**: Đưa ra 1 thay đổi DUY NHẤT để test giả thuyết này.
+4. **Verify**: Cải thiện trạng thái không? Nếu sai, quay lại sinh Giả thuyết mới. KHÔNG đắp thêm thay đổi lộn xộn (spaghetti patches).
+
+### Phase 4: Triển Khai Fix (Implementation)
 
 // turbo
 
-1.  **Code Fix**: Sửa dựa trên nguyên nhân đã tìm ra.
-2.  **Cleanup**: Xóa log debug tạm.
-3.  Chạy test case tái hiện + regression test → Phải Pass.
-
-### Bước 4: Finalize
-
-1.  **Adopt `[qa-tester]`**: Confirm fix.
-2.  Commit: `fix(scope): ...`.
+1. **Tạo Failing Test Case**: Test (hoặc script) phải fail để chắc chắn bạn sửa đúng lỗi chứ không sửa nhầm test case không bắt được lỗi.
+2. **[XAI] Điểm Đóng Góp (Attribution)**: Khai báo CHÍNH XÁC dòng/tệp (File:Line) đang định sửa và tại sao dòng đó lại là nguyên nhân gốc rễ.
+3. **Code Fix**: Sửa 1 lỗi ứng với root cause đã tìm ra. Đảm bảo chạy pass (Green).
+4. **Đánh giá lại Kiến trúc (Nếu Fix fail 3+ lần)**: Nếu qua 3 vòng fix vẫn lòi bug nhánh phụ: DỪNG LẠI. Phải thông báo cho User đánh giá hướng đi kiến trúc. Đừng cố đấm ăn xôi ở Fix lần 4.
+5. **Cleanup & Commit**: Xóa log debug tạm. Commit message: `fix(scope): ...`.
 
 ---
 

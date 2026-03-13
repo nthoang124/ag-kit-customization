@@ -54,7 +54,9 @@ context_artifacts:
 1.  **Create Artifact `implementation_plan.md`**:
     -   Mô tả mục tiêu.
     -   Danh sách thay đổi (New/Modify/Delete).
+    -   **[XAI] File Importance Scores:** Đánh giá mức độ quan trọng/rủi ro cho từng tệp thay đổi (VD: High, Medium, Low) cốt lõi hay phụ trợ, giúp người dùng tập trung review đúng chỗ.
     -   Kế hoạch kiểm thử (Test Plan).
+    -   **[XAI] Rule Compliance Report:** Báo cáo ngắn (tóm tắt) việc kế hoạch thiết kế có đang tuân thủ các quy định tại `.agent/rules/` (bao gồm `explainability.md`, `security.md`, v.v.) hay không.
 2.  **Create/Update Artifact `task.md`**:
     -   Chia nhỏ công việc thành các checklist item cụ thể.
 

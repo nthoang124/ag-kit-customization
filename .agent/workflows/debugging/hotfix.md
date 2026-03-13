@@ -88,7 +88,8 @@ context_artifacts:
 
 1.  **Nguyên tắc**: "Change ít nhất có thể". Không refactor, không format code thừa.
 2.  **Logic fix**: Sửa đúng chỗ gây lỗi.
-3.  **Test**: Viết test case tái hiện lỗi và verify fix.
+3.  **[XAI] Counterfactual Risk Assessment**: BẮT BUỘC in ra báo cáo siêu ngắn đánh giá rủi ro đối nghịch: "Sửa như thế này có nguy cơ hỏng module X, Y, Z liên quan không? Tại sao?". Mọi PR Hotfix thiếu báo cáo này sẽ bị reject.
+4.  **Test**: Viết test case tái hiện lỗi và verify fix.
 
 ### Bước 4: Validation Kép
 

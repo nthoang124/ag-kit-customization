@@ -1,9 +1,9 @@
 # Antigravity Agent — Catalog
 
-> Tạo lúc: 2026-03-10T02:08:00+07:00
-> Phiên bản: 2.2.0
+> Tạo lúc: 2026-03-14T00:46:00+07:00
+> Phiên bản: 2.3.1
 
-**Tổng:** 11 Rules · 14 Skills · 36 Workflows
+**Tổng:** 11 Rules · 14 Skills · 42 Workflows
 
 ---
 
@@ -46,85 +46,94 @@
 
 ---
 
-## Workflows (36)
+## Workflows (42)
 
 ### 🔧 Meta (2)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `_routing` | Bảng chỉ dẫn chọn đúng workflow dựa trên ý định của user (v2.1) | — |
-| `_workflow-protocol` | Convention chung cho Context Passing (3 kênh) và Error Recovery (3 cấp) | — |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `_routing` | [_routing.md](./.agent/workflows/meta/_routing.md) | Bảng chỉ dẫn chọn đúng workflow dựa trên ý định của user. | ⚪ none |
+| `_workflow-protocol` | [_workflow-protocol.md](./.agent/workflows/meta/_workflow-protocol.md) | Convention chung cho Context Passing và Error Recovery giữa các workflows. | ⚪ none |
 
-### 💡 Lên Ý Tưởng & Phân Tích (5)
+### 💡 Lên Ý Tưởng & Phân Tích (6)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/ask` | Hỏi đáp về Codebase, Kiến trúc, hoặc Kiến thức chung | ⚪ none |
-| `/brainstorm` | Phân tích ý tưởng cùng user, tạo tài liệu sơ bộ (Roadmap, PRD) | ⚪ none |
-| `/plan` | Lập kế hoạch kỹ thuật và kiến trúc (không code) | ⚪ none |
-| `/research` | Nghiên cứu sâu về chủ đề kỹ thuật hoặc thị trường (Technical Spike) | ⚪ none |
-| `/break-tasks` | Điều phối việc chia nhỏ yêu cầu thành các task khả thi | ⚪ none |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/ask` | [ask.md](./.agent/workflows/analysis/ask.md) | Hỏi đáp về Codebase, Kiến trúc, hoặc Kiến thức chung. | ⚪ none |
+| `/brainstorm` | [brainstorm.md](./.agent/workflows/analysis/brainstorm.md) | Phân tích ý tưởng cùng user và tạo các tài liệu sơ bộ mức cao (Roadmap, PRD). | ⚪ none |
+| `/break-tasks` | [break-tasks.md](./.agent/workflows/analysis/break-tasks.md) | Điều phối việc chia nhỏ yêu cầu thành các task khả thi để triển khai. | ⚪ none |
+| `/plan` | [plan.md](./.agent/workflows/analysis/plan.md) | Lập kế hoạch kỹ thuật và kiến trúc (không bao gồm code/implement). | ⚪ none |
+| `/research` | [research.md](./.agent/workflows/analysis/research.md) | Nghiên cứu sâu về một chủ đề kỹ thuật hoặc thị trường (Technical Spike). | ⚪ none |
+| `/ui-ux-design` | [ui-ux-design.md](./.agent/workflows/analysis/ui-ux-design.md) | Chuyển đổi yêu cầu thành các thiết kế UI/UX toàn diện. | ⚪ none |
 
-### 🛠️ Code & Implement (7)
+### 🛠️ Code & Implement (6)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/code` | ⚡⚡⚡ Code & test theo plan có sẵn | 🟢 safe |
-| `/cook` | ⚡⚡⚡ Triển khai tính năng end-to-end (research → plan → code → test) | 🟢 safe |
-| `/development` | Workflow coding cơ bản: thay đổi nhỏ, sửa lỗi, tính năng nhỏ | 🟢 safe |
-| `/implement-feature` | Điều phối triển khai tính năng từ đặc tả đến hoàn thành | 🟢 safe |
-| `/bootstrap` | Thiết lập cấu trúc dự án, cài đặt dependencies, cấu hình môi trường | 🟢 safe |
-| `/refactor` | Dọn dẹp code, tối ưu hóa, giảm nợ kỹ thuật (không đổi tính năng) | 🟢 safe |
-| `/ui-ux-design` | Chuyển đổi yêu cầu thành thiết kế UI/UX toàn diện | 🟢 safe |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/bootstrap` | [bootstrap.md](./.agent/workflows/coding/bootstrap.md) | Thiết lập cấu trúc dự án, cài đặt dependencies, và cấu hình môi trường dựa trên spec kiến trúc. | 🔴 critical |
+| `/code` | [code.md](./.agent/workflows/coding/code.md) | ⚡⚡⚡ Bắt đầu code & test theo plan có sẵn | 🔴 critical |
+| `/cook` | [cook.md](./.agent/workflows/coding/cook.md) | ⚡⚡⚡ Triển khai tính năng [từng bước] | 🔴 critical |
+| `/development` | [development.md](./.agent/workflows/coding/development.md) | Workflow coding cơ bản để thực hiện thay đổi, sửa lỗi hoặc tính năng nhỏ. | 🟢 safe |
+| `/implement-feature` | [implement-feature.md](./.agent/workflows/coding/implement-feature.md) | Điều phối việc triển khai tính năng từ đặc tả đến khi hoàn thành. | 🔴 critical |
+| `/refactor` | [refactor.md](./.agent/workflows/coding/refactor.md) | Dọn dẹp code, tối ưu hóa, giảm nợ kỹ thuật (không thay đổi tính năng). | 🟢 safe |
 
 ### 🐛 Debug & Fix (3)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/bug-fix` | Điều tra, tái hiện, sửa lỗi và đảm bảo không tái phát | 🟢 safe |
-| `/debug` | Debug khoa học: Giả thuyết → Đo đạc → Tái hiện → Phân tích → Fix | 🟢 safe |
-| `/hotfix` | Sửa lỗi khẩn cấp trên Production | 🔴 critical |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/bug-fix` | [bug-fix.md](./.agent/workflows/debugging/bug-fix.md) | Điều tra, tái hiện, sửa lỗi và đảm bảo không tái phát. | 🟢 safe |
+| `/debug` | [debug.md](./.agent/workflows/debugging/debug.md) | Workflow debug khoa học - Giả thuyết, Đo đạc, Tái hiện, Phân tích, Fix. | 🟢 safe |
+| `/hotfix` | [hotfix.md](./.agent/workflows/debugging/hotfix.md) | Sửa lỗi khẩn cấp trên môi trường Production (Hotfix). | 🔴 critical |
 
-### ✅ Quality & Testing (6)
+### ✅ Quality & Testing (7)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/gen-tests` | Tạo unit, E2E, security, performance tests (dùng qa-tester skill) | 🟢 safe |
-| `/qa` | Tạo tài liệu test case và test plan toàn diện | ⚪ none |
-| `/integration-test` | Kiểm tra luồng tích hợp giữa nhiều module/service | 🟢 safe |
-| `/code-review` | Review nhanh các thay đổi trước khi merge (Diff Review) | ⚪ none |
-| `/lint-format` | Chuẩn hóa code style bằng lint và formatter | 🟢 safe |
-| `/performance-audit` | Đánh giá hiệu năng ứng dụng và tối ưu hóa bottlenecks | ⚪ none |
-| `/security-audit` | Đánh giá bảo mật ứng dụng web theo OWASP | ⚪ none |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/code-review` | [code-review.md](./.agent/workflows/testing/code-review.md) | Review nhanh các thay đổi trước khi merge (Diff Review). | ⚪ none |
+| `/gen-tests` | [gen-tests.md](./.agent/workflows/testing/gen-tests.md) | Tạo unit, E2E, security, và performance tests sử dụng qa-tester skill. | 🟢 safe |
+| `/integration-test` | [integration-test.md](./.agent/workflows/testing/integration-test.md) | Kiểm tra luồng tích hợp giữa nhiều module/service. | 🟢 safe |
+| `/lint-format` | [lint-format.md](./.agent/workflows/testing/lint-format.md) | Chuẩn hóa code style bằng lint và formatter. | 🟢 safe |
+| `/performance-audit` | [performance-audit.md](./.agent/workflows/testing/performance-audit.md) | Đánh giá hiệu năng ứng dụng và tối ưu hóa bottlenecks. | ⚪ none |
+| `/qa` | [qa.md](./.agent/workflows/testing/qa.md) | Tạo tài liệu test case và test plan toàn diện dựa trên yêu cầu dự án. | ⚪ none |
+| `/security-audit` | [security-audit.md](./.agent/workflows/testing/security-audit.md) | Đánh giá bảo mật ứng dụng web theo OWASP và best practices. | 🟢 safe |
 
-### 📦 Git & Deploy (7)
+### 📦 Git & Deploy (6)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/git-branch` | Quản lý việc tạo branch mới từ dev | 🟢 safe |
-| `/git-commit` | Commit code đúng chuẩn Conventional Commits (tiếng Việt) | 🟢 safe |
-| `/git-sync` | Cập nhật code mới nhất từ dev về branch hiện tại (Fetch & Rebase) | 🟢 safe |
-| `/git-merge` | Merge code trực tiếp vào branch chính (Fast Track Solo/Small) | 🔴 critical |
-| `/git-pr` | Tạo Pull Request (PR) và Merge | 🟢 safe |
-| `/deploy` | Triển khai ứng dụng lên staging/production an toàn | 🔴 critical |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/deploy` | [deploy.md](./.agent/workflows/git-deploy/deploy.md) | Triển khai ứng dụng lên staging/production an toàn với checklist và rollback plan. | 🔴 critical |
+| `/git-branch` | [git-branch.md](./.agent/workflows/git-deploy/git-branch.md) | Quản lý việc tạo branch mới từ dev | 🟢 safe |
+| `/git-commit` | [git-commit.md](./.agent/workflows/git-deploy/git-commit.md) | Commit code đúng chuẩn Conventional Commits (Tiếng Việt). | 🟢 safe |
+| `/git-merge` | [git-merge.md](./.agent/workflows/git-deploy/git-merge.md) | Merge code trực tiếp vào branch chính (Fast Track cho Solo/Small Project). | 🔴 critical |
+| `/git-pr` | [git-pr.md](./.agent/workflows/git-deploy/git-pr.md) | Tạo Pull Request (PR) và Merge. | 🟢 safe |
+| `/git-sync` | [git-sync.md](./.agent/workflows/git-deploy/git-sync.md) | Cập nhật code mới nhất từ dev về branch hiện tại (Fetch & Rebase) | 🔴 critical |
 
 ### 📝 Documentation (5)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/documentation` | Tạo tài liệu toàn diện (Kiến trúc, API, Specs) | ⚪ none |
-| `/update-docs` | Đồng bộ tài liệu kỹ thuật sau khi code thay đổi | ⚪ none |
-| `/review-docs` | Review tài liệu: chính xác kỹ thuật, logic, chất lượng biên tập | ⚪ none |
-| `/rebuild-design-docs` | Tái tạo toàn bộ tài liệu thiết kế từ code hiện có | ⚪ none |
-| `/project-review` | Audit toàn diện dự án (Architecture, Tech Debt, Security, Tests, Docs) | ⚪ none |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/documentation` | [documentation.md](./.agent/workflows/docs/documentation.md) | Tạo tài liệu toàn diện (Kiến trúc, API, Specs) từ Codebase hoặc Requirements. | ⚪ none |
+| `/project-review` | [project-review.md](./.agent/workflows/docs/project-review.md) | Audit toàn diện dự án định kỳ (Architecture, Tech Debt, Security, Tests, Docs). | ⚪ none |
+| `/rebuild-design-docs` | [rebuild-design-docs.md](./.agent/workflows/docs/rebuild-design-docs.md) | Phân tích code và tài liệu hiện có để tái tạo toàn bộ tài liệu thiết kế phần mềm. | 🟢 safe |
+| `/review-docs` | [review-docs.md](./.agent/workflows/docs/review-docs.md) | Review tài liệu và artifacts về tính Chính xác Kỹ thuật, Logic/Quy trình và Chất lượng Biên tập. | ⚪ none |
+| `/update-docs` | [update-docs.md](./.agent/workflows/docs/update-docs.md) | Đồng bộ tài liệu kỹ thuật sau khi code thay đổi (giảm nợ tài liệu). | ⚪ none |
 
-### ⚙️ Agent Management (1)
+### ⚙️ Agent Management (3)
 
-| Workflow | Mô tả | Risk |
-| --- | --- | --- |
-| `/custom-behavior` | Tùy chỉnh Rule/Workflow an toàn, có phân tích tác động và xác nhận user | 🟢 safe |
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/custom-behavior` | [custom-behavior.md](./.agent/workflows/management/custom-behavior.md) | Workflow để tùy chỉnh Rule/Workflow an toàn, có phân tích tác động và xác nhận của user. | 🟢 safe |
+| `/parallel-dispatch` | [parallel-dispatch.md](./.agent/workflows/management/parallel-dispatch.md) | Điều phối Subagents chạy song song để giải quyết các lỗi/task hoàn toàn KHÔNG liên quan đến nhau. | 🟢 safe |
+| `/subagent-development` | [subagent-development.md](./.agent/workflows/management/subagent-development.md) | Workflow sử dụng Subagent độc lập để thực thi các Plan lớn với 2 vòng review (Spec & Code Quality). | 🟢 safe |
 
----
+### 👑 Macro Workflows (4)
+
+| Workflow | Tham chiếu (File) | Mô tả | Risk |
+| --- | --- | --- | --- |
+| `/epic-dev` | [epic-dev.md](./.agent/workflows/macro/epic-dev.md) | Tự động hóa phát triển tính năng lớn từ ý tưởng thô đến code hoàn chỉnh (Macro-Workflow). | 🟢 safe |
+| `/incident` | [incident.md](./.agent/workflows/macro/incident.md) | Quy trình khoanh vùng, debug và dập lỗi trên mội trường thật hoặc sự cố khẩn cấp (Macro-Workflow). | 🔴 critical |
+| `/release` | [release.md](./.agent/workflows/macro/release.md) | Pipeline QA chuẩn bị trước khi release/gộp nhánh (Macro-Workflow). | 🔴 critical |
+| `/tech-debt` | [tech-debt.md](./.agent/workflows/macro/tech-debt.md) | Khởi động chiến dịch dọn cỏ toàn hệ thống (Sprint Technical Debt) không đổi tính năng (Macro-Workflow). | 🟢 safe |
 
 ## Thống Kê
 
@@ -132,8 +141,8 @@
 | --- | --- |
 | **Tổng Rules** | 11 |
 | **Tổng Skills** | 14 (+ 1 sub-skill: react) |
-| **Tổng Workflows** | 36 (2 meta + 34 executable) |
+| **Tổng Workflows** | 42 (2 meta + 4 macro + 36 executable) |
 | **Tổng Reference Files** | ~130 files across all skills |
-| **Risk Levels** | ⚪ none: 14 · 🟢 safe: 17 · 🔴 critical: 3 |
+| **Risk Levels** | ⚪ none: 14 · 🟢 safe: 21 · 🔴 critical: 5 |
 | **Languages** | Tiếng Việt (primary), English (code/references) |
-| **Framework Version** | 2.2.0 |
+| **Framework Version** | 2.3.1 |

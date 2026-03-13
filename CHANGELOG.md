@@ -6,6 +6,29 @@ Format tuân theo [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [2.3.1] - 2026-03-14
+
+### Thêm mới (Added)
+- **Macro-Workflows (Tổ hợp)**: Giới thiệu khái niệm Chuỗi hành động tự động hóa, liên kết các workflow nguyên tử thành chu trình khép kín. Bổ sung 4 Macro-Workflows mới:
+  - `/epic-dev`: Phát triển tính năng lớn đầu cuối (Brainstorm -> Plan -> Break Tasks -> Subagent Development).
+  - `/incident`: Phản ứng và xử lý sự cố môi trường khẩn cấp (Debug -> Bug Fix -> Hotfix -> Update Docs).
+  - `/release`: Hệ thống phòng thủ trước thềm Merge Code/Deploy (Lint -> Integration Test -> Security -> Code Review -> PR -> Deploy).
+  - `/tech-debt`: Dọn dẹp nợ kĩ thuật bằng cách bọc lưới test (Project Review -> Refactor -> Gen Tests -> Commit).
+
+---
+
+## [2.3.0] - 2026-03-14
+
+### Thêm mới (Added)
+- **Subagent-Driven Development Workflow** (`/subagent-development`) — Hỗ trợ code với context hoàn toàn sạch (fresh context) thông qua Subagents, cùng hệ thống review chéo liên hoàn (Spec Compliance & Code Quality).
+- **Parallel Dispatch Workflow** (`/parallel-dispatch`) — Phái N subagents chạy song song để giải quyết các lỗi và test gãy hoàn toàn độc lập với nhau (đẩy nhanh tốc độ xử lý bugs diện rộng).
+
+### Nâng cấp (Changed)
+- Đưa **The Iron Law of TDD** bọc thép vào quy tắc `tests.md` cùng chu trình RED-GREEN-REFACTOR khắt khe, xoá tư duy viết test sau.
+- Trấn chỉnh lại **`debug.md`** sang phương pháp **4-Phase Systematic Debugging** cực kỳ hệ thống, thay vì lối code Shotgun Debugging (thử mò mẫm).
+
+---
+
 ## [2.2.0] - 2026-03-10
 
 ### Thêm mới (Added)

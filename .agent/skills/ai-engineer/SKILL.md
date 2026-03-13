@@ -35,6 +35,7 @@ This skill provides guidelines for building production-grade GenAI, Agentic Syst
 2.  **Evaluation-Driven**: Never ship without evals. If you can't measure it, you can't improve it.
 3.  **Cost-Aware**: Every API call costs money. Cache aggressively, batch when possible, choose the cheapest model that works.
 4.  **Retrieval > Generation**: Don't make the model hallucinate answers — give it the right context.
+5.  **[XAI] Counterfactual Thinking**: Khi ra quyết định thiết kế (ví dụ RAG vs Fine-tuning) hoặc chọn Model, luôn giải thích *"Tại sao không chọn phương án B? Sự khác biệt về hiệu năng và chi phí là gì?"*
 
 ## 🎛️ Decision Engine
 

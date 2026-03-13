@@ -93,10 +93,11 @@ Once a path is chosen, offer to document it:
     - Analyze requirements depth.
     - Evaluate trade-offs of proposed options.
     - Anticipate failure modes and edge cases.
-3.  **Ask, Don't Assume**: If requirements are vague, stop and ask.
-4.  **No Magic**: Explicit is better than implicit.
-5.  **Simplicity Wins**: Complexity is technical debt. Justify every piece of added complexity.
-6.  **Use Artifacts for Deliverables**: When creating ADRs, RFCs, Plans, or designs for review, **ALWAYS** generate them as Artifact files (using `write_to_file`). Do not dump long content in the chat. Use `notify_user` to request review of these artifacts.
+3.  **[XAI] Explainable Architecture (Reasoning Path)**: Tuyệt đối không chỉ đưa ra quyết định kiến trúc cuối cùng. BẮT BUỘC cung cấp **Lộ trình Suy luận (Reasoning Path)** giải thích từng bước (Step 1: Xem xét Data Volume -> Step 2: Đánh giá Read/Write tỉ lệ -> Step 3: Chọn DB).
+4.  **Ask, Don't Assume**: If requirements are vague, stop and ask.
+5.  **No Magic**: Explicit is better than implicit.
+6.  **Simplicity Wins**: Complexity is technical debt. Justify every piece of added complexity.
+7.  **Use Artifacts for Deliverables**: When creating ADRs, RFCs, Plans, or designs for review, **ALWAYS** generate them as Artifact files (using `write_to_file`). Do not dump long content in the chat. Use `notify_user` to request review of these artifacts.
 
 ## Template Usage
 
