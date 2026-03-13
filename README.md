@@ -1,6 +1,6 @@
-# 🚀 Antigravity Agent — AI Coding Assistant Framework
+# 🚀 Antigravity Agent — 10/10 Architecture Framework
 
-> Hệ thống Agent thông minh hỗ trợ toàn bộ vòng đời phát triển phần mềm — từ ý tưởng đến deployment.
+> Hệ thống Agent thông minh hỗ trợ toàn bộ vòng đời phát triển phần mềm — tích hợp XAI Guardrails, tự động bảo vệ (Agent Defense) và tự kiểm toán (Linter).
 
 ---
 
@@ -198,7 +198,10 @@ Khi biết rõ mình muốn gì:
 ```
 Agent/
 ├── .agent/
-│   ├── rules/                  # 11 quy tắc bắt buộc
+│   ├── rules/                  # Các quy tắc cốt lõi (12+ mandatory)
+│   │   ├── agent-defense.md    # Chống Prompt Injection & Jailbreak (Zero-Trust)
+│   │   ├── agent-mode-selection.md # Auto-Routing: PLANNING vs EXECUTION mode
+│   │   ├── explainability.md   # Yêu cầu [XAI] Explainability Guardrails
 │   │   ├── clean-code.md       # SOLID, DRY, KISS, YAGNI
 │   │   ├── communication.md    # Luôn dùng tiếng Việt
 │   │   ├── documents.md        # Cấu trúc docs/ Dewey Decimal
@@ -207,11 +210,15 @@ Agent/
 │   │   ├── error-handling.md   # Error handling patterns
 │   │   ├── git-conventions.md  # Git workflow conventions
 │   │   ├── tests.md            # Testing requirements
-│   │   ├── research.md         # Research protocol
+│   │   ├── research.md         # Research protocol 
 │   │   ├── evaluation-framework.md  # Đánh giá khách quan
 │   │   └── nano-banana.md      # Image generation
 │   │
-│   ├── workflows/              # 34+ quy trình có cấu trúc
+│   ├── scripts/                # Tự động hóa hệ thống Agent
+│   │   ├── build-catalog.js    # Tự động scan đệ quy và build CATALOG.md
+│   │   └── lint-agent.js       # CI/CD Agent Linter (Check YAML & XAI rules)
+│   │
+│   ├── workflows/              # 42+ quy trình có phân cấp thư mục
 │   │   ├── _routing.md         # Router tự động (v2.1)
 │   │   ├── _workflow-protocol.md  # Convention chung
 │   │   ├── cook.md, code.md, plan.md ...
@@ -241,15 +248,16 @@ Agent/
 
 ## Định hướng phát triển
 
-### Đã hoàn thành ✅
+### Đã hoàn thành (10/10 Architecture) ✅
 
-- [x] 34+ workflows với cấu trúc rõ ràng (frontmatter, steps, limitations)
-- [x] 14 skills/personas chuyên biệt
-- [x] 10 rules bắt buộc
-- [x] Router tự động v2.1 (disambiguation, bilingual keywords, risk levels)
+- [x] **XAI Guardrails**: Tính minh bạch AI ở mọi module rủi ro cao (Counterfactual Risk Assessment).
+- [x] **Self-Defending System**: Rule `agent-defense.md` chống Prompt Injection & cách ly dữ liệu log rác.
+- [x] **Self-Auditing System**: CI Linter `lint-agent.js` bắt lỗi YAML và XAI.
+- [x] **Self-Documenting**: Script `build-catalog.js` tự động thiết kế lại Bảng `CATALOG.md` bằng cách quét `workflows/**/*.md`.
+- [x] **Agent Mode Selection**: Tự động rẽ nhánh giữa `PLANNING` (Thiết kế) và `EXECUTION` (Thực thi nhanh).
+- [x] 42+ workflows với cấu trúc rõ ràng (frontmatter, steps, limitations) và gom nhóm thành các Subdirectories.
 - [x] Context Passing Protocol (3 kênh truyền dữ liệu giữa workflows)
 - [x] Error Recovery Protocol (3 cấp: Self-Heal → Rollback → Escalate)
-- [x] Documentation structure (Dewey Decimal, MOC, frontmatter)
 
 ### Có thể mở rộng 🔮
 
@@ -272,4 +280,4 @@ Agent/
 
 ---
 
-> **Version**: 2.1 | **Last Updated**: 2026-03-10
+> **Version**: 3.0.0 (10/10 Optimized Edition) | **Last Updated**: 2026-03-14

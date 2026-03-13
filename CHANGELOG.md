@@ -6,6 +6,21 @@ Format tuân theo [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [3.0.0] - 2026-03-14 (10/10 Optimized Architecture)
+
+### Thêm mới (Added)
+- **Auto-Cataloging** (`build-catalog.js`) — Tự động quét và sinh thư mục `CATALOG.md` với đường dẫn tương đối hoàn hảo cho tất cả workflows.
+- **Agent Linter** (`lint-agent.js`) — Script Audit CI/CD đầu tiên của Agent. Tự động kiểm tra YAML lỗi, cấu trúc tệp, và thiếu sót XAI.
+- **Agent Defense System** (`agent-defense.md`) — Tăng cường phòng thủ Prompt Injection, Zero-Trust môi trường shell, và cách ly log lỗi.
+- **Agent Mode Selection** (`agent-mode-selection.md`) — Cho phép AI có tư duy chọn Fast mode (Code ngay) hoặc Planning mode (Xin phép trước), tự động tối ưu token.
+- **XAI Guardrails Security** — Nguyên tắc bắt buộc Masking Secret Data trong mọi câu trả lời.
+
+### Nâng cấp (Changed)
+- Tổ chức lại toàn bộ 42 Workflows thành 9 thư mục con (ví dụ: `coding/`, `debugging/`, `meta/`) để dọn dẹp hệ thống.
+- Ép buộc XAI trong nhánh High-Risk (`/debug`, `/hotfix`) bắt buộc Agent đưa ra "Lộ trình lập luận" và "Counterfactual Risk Assessment".
+
+---
+
 ## [2.3.1] - 2026-03-14
 
 ### Thêm mới (Added)

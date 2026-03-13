@@ -1,1 +1,1 @@
-feat(agent): hoàn thiện tối ưu hóa 10/10 với XAI Guardrails và Linter
+docs(agent): cập nhật tài liệu 10/10 architecture và cơ chế proactive mode advice
