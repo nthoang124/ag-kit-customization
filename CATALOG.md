@@ -3,16 +3,17 @@
 > Tạo lúc: 2026-03-14T00:46:00+07:00
 > Phiên bản: 2.3.1
 
-**Tổng:** 11 Rules · 14 Skills · 42 Workflows
+**Tổng:** 12 Rules · 15 Skills · 42 Workflows
 
 ---
 
-## Rules (11)
+## Rules (12)
 
 | Rule | Mô tả | Trigger | Phạm vi |
 | --- | --- | --- | --- |
 | `clean-code` | SOLID, DRY, KISS, YAGNI, naming conventions, giới hạn dài file | `glob` | `**/*.{ts,tsx,js,jsx,py,go,java,rb,c,cpp,rs,css,html}` |
 | `communication` | Bắt buộc tiếng Việt trong mọi tương tác và tài liệu | `model_decision` | Luôn áp dụng |
+| `context-retrieval` | Bắt buộc tìm và đọc tài liệu thực tế (qua chub/web) thay vì tự đoán | `model_decision` | Khi dùng external API/SDK |
 | `documents` | Cấu trúc docs/ Dewey Decimal, YAML frontmatter, wiki-linking | `model_decision` | Khi tạo/chỉnh sửa tài liệu |
 | `error-handling` | Structured error responses, retry patterns, recovery protocols | `model_decision` | Khi viết code gọi API hoặc DB |
 | `evaluation-framework` | Rubric đánh giá 10 tiêu chí, scoring, decision flow | `model_decision` | Khi đánh giá dự án hoặc audit |
@@ -25,7 +26,7 @@
 
 ---
 
-## Skills (14)
+## Skills (15)
 
 | Skill | Mô tả | Version | References |
 | --- | --- | --- | --- |
@@ -37,6 +38,7 @@
 | `designer` | UI design, branding, design systems, accessibility auditing | 1.0 | 13 files |
 | `devops-engineer` | CI/CD, Multi-Cloud Infrastructure, Observability | 2.0 | 4 files |
 | `frontend-developer` | React 19+, Next.js 15+, performance, accessibility | 3.1 | 54 files (incl. React sub-skill) |
+| `get-api-docs` | Tìm kiếm và lấy tài liệu bằng chub thay vì tự đoán từ model | 1.0 | 1 file |
 | `lead-architect` | System design, ADRs/RFCs, cloud infrastructure decisions | 1.0 | 5 files |
 | `product-manager` | Product vision, agile roadmapping, RICE/Kano prioritization | 2.1 | 3 files |
 | `qa-tester` | Test planning, test cases, bug reporting, E2E/Security/Perf tests | 1.4 | 12 files |
@@ -139,8 +141,8 @@
 
 | Metric | Giá trị |
 | --- | --- |
-| **Tổng Rules** | 11 |
-| **Tổng Skills** | 14 (+ 1 sub-skill: react) |
+| **Tổng Rules** | 12 |
+| **Tổng Skills** | 15 (+ 1 sub-skill: react) |
 | **Tổng Workflows** | 42 (2 meta + 4 macro + 36 executable) |
 | **Tổng Reference Files** | ~130 files across all skills |
 | **Risk Levels** | ⚪ none: 14 · 🟢 safe: 21 · 🔴 critical: 5 |
