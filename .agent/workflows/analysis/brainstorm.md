@@ -5,12 +5,12 @@ risk: none
 source: self
 required_skills: [researcher, product-manager]
 inputs: ["User Idea", "Market Trends"]
-outputs: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md"]
+outputs: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md", "task.md"]
 context_from: []
-context_to: ["/plan", "/documentation", "/implement-feature"]
+context_to: ["/plan", "/documentation", "/implement-feature", "/code"]
 context_artifacts:
   receives: []
-  produces: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md", "docs/050-Research/research-insights.md"]
+  produces: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md", "docs/050-Research/research-insights.md", "task.md"]
 ---
 
 # Workflow Brainstorm (`/brainstorm`)
@@ -71,10 +71,18 @@ context_artifacts:
 2.  Tạo artifact `draft-prd.md`.
 3.  Sau khi approve → Lưu vào `docs/020-Requirements/PRD-{ProjectName}.md`.
 
-## Bước 5: Chuyển tiếp
+## Bước 5: Chia nhỏ Task (Break Tasks)
 
-1.  Trình bày tóm tắt các artifact đã tạo.
-2.  Đề xuất bước tiếp theo: Chạy `/documentation` hoặc `/plan`.
+// turbo
+
+1.  **Adopt `[lead-architect]` persona**: Từ PRD vừa tạo, phân rã thành các nhiệm vụ nguyên tử (atomic tasks).
+2.  Tạo danh sách task có nhóm component cụ thể. Mỗi task gồm: Mô tả, Acceptance Criteria, Độ phức tạp ước tính.
+3.  Lưu vào `task.md` hoặc `docs/045-Tasks/Task-{ProjectName}.md` để chuẩn bị cho giai đoạn triển khai.
+
+## Bước 6: Chuyển tiếp
+
+1.  Trình bày tóm tắt các artifact đã tạo (Roadmap, PRD, Task List).
+2.  Đề xuất bước tiếp theo: Chạy `/plan` (nếu cần thiết kế kiến trúc) hoặc `/code` (nếu đã sẵn sàng code).
 
 ---
 

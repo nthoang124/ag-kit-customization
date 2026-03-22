@@ -5,7 +5,7 @@ risk: none
 source: self
 required_skills: [designer, frontend-developer]
 inputs: ["User Stories", "PRD"]
-outputs: ["Design System", "Flows", "Prototypes"]
+outputs: ["Design System", "Flows", "Prototypes", "task.md"]
 ---
 
 # Workflow Thiết kế UI/UX (`/ui-ux-design`)
@@ -49,9 +49,17 @@ outputs: ["Design System", "Flows", "Prototypes"]
 1.  **Adopt `[frontend-developer]` persona**: Dựng HTML/CSS nhanh (Low-fi prototype).
 2.  Sử dụng component library có sẵn.
 
-### Bước 4: Review
+### Bước 4: Break Tasks Frontend (Phân rã Component)
 
-1.  Trình bày Design/Prototype cho user.
+// turbo
+
+1.  Từ Design/Flows/Prototype vừa tạo, bóc tách ra danh sách các components, screens cần phát triển.
+2.  Tạo danh sách task: Mô tả (Props, State, Responsive), Acceptance Criteria, Estimate.
+3.  Lưu vào Artifact `task.md` phục vụ cho giai đoạn code.
+
+### Bước 5: Review
+
+1.  Trình bày Design/Prototype và danh sách UI Tasks cho user.
 2.  **Action**: `notify_user` để xin feedback.
 
 ---

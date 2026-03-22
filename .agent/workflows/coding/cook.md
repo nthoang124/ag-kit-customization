@@ -92,15 +92,17 @@ Phân tích yêu cầu `{{args}}`. Nếu mơ hồ, hỏi user ngay lập tức.
 * **Sử dụng `/git-commit` để lưu code.**
 **Output:** `✓ Step 6: Phase X - Triển khai [N] files - [X/Y] tasks hoàn thành`
 
-### Step 7: Testing - Theo Phase
-* Viết tests, tự chạy test (dùng `run_command`).
+### Step 7: Testing & Verification - Theo Phase [⏸ REQUIRES VERIFICATION RULE]
+* **TUÂN THỦ `verification.md` & `tests.md`:** PHẢI viết test trước hoặc đồng thời với code.
+* Tự chạy test (dùng `run_command`). Nếu môi trường chưa có test, chạy `build` hoặc `lint`.
+* Đọc kết quả bằng mắt. CẤM BÁO CÁO THÀNH CÔNG nếU CHƯA THẤY BẰNG CHỨNG XÁC MINH MỚI NHẤT (NO COMPLETION CLAIMS WITHOUT EVIDENCE).
 * Nếu fail: Tự fix và chạy lại đến khi pass.
-**Tiêu chuẩn Testing:** Unit (mocks), Integration (test env), E2E (real data isolated).
-**Output:** `✓ Step 7: Phase X - Tests [X/X passed] - Mọi yêu cầu đã đạt`
+**Output:** `✓ Step 7: Phase X - Verified bằng [Lệnh] - [X/X passed]`
 **Validation:** Nếu X ≠ tổng, Step 7 CHƯA HOÀN THÀNH - không đi tiếp.
 
 ### Step 8: User Approval ⏸ BLOCKING GATE
-Trình bày tóm tắt. **Hỏi user rõ ràng:** "Phase implementation hoàn tất. Mọi tests đã pass. Anh có approve thay đổi không?"
+Trình bày tóm tắt kết quả (Kèm theo Bằng chứng Output Logs của lệnh xác minh). 
+**Hỏi user rõ ràng:** "Phase implementation hoàn tất với bằng chứng đính kèm. Anh có approve thay đổi không?"
 **Dừng và chờ.**
 **Output:** `✓ Step 8: User approved - Sẵn sàng hoàn tất`
 

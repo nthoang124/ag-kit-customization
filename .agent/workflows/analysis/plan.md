@@ -7,7 +7,7 @@ required_skills: [researcher, lead-architect, product-manager]
 inputs: ["Requirements", "Idea", "PRD"]
 outputs: ["Implementation Plan", "Task List", "Architecture Specs"]
 context_from: ["/brainstorm", "/research"]
-context_to: ["/code", "/cook", "/implement-feature", "/break-tasks"]
+context_to: ["/code", "/cook", "/implement-feature"]
 context_artifacts:
   receives: ["docs/020-Requirements/PRD-*.md", "docs/050-Research/*.md"]
   produces: ["implementation_plan.md", "task.md", "docs/030-Specs/*.md"]
@@ -57,13 +57,19 @@ context_artifacts:
     -   **[XAI] File Importance Scores:** Đánh giá mức độ quan trọng/rủi ro cho từng tệp thay đổi (VD: High, Medium, Low) cốt lõi hay phụ trợ, giúp người dùng tập trung review đúng chỗ.
     -   Kế hoạch kiểm thử (Test Plan).
     -   **[XAI] Rule Compliance Report:** Báo cáo ngắn (tóm tắt) việc kế hoạch thiết kế có đang tuân thủ các quy định tại `.agent/rules/` (bao gồm `explainability.md`, `security.md`, v.v.) hay không.
-2.  **Create/Update Artifact `task.md`**:
-    -   Chia nhỏ công việc thành các checklist item cụ thể.
 
-### Bước 4: Review & Handover
+### Bước 4: Phân rã Task (Break Tasks)
 
-1.  **Review lại Plan**: Đảm bảo logic chặt chẽ, không bỏ sót dependencies.
-2.  **Notify User**: Báo cáo plan đã sẵn sàng.
+// turbo
+
+1.  Dựa trên Implementation Plan vừa tạo, chia nhỏ thành các nhiệm vụ nguyên tử (atomic tasks).
+2.  Nhóm theo component hoặc giai đoạn hoạt động (backend/frontend/QA).
+3.  Cập nhật/Tạo Artifact `task.md`. Mỗi task phải gồm: Mô tả, Acceptance Criteria, Độ phức tạp ước tính.
+
+### Bước 5: Review & Handover
+
+1.  **Review lại Plan & Tasks**: Đảm bảo logic chặt chẽ, không bỏ sót dependencies.
+2.  **Notify User**: Báo cáo plan và task list đã sẵn sàng.
 
 ---
 
@@ -101,7 +107,6 @@ thành 3 service nhỏ (AuthService, TokenService, PermissionService).
 ### Truyền Context (Output)
 - **Cho `/code`**: `implementation_plan.md` — Plan chi tiết để code theo.
 - **Cho `/implement-feature`**: `implementation_plan.md` + `task.md`.
-- **Cho `/break-tasks`**: `task.md` — Checklist để chia nhỏ tiếp.
 
 ### Fallback
 - Nếu không tìm thấy PRD/Research → Dùng `{{args}}` làm input chính.
@@ -140,4 +145,3 @@ thành 3 service nhỏ (AuthService, TokenService, PermissionService).
 - `/code` — Code theo plan đã tạo.
 - `/cook` — Nếu muốn cả plan + code trong 1 session.
 - `/brainstorm` — Nếu cần PRD trước khi plan.
-- `/break-tasks` — Chia nhỏ plan thành atomic tasks.

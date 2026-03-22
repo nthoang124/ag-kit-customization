@@ -65,16 +65,17 @@ Phân rã plan thành các task nhỏ (atomic).
 * **Commit**: Dùng `/git-commit` thường xuyên.
 **Output:** `✓ Step 2: Triển khai hoàn tất - [N] files modified`
 
-### Step 3: Testing & Self-Healing
-* Viết test → Chạy test.
+### Step 3: Testing & Verification [⏸ REQUIRES VERIFICATION RULE]
+* **TUÂN THỦ `verification.md`:** Phải chạy lệnh thực tế (`test`, `lint`, `build`) trước khi gáy kết quả.
 * **Logic Tự Sửa Lỗi**:
-    - Nếu lỗi: Đọc log → Sửa code → Chạy lại.
+    - Nếu lỗi: Đọc log → Tìm nguyên nhân gốc → Sửa code → Chạy lại.
     - Max Retries: 3 lần.
     - Nếu vẫn lỗi sau 3 lần: **DỪNG & Notify User**.
-**Output:** `✓ Step 3: Tests [X/X passed]` hoặc `❌ Step 3: Failed sau 3 retries`
+**Output:** `✓ Step 3: Verified bằng [Lệnh] - Tests [X/X passed]` hoặc `❌ Step 3: Failed sau 3 retries`
 
 ### Step 4: User Approval (Blocking Gate)
-Báo cáo kết quả và chờ user approve.
+Báo cáo kết quả bằng CÁC BẰNG CHỨNG XÁC MINH cụ thể (Logs, Screenshot) và chờ user approve.
+Triết lý: EVIDENCE BEFORE CLAIMS.
 **Output:** `✓ Step 4: User approved`
 
 ---

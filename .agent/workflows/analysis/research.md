@@ -5,7 +5,7 @@ risk: none
 source: self
 required_skills: [researcher]
 inputs: ["Topic", "Question"]
-outputs: ["Research Report"]
+outputs: ["Research Report", "task.md"]
 ---
 
 # Workflow Nghiên cứu (`/research`)
@@ -48,9 +48,17 @@ outputs: ["Research Report"]
 2.  Tên file: `Analysis-{Topic}.md`.
 3.  Cấu trúc: Executive Summary → Details → Recommendation.
 
-### Bước 4: Kết thúc
+### Bước 4: Phân rã Công việc (Break Tasks - Tùy chọn)
 
-1.  Notify user kết quả và link file báo cáo.
+// turbo
+
+1.  **Adopt `[lead-architect]` persona**: Nếu kết quả research sinh ra actionable items (cần triển khai), phân rã giải pháp thành các nhiệm vụ nguyên tử.
+2.  Tạo danh sách task có cấu trúc: Mô tả, Acceptance Criteria.
+3.  Lưu vào Artifact `task.md`.
+
+### Bước 5: Kết thúc
+
+1.  Notify user kết quả, link file báo cáo và danh sách task (nếu có).
 
 ---
 

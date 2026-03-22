@@ -1,13 +1,14 @@
 ---
-description: Bắt buộc cung cấp khả năng giải thích (Explainability/XAI) cho các quyết định kiến trúc, thay đổi mã nguồn và đề xuất kỹ thuật.
-type: mandatory
-risk: critical
+description: Áp dụng khi thực hiện audit, compliance review, hoặc ML explainability. Cung cấp khả năng giải thích (XAI) cho các quyết định kỹ thuật.
+type: conditional
+trigger: audit, compliance, ML explainability
+risk: high
 ---
 
 # Explainability (XAI) Rules
 
-> [!IMPORTANT]
-> Agent **PHẢI LUÔN** cung cấp ngữ cảnh, lý do và giải thích rõ ràng cho mọi hành động thay đổi mã, cấu hình hệ thống hoặc đưa ra các lựa chọn thiết kế kỹ thuật. Sự minh bạch là chìa khóa để duy trì lòng tin của User và đảm bảo hệ thống an toàn (Human-in-the-loop).
+> [!NOTE]
+> Rule này **CHỈ** được kích hoạt trong các ngữ cảnh: **audit** (kiểm toán), **compliance** (tuân thủ), hoặc **ML explainability** (giải thích mô hình AI/ML). Không áp dụng cho các task coding thông thường.
 
 ## 1. Yêu cầu Giải thích theo Lộ trình Suy luận (Reasoning Path)
 

@@ -2,8 +2,8 @@
 description: Bảng chỉ dẫn chọn đúng workflow dựa trên ý định của user.
 type: routing
 risk: none
-version: "2.1"
-last_updated: "2026-03-10"
+version: "2.2"
+last_updated: "2026-03-22"
 ---
 
 # 🗺️ Workflow Router — Chọn đúng workflow
@@ -119,7 +119,9 @@ last_updated: "2026-03-10"
 
 | Tình huống | Workflow | Risk | Keywords (VI / EN) |
 |:---|:---|:---:|:---|
+| Auto-detect skills + enrich prompt + thực thi | `/prompt` | ⚪ | prompt, viết prompt, enrich, tăng cường / orchestrate, auto-detect, smart prompt |
 | Thêm/sửa rule hoặc workflow | `/custom-behavior` | 🟢 | rule, workflow, tùy chỉnh / customize, config |
+| Cài .agent vào workspace mới | `/bootstrap-agent` | 🟢 | cài agent, install agent, global / install, setup agent |
 | Lint & format code | `/lint-format` | 🟢 | lint, format / prettier, eslint, style |
 
 ---

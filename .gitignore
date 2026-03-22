@@ -19,11 +19,10 @@ docs/
 .agent/logs/
 .agent/data/
 
-# Agent System (Shared Configuration)
-# Note: These are allowed by default, but explicitly listed for clarity
-# .agent/rules/
-# .agent/workflows/
-# .agent/skills/
-# .agent/assets/
-# README.md
+# IDE & Tool Configs (do not track)
+.cursor/
+.claude/
+.vscode/
+.cursorrules
+.gitnexus
 docker-compose.yml

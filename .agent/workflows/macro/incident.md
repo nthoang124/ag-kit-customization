@@ -40,13 +40,3 @@ Luồng làm việc không dừng lại cho đến khi file log được xuất 
 1. Kế thừa context nguyên nhân của Bước 1. 
 2. Viết Failing Reproduction Test -> Code pass test -> Verify. (TDD The Iron Law).
 
-### Bước 3: Triển Khai Nóng (`/hotfix`)
-
-1. Vượt luồng rườm rà (Bỏ qua branch features), đẩy ngược code đã fix trực tiếp vào Fast Lane để merge thẳng qua Dev -> Main.
-2. Nâng version vá lỗi (`vx.y.z+1`).
-3. Deploy ngay lập tức sự thay đổi này.
-
-### Bước 4: Hậu Kiểm Sự Cố (`/update-docs`)
-
-1. Tóm tắt nguyên nhân và bài học từ Bước 1 vào `docs/` để sau này không vấp chân lại kịch bản hỏng hóc này.
-2. Cập nhật Readme hoặc Specs nếu thay đổi có độ phủ lớn.
