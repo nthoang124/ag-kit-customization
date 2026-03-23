@@ -9,7 +9,7 @@ outputs: ["Source Code", "QA Report", "Updated Specs"]
 context_from: ["/brainstorm", "/plan", "/research"]
 context_to: ["/git-pr", "/deploy"]
 context_artifacts:
-  receives: ["docs/020-Requirements/PRD-*.md", "docs/022-User-Stories/*.md", "implementation_plan.md"]
+  receives: ["docs/020-Requirements/PRD-*.md", "docs/022-User-Stories/*.md", "high_level_plan.md", "implementation_plan.md"]
   produces: ["walkthrough.md", "qa-report.md", "committed code"]
 ---
 
@@ -66,13 +66,20 @@ context_artifacts:
 2.  **Adopt `[lead-architect]` persona** để xác định phạm vi và dependencies.
 3.  **CHỜ** user xác nhận phạm vi.
 
-## Bước 4: Lên Kế hoạch Triển khai
+## Bước 4a: Lập Kế hoạch Cấp Cao (High-Level Plan)
 
 // turbo
 
-1.  **Adopt `[lead-architect]` persona** để chia nhỏ task.
-2.  Tạo artifact `implementation-plan.md` với các task theo giai đoạn.
-3.  **Action**: Gọi tool `notify_user(BlockedOnUser: true)` để user review.
+1.  **Adopt `[lead-architect]` persona** để chia nhỏ lộ trình & chiến lược.
+2.  Tạo artifact `high_level_plan.md` với kiến trúc và phân pha.
+3.  **Action**: Gọi tool `notify_user(BlockedOnUser: true)` để user review và thông qua.
+
+## Bước 4b: Lập Kế hoạch Chi tiết (Low-Level Plan)
+
+// turbo
+
+1.  Dựa trên High-Level Plan, tạo artifact `implementation_plan.md` chi tiết từng hàm, DB, API.
+2.  **Action**: Gọi tool `notify_user(BlockedOnUser: true)` để user review.
 
 ## Bước 5: Khởi tạo Branch
 
@@ -135,7 +142,7 @@ context_artifacts:
 
 ### Nhận Context (Input)
 - **Từ `/brainstorm`**: `docs/020-Requirements/PRD-*.md` — PRD với User Stories.
-- **Từ `/plan`**: `implementation_plan.md` — Skip Bước 4 nếu plan đã có.
+- **Từ `/plan`**: `high_level_plan.md` + `implementation_plan.md` — Skip Bước 4a/4b nếu plan đã có.
 - **Từ `/research`**: `docs/050-Research/*.md` — Kết quả nghiên cứu.
 
 ### Truyền Context (Output)
@@ -157,9 +164,9 @@ context_artifacts:
 | Step lỗi | Cấp 1: Self-Heal | Cấp 2: Rollback | Cấp 3: Escalate |
 |:---|:---|:---|:---|
 | Bước 1: Research | Retry search 3x | N/A | Hỏi user cung cấp tài liệu |
-| Bước 4: Plan | Sửa plan 3x | → Bước 1 (re-research) | Notify user |
-| Bước 6: Backend | Fix compile 3x | → Bước 4 (re-plan) | Notify user |
-| Bước 7: Frontend | Fix build 3x | → Bước 4 (re-plan) | Notify user |
+| Bước 4a/4b: Plan| Sửa plan 3x | → Bước 1 (re-research) | Notify user |
+| Bước 6: Backend | Fix compile 3x | → Bước 4a/4b (re-plan) | Notify user |
+| Bước 7: Frontend | Fix build 3x | → Bước 4a/4b (re-plan) | Notify user |
 | Bước 8: QA | Fix failed tests 3x | → Bước 6/7 (re-code) | Notify user |
 
 ---

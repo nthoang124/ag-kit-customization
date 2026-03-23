@@ -109,7 +109,7 @@ tự động đề xuất lịch chăm sóc dựa trên dữ liệu sensor.
 - **Đây là workflow đầu chuỗi** — thường không nhận artifact từ workflow khác.
 
 ### Truyền Context (Output)
-- **Cho `/plan`**: `docs/020-Requirements/PRD-*.md` — PRD để lập kế hoạch kỹ thuật.
+- **Cho `/plan`**: `docs/020-Requirements/PRD-*.md` — PRD để lập kế hoạch kỹ thuật 2 cấp.
 - **Cho `/documentation`**: `docs/010-Planning/Roadmap-*.md` — Roadmap để tạo specs.
 - **Cho `/implement-feature`**: PRD với User Stories.
 
@@ -143,7 +143,7 @@ tự động đề xuất lịch chăm sóc dựa trên dữ liệu sensor.
 
 ## Workflow liên quan
 
-- `/plan` — Lập kế hoạch kỹ thuật sau khi có PRD.
+- `/plan` — Lập kế hoạch kỹ thuật 2 cấp sau khi có PRD.
 - `/documentation` — Tạo specs chi tiết từ PRD.
 - `/implement-feature` — Triển khai feature từ PRD.
 - `/research` — Nghiên cứu sâu 1 chủ đề cụ thể.

@@ -9,7 +9,7 @@ outputs: ["Fully Implemented Feature"]
 context_from: ["/brainstorm", "/plan"]
 context_to: ["/gen-tests", "/git-commit", "/git-pr"]
 context_artifacts:
-  receives: ["docs/020-Requirements/PRD-*.md", "implementation_plan.md"]
+  receives: ["docs/020-Requirements/PRD-*.md", "high_level_plan.md", "implementation_plan.md"]
   produces: ["walkthrough.md", "committed code"]
 ---
 
@@ -75,9 +75,15 @@ Phân tích yêu cầu `{{args}}`. Nếu mơ hồ, hỏi user ngay lập tức.
 * Tự thực hiện research (dùng tool `search_web`, `read_url`...) để khám phá yêu cầu, validate ý tưởng và tìm giải pháp tối ưu.
 **Output:** `✓ Step 3: Nghiên cứu [N] chủ đề - Research hoàn tất`
 
-### Step 4: Lập Kế hoạch (Plan)
-* Tạo implementation plan theo cấu trúc progressive disclosure.
-**Output:** `✓ Step 4: Plan hoàn tất`
+### Step 4a: Lập Kế hoạch Cấp Cao (High-Level Plan) ⏸ BLOCKING GATE
+* Tạo artifact `high_level_plan.md` tập trung vào kiến trúc, chiến lược, phân pha tác vụ.
+* **Hỏi user rõ ràng:** "Anh có đồng ý với kiến trúc chiến lược này không?"
+* **Dừng và chờ user approve.**
+**Output:** `✓ Step 4a: High-Level Plan được duyệt`
+
+### Step 4b: Lập Kế hoạch Chi tiết (Low-Level Plan)
+* Chỉ thực hiện **SAU KHI** Step 4a được duyệt. Tạo artifact `implementation_plan.md` định nghĩa code cấp tệp/module.
+**Output:** `✓ Step 4b: Low-Level Plan hoàn tất`
 
 ### Step 5: Phân tích & Trích xuất Task
 * Convert plan thành danh sách các task cụ thể.
@@ -128,7 +134,7 @@ Trình bày tóm tắt kết quả (Kèm theo Bằng chứng Output Logs của l
 
 ### Nhận Context (Input)
 - **Từ `/brainstorm`**: `docs/020-Requirements/PRD-*.md` — PRD nếu có.
-- **Từ `/plan`**: `implementation_plan.md` — Skip Step 3-4 nếu plan đã có.
+- **Từ `/plan`**: `high_level_plan.md` & `implementation_plan.md` — Skip Step 3-4 nếu plan đã có 2 cấp.
 - **Từ `{{args}}`**: Mô tả feature trực tiếp (phổ biến nhất).
 
 ### Truyền Context (Output)
@@ -151,7 +157,7 @@ Trình bày tóm tắt kết quả (Kèm theo Bằng chứng Output Logs của l
 | Step lỗi | Cấp 1: Self-Heal | Cấp 2: Rollback | Cấp 3: Escalate |
 |:---|:---|:---|:---|
 | Step 3: Research | Retry search 3x | → Step 2 (re-clarify) | Hỏi user cung cấp tài liệu |
-| Step 4: Plan | Sửa plan 3x | → Step 3 (re-research) | Notify user |
+| Step 4a/b: Plan| Sửa plan 3x | → Step 3 (re-research) | Notify user |
 | Step 6: Code | Fix compile/lint 3x | → Step 4 (re-plan) | Notify user |
 | Step 7: Test | Fix & retry 3x | → Step 6 (re-code) | Notify user |
 

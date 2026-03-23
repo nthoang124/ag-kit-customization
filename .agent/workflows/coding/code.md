@@ -9,7 +9,7 @@ outputs: ["Executed Phase", "Test Results"]
 context_from: ["/plan", "/cook"]
 context_to: ["/gen-tests", "/git-commit"]
 context_artifacts:
-  receives: ["implementation_plan.md"]
+  receives: ["high_level_plan.md", "implementation_plan.md"]
   produces: ["walkthrough.md", "committed code"]
 ---
 
@@ -52,8 +52,8 @@ Bạn được trang bị mọi skill cần thiết (Backend, Frontend, QA). Hã
 **Quy tắc:** Tuân thủ thứ tự bước 0-4.
 
 ### Step 0: Xác nhận Plan (MANDATORY)
-Đọc plan `{{args}}`. Xác định các task cần làm.
-**Output:** `✓ Step 0: Đã nhận plan - [N] tasks cần thực hiện`
+Đọc `high_level_plan.md` (kiến trúc tổng quan) và `implementation_plan.md` (chi tiết kỹ thuật) `{{args}}`. Xác định các task cần làm.
+**Output:** `✓ Step 0: Đã đọc 2 cấp plan - [N] tasks cần thực hiện`
 
 ### Step 1: Chuẩn bị Task List
 Phân rã plan thành các task nhỏ (atomic).
@@ -97,8 +97,8 @@ Triết lý: EVIDENCE BEFORE CLAIMS.
 > Tuân thủ `_workflow-protocol.md`.
 
 ### Nhận Context (Input)
-- **Từ `/plan`**: `implementation_plan.md` — Plan chi tiết để code theo.
-- **Từ `/cook`**: Plan từ Step 4 của cook (nếu cook delegate sang /code).
+- **Từ `/plan`**: `high_level_plan.md` & `implementation_plan.md` — 2 cấp plan chi tiết để code.
+- **Từ `/cook`**: Plan từ Step 4a/4b của cook (nếu cook delegate sang /code).
 - **Từ `{{args}}`**: Mô tả plan inline nếu không có file.
 
 ### Truyền Context (Output)

@@ -33,7 +33,7 @@ last_updated: "2026-03-22"
 | **Hỏi câu hỏi** về code/kiến trúc | `/ask` | ⚪ | hỏi, giải thích, tại sao / ask, explain, why, how |
 | **Nghiên cứu** chủ đề kỹ thuật/thị trường | `/research` | ⚪ | nghiên cứu, tìm hiểu, so sánh / research, explore, compare |
 | **Brainstorm** ý tưởng sản phẩm, tạo PRD/Roadmap | `/brainstorm` | ⚪ | ý tưởng, brainstorm, PRD / idea, roadmap, vision |
-| **Lên kế hoạch** kỹ thuật (không code) | `/plan` | ⚪ | kế hoạch, thiết kế, kiến trúc / plan, design, architecture |
+| **Lên kế hoạch** 2 cấp (chiến lược + chi tiết) | `/plan` | ⚪ | kế hoạch, thiết kế, kiến trúc / plan, design, architecture |
 | **Chia nhỏ** yêu cầu thành tasks | `/break-tasks` | ⚪ | chia nhỏ, break, task list / breakdown, split, decompose |
 | **Thiết kế UI/UX** | `/ui-ux-design` | ⚪ | UI, UX, wireframe, mockup / design, layout, prototype |
 
@@ -173,7 +173,7 @@ last_updated: "2026-03-22"
 
 ### 🚀 Ship Feature mới
 ```
-/brainstorm ──[PRD.md]──→ /plan ──[implementation_plan.md]──→ /git-branch → /cook ──[walkthrough.md]──→ /gen-tests ──[test-report.md]──→ /git-commit → /git-pr → /deploy
+/brainstorm ──[PRD.md]──→ /plan ──[high_level_plan.md + implementation_plan.md]──→ /git-branch → /cook ──[walkthrough.md]──→ /gen-tests ──[test-report.md]──→ /git-commit → /git-pr → /deploy
 ```
 
 ### 🐛 Fix Bug
@@ -203,7 +203,7 @@ last_updated: "2026-03-22"
 
 ### 🔬 Research → Plan (không code)
 ```
-/research ──[research-insights.md]──→ /plan ──[implementation_plan.md]──→ /break-tasks ──[task.md]──→ (chờ user chọn /code hoặc /cook)
+/research ──[research-insights.md]──→ /plan ──[hl_plan.md + impl_plan.md]──→ /break-tasks ──[task.md]──→ (chờ user chọn /code hoặc /cook)
 ```
 
 ### 🏗️ Bootstrap → Develop

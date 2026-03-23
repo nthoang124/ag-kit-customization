@@ -1,23 +1,24 @@
 ---
-description: Lập kế hoạch kỹ thuật và kiến trúc (không bao gồm code/implement).
+description: Lập kế hoạch kỹ thuật 2 cấp — High-Level (chiến lược) & Low-Level (chi tiết) — không bao gồm code/implement.
 type: procedure
 risk: none
 source: self
 required_skills: [Workflows_Tools/researcher, Architecture/lead-architect, Business/product-manager]
 inputs: ["Requirements", "Idea", "PRD"]
-outputs: ["Implementation Plan", "Task List", "Architecture Specs"]
+outputs: ["High-Level Plan", "Implementation Plan", "Task List", "Architecture Specs"]
 context_from: ["/brainstorm", "/research"]
 context_to: ["/code", "/cook", "/implement-feature"]
 context_artifacts:
   receives: ["docs/020-Requirements/PRD-*.md", "docs/050-Research/*.md"]
-  produces: ["implementation_plan.md", "task.md", "docs/030-Specs/*.md"]
+  produces: ["high_level_plan.md", "implementation_plan.md", "task.md", "docs/030-Specs/*.md"]
 ---
 
-# Workflow Lập Kế Hoạch (`/plan`)
+# Workflow Lập Kế Hoạch 2 Cấp (`/plan`)
 
-> [!NOTE]
-> Workflow này chỉ tập trung vào giai đoạn **Thinking & Planning**.
-> Đầu ra sẽ là các tài liệu kế hoạch chi tiết để User review/approve trước khi code.
+> [!IMPORTANT]
+> Workflow này **BẮT BUỘC** tạo ra **2 cấp kế hoạch riêng biệt**:
+> 1. **High-Level Plan** (`high_level_plan.md`) — Chiến lược, kiến trúc, phân pha → User approve trước.
+> 2. **Low-Level Plan** (`implementation_plan.md`) — Chi tiết file, hàm, test → Developer/Agent thực thi.
 
 ## Khi nào dùng (When to Use)
 
@@ -49,21 +50,77 @@ context_artifacts:
 3.  Vẽ sơ đồ luồng (nếu phức tạp).
 4.  Cập nhật/Tạo các file Specs trong `docs/030-Specs/` (nếu cần).
 
-### Bước 3: Lập Kế hoạch Triển khai (Planning)
+---
 
-1.  **Create Artifact `implementation_plan.md`**:
-    -   Mô tả mục tiêu.
-    -   Danh sách thay đổi (New/Modify/Delete).
-    -   **[XAI] File Importance Scores:** Đánh giá mức độ quan trọng/rủi ro cho từng tệp thay đổi (VD: High, Medium, Low) cốt lõi hay phụ trợ, giúp người dùng tập trung review đúng chỗ.
-    -   Kế hoạch kiểm thử (Test Plan).
-    -   **[XAI] Rule Compliance Report:** Báo cáo ngắn (tóm tắt) việc kế hoạch thiết kế có đang tuân thủ các quy định tại `.agent/rules/` (bao gồm `explainability.md`, `security.md`, v.v.) hay không.
+### Bước 3a: Lập Kế hoạch Cấp Cao (HIGH-LEVEL PLAN) ⏸ BLOCKING GATE
+
+> [!IMPORTANT]
+> **BẮT BUỘC** tạo artifact `high_level_plan.md` **TRƯỚC** khi đi vào chi tiết.
+> User PHẢI approve cấp cao trước khi agent được phép soạn Low-Level Plan.
+
+1.  **Create Artifact `high_level_plan.md`** gồm các mục sau:
+
+    #### a) Mục tiêu & Phạm vi (Goal & Scope)
+    - Bài toán cần giải quyết là gì?
+    - Những gì NẰM TRONG và NGOÀI phạm vi?
+
+    #### b) Kiến trúc Tổng quan (Architecture Overview)
+    - Sơ đồ kiến trúc (dùng Mermaid diagram nếu cần).
+    - Các thành phần chính (components) và cách chúng giao tiếp.
+    - Pattern thiết kế đã chọn (MVC, Event-Driven, Microservice, v.v.).
+
+    #### c) Quyết định Công nghệ (Technology Decisions)
+    - Ngôn ngữ, framework, thư viện chính.
+    - Lý do chọn (trade-offs).
+
+    #### d) Phân pha Giai đoạn (Phases / Milestones)
+    - Chia thành các Phase lớn (VD: Phase 1: Backend Core → Phase 2: Frontend → Phase 3: Integration).
+    - Mỗi Phase ghi rõ: Mục tiêu, Deliverables, Dependencies.
+
+    #### e) Phân tích Rủi ro (Risk Analysis)
+    - Các rủi ro kỹ thuật và cách giảm thiểu.
+    - Các giả định (assumptions).
+
+2.  **Notify User**: `notify_user(BlockedOnUser: true)` — Chờ user approve High-Level Plan.
+3.  **KHÔNG ĐI TIẾP** nếu user chưa approve.
+
+---
+
+### Bước 3b: Lập Kế hoạch Chi tiết (LOW-LEVEL PLAN)
+
+> [!NOTE]
+> Chỉ chạy bước này **SAU KHI** user đã approve `high_level_plan.md`.
+
+1.  **Create Artifact `implementation_plan.md`** gồm các mục sau:
+
+    #### a) Danh sách Thay đổi Cụ thể (Proposed Changes)
+    - Liệt kê từng file: `[NEW]`, `[MODIFY]`, `[DELETE]`.
+    - Với mỗi file: mô tả hàm/class/interface cần tạo hoặc sửa.
+
+    #### b) File Importance Scores
+    - Đánh giá mức độ quan trọng/rủi ro cho từng file (High/Medium/Low).
+
+    #### c) Chi tiết Kỹ thuật
+    - DB Schema / Migrations (nếu có).
+    - API Contracts: endpoint, method, request/response shape.
+    - Code snippets mẫu cho các phần phức tạp.
+
+    #### d) Kế hoạch Kiểm thử (Test Plan)
+    - Unit tests: hàm nào cần test?
+    - Integration tests: luồng nào cần kiểm tra end-to-end?
+    - Edge cases cần cover.
+
+    #### e) Rule Compliance Report
+    - Kiểm tra kế hoạch có tuân thủ `.agent/rules/` (security, performance, v.v.) không.
+
+---
 
 ### Bước 4: Phân rã Task (Break Tasks)
 
 // turbo
 
-1.  Dựa trên Implementation Plan vừa tạo, chia nhỏ thành các nhiệm vụ nguyên tử (atomic tasks).
-2.  Nhóm theo component hoặc giai đoạn hoạt động (backend/frontend/QA).
+1.  Dựa trên **cả 2 artifacts** (`high_level_plan.md` + `implementation_plan.md`), chia nhỏ thành các nhiệm vụ nguyên tử (atomic tasks).
+2.  Nhóm theo Phase (từ High-Level Plan) → rồi chia nhỏ theo component.
 3.  Cập nhật/Tạo Artifact `task.md`. Mỗi task phải gồm: Mô tả, Acceptance Criteria, Độ phức tạp ước tính.
 
 ### Bước 5: Review & Handover
@@ -89,7 +146,8 @@ thành 3 service nhỏ (AuthService, TokenService, PermissionService).
 
 ## Output mong đợi
 
-- [ ] `implementation_plan.md`: Chi tiết kỹ thuật.
+- [ ] `high_level_plan.md`: Chiến lược, kiến trúc, phân pha, rủi ro.
+- [ ] `implementation_plan.md`: Chi tiết kỹ thuật từng file.
 - [ ] `task.md`: Checklist công việc.
 - [ ] (Optional) `docs/030-Specs/*.md`: Tài liệu thiết kế mới.
 
@@ -105,8 +163,8 @@ thành 3 service nhỏ (AuthService, TokenService, PermissionService).
 - **Từ `{{args}}`**: Mô tả yêu cầu inline nếu không có PRD.
 
 ### Truyền Context (Output)
-- **Cho `/code`**: `implementation_plan.md` — Plan chi tiết để code theo.
-- **Cho `/implement-feature`**: `implementation_plan.md` + `task.md`.
+- **Cho `/code`**: `high_level_plan.md` + `implementation_plan.md` — Cả 2 cấp.
+- **Cho `/implement-feature`**: `high_level_plan.md` + `implementation_plan.md` + `task.md`.
 
 ### Fallback
 - Nếu không tìm thấy PRD/Research → Dùng `{{args}}` làm input chính.
@@ -124,7 +182,8 @@ thành 3 service nhỏ (AuthService, TokenService, PermissionService).
 |:---|:---|:---|:---|
 | Bước 1: Research | Retry search 3x | N/A | Hỏi user cung cấp context |
 | Bước 2: Architecture | Sửa thiết kế 3x | → Bước 1 (re-research) | Notify user |
-| Bước 3: Planning | Sửa plan 3x | → Bước 2 (re-architect) | Notify user |
+| Bước 3a: High-Level | Sửa plan 3x | → Bước 2 (re-architect) | Notify user |
+| Bước 3b: Low-Level | Sửa plan 3x | → Bước 3a (re-approve) | Notify user |
 
 ---
 
@@ -140,7 +199,7 @@ thành 3 service nhỏ (AuthService, TokenService, PermissionService).
 ## Workflow liên quan
 
 > **Tiếp theo làm gì?**
-> Sau khi Plan được approve, bạn có thể chạy `/code` (tự làm) hoặc `/implement-feature` (từng bước).
+> Sau khi cả 2 cấp Plan được approve, bạn có thể chạy `/code` hoặc `/implement-feature`.
 
 - `/code` — Code theo plan đã tạo.
 - `/cook` — Nếu muốn cả plan + code trong 1 session.
