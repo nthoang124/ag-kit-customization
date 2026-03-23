@@ -3,7 +3,7 @@ description: Đánh giá hiệu năng ứng dụng và tối ưu hóa bottleneck
 type: procedure
 risk: none
 source: self
-required_skills: [backend-developer, frontend-developer, devops-engineer]
+required_skills: [Development/backend-developer, Development/frontend-developer, Development/devops-engineer]
 inputs: ["Application URL", "Slow Endpoints", "Performance Complaints"]
 outputs: ["Performance Report", "Optimization Plan"]
 ---

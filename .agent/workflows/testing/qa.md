@@ -3,7 +3,7 @@ description: Tạo tài liệu test case và test plan toàn diện dựa trên 
 type: procedure
 risk: none
 source: self
-required_skills: [qa-tester]
+required_skills: [Testing_Security/qa-tester]
 inputs: ["Requirements Docs", "Source Code"]
 outputs: ["Test Plan", "Test Cases"]
 ---

@@ -3,7 +3,7 @@ description: Review nhanh các thay đổi trước khi merge (Diff Review).
 type: procedure
 risk: none
 source: self
-required_skills: [lead-architect, backend-developer]
+required_skills: [Architecture/lead-architect, Development/backend-developer]
 inputs: ["Git Diff", "Branch Name", "PR"]
 outputs: ["Review Comments", "Approval/Rejection"]
 ---

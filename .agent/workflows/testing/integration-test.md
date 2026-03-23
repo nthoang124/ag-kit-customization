@@ -3,7 +3,7 @@ description: Kiểm tra luồng tích hợp giữa nhiều module/service.
 type: procedure
 risk: safe
 source: self
-required_skills: [qa-tester, backend-developer]
+required_skills: [Testing_Security/qa-tester, Development/backend-developer]
 inputs: ["API Endpoints", "Service Topology", "Test Data"]
 outputs: ["Integration Test Report", "Test Code"]
 ---

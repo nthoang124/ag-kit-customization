@@ -3,7 +3,7 @@ description: Dọn dẹp code, tối ưu hóa, giảm nợ kỹ thuật (không 
 type: procedure
 risk: safe
 source: self
-required_skills: [lead-architect, backend-developer]
+required_skills: [Architecture/lead-architect, Development/backend-developer]
 inputs: ["Legacy Code", "Deep Nested Logic", "Duplication"]
 outputs: ["Refactored Code", "Clean Code"]
 ---

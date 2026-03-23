@@ -3,7 +3,7 @@ description: Quy trình khoanh vùng, debug và dập lỗi trên mội trườn
 type: procedure
 risk: critical
 source: self
-required_skills: [backend-developer, devops-engineer, qa-tester]
+required_skills: [Development/backend-developer, Development/devops-engineer, Testing_Security/qa-tester]
 inputs: ["Production Bug Report", "Logs/Trace"]
 outputs: ["Root Cause Fix", "Hotfix Commit", "Post-mortem Docs"]
 context_from: []

@@ -3,7 +3,7 @@ description: Triển khai ứng dụng lên staging/production an toàn với ch
 type: procedure
 risk: critical
 source: self
-required_skills: [devops-engineer, backend-developer]
+required_skills: [Development/devops-engineer, Development/backend-developer]
 inputs: ["Release Branch", "Changelog"]
 outputs: ["Deployed Application", "Health Check Report"]
 context_from: ["/implement-feature", "/git-pr", "/project-review"]

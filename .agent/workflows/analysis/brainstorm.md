@@ -3,7 +3,7 @@ description: Phân tích ý tưởng cùng user và tạo các tài liệu sơ b
 type: procedure
 risk: none
 source: self
-required_skills: [researcher, product-manager]
+required_skills: [Workflows_Tools/researcher, Business/product-manager]
 inputs: ["User Idea", "Market Trends"]
 outputs: ["docs/010-Planning/Roadmap-*.md", "docs/020-Requirements/PRD-*.md", "task.md"]
 context_from: []

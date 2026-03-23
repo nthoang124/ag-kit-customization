@@ -3,7 +3,7 @@ description: Workflow để tùy chỉnh Rule/Workflow an toàn, có phân tích
 type: procedure
 risk: safe
 source: self
-required_skills: [rules-workflows]
+required_skills: [Workflows_Tools/rules-workflows]
 inputs: ["User Requirement", "Existing Rules"]
 outputs: ["Updated Rule/Workflow"]
 ---

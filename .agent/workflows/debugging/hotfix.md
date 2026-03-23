@@ -3,7 +3,7 @@ description: Sửa lỗi khẩn cấp trên môi trường Production (Hotfix).
 type: procedure
 risk: critical
 source: self
-required_skills: [backend-developer, devops-engineer, qa-tester]
+required_skills: [Development/backend-developer, Development/devops-engineer, Testing_Security/qa-tester]
 inputs: ["Production Incident", "Critical Bug"]
 outputs: ["Hotfix Branch", "PR to Main"]
 context_from: []

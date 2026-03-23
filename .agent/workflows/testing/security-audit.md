@@ -3,7 +3,7 @@ description: Đánh giá bảo mật ứng dụng web theo OWASP và best practi
 type: procedure
 risk: safe
 source: self
-required_skills: [backend-developer, devops-engineer]
+required_skills: [Development/backend-developer, Development/devops-engineer]
 inputs: ["Codebase", "API Specs"]
 outputs: ["Security Report", "Remediation Plan"]
 ---

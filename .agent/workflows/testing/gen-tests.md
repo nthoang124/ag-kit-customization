@@ -3,7 +3,7 @@ description: Tạo unit, E2E, security, và performance tests sử dụng qa-tes
 type: procedure
 risk: safe
 source: self
-required_skills: [qa-tester]
+required_skills: [Testing_Security/qa-tester]
 inputs: ["Source Code", "Docs"]
 outputs: ["Test Plan", "Test Cases", "Test Code"]
 ---

@@ -3,7 +3,7 @@ description: Workflow coding cơ bản để thực hiện thay đổi, sửa l�
 type: procedure
 risk: safe
 source: self
-required_skills: [backend-developer, frontend-developer]
+required_skills: [Development/backend-developer, Development/frontend-developer]
 inputs: ["Bug Report", "Small Task"]
 outputs: ["Committed Code"]
 context_from: ["/debug"]

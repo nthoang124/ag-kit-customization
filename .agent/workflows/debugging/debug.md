@@ -3,7 +3,7 @@ description: Workflow debug khoa học - Giả thuyết, Đo đạc, Tái hiện
 type: procedure
 risk: safe
 source: self
-required_skills: [qa-tester, backend-developer, frontend-developer]
+required_skills: [Testing_Security/qa-tester, Development/backend-developer, Development/frontend-developer]
 inputs: ["Bug Report", "Logs"]
 outputs: ["Proof of Fix", "Regression Test"]
 context_from: []

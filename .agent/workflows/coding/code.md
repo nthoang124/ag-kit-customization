@@ -3,7 +3,7 @@ description: ⚡⚡⚡ Bắt đầu code & test theo plan có sẵn
 type: direct-executor
 risk: critical
 source: self
-required_skills: [researcher, backend-developer, frontend-developer, qa-tester]
+required_skills: [Workflows_Tools/researcher, Development/backend-developer, Development/frontend-developer, Testing_Security/qa-tester]
 inputs: ["Implementation Plan", "Phase Name"]
 outputs: ["Executed Phase", "Test Results"]
 context_from: ["/plan", "/cook"]

@@ -3,7 +3,7 @@ description: Nghiên cứu sâu về một chủ đề kỹ thuật hoặc thị
 type: research
 risk: none
 source: self
-required_skills: [researcher]
+required_skills: [Workflows_Tools/researcher]
 inputs: ["Topic", "Question"]
 outputs: ["Research Report", "task.md"]
 ---

@@ -3,7 +3,7 @@ description: Chuyển đổi yêu cầu thành các thiết kế UI/UX toàn di�
 type: procedure
 risk: none
 source: self
-required_skills: [designer, frontend-developer]
+required_skills: [Business/designer, Development/frontend-developer]
 inputs: ["User Stories", "PRD"]
 outputs: ["Design System", "Flows", "Prototypes", "task.md"]
 ---

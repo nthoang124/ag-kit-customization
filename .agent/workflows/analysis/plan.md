@@ -3,7 +3,7 @@ description: Lập kế hoạch kỹ thuật và kiến trúc (không bao gồm 
 type: procedure
 risk: none
 source: self
-required_skills: [researcher, lead-architect, product-manager]
+required_skills: [Workflows_Tools/researcher, Architecture/lead-architect, Business/product-manager]
 inputs: ["Requirements", "Idea", "PRD"]
 outputs: ["Implementation Plan", "Task List", "Architecture Specs"]
 context_from: ["/brainstorm", "/research"]

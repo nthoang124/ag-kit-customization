@@ -3,7 +3,7 @@ description: ⚡⚡⚡ Triển khai tính năng [từng bước]
 type: direct-executor
 risk: critical
 source: self
-required_skills: [researcher, lead-architect, backend-developer, frontend-developer, qa-tester]
+required_skills: [Workflows_Tools/researcher, Architecture/lead-architect, Development/backend-developer, Development/frontend-developer, Testing_Security/qa-tester]
 inputs: ["Feature Idea", "Requirements"]
 outputs: ["Fully Implemented Feature"]
 context_from: ["/brainstorm", "/plan"]

@@ -3,7 +3,7 @@ description: Thiết lập cấu trúc dự án, cài đặt dependencies, và c
 type: procedure
 risk: critical
 source: self
-required_skills: [lead-architect, devops-engineer, frontend-developer, backend-developer, product-manager]
+required_skills: [Architecture/lead-architect, Development/devops-engineer, Development/frontend-developer, Development/backend-developer, Business/product-manager]
 inputs: ["docs/030-Specs/Architecture/SDD-*.md"]
 outputs: ["Initialized Project", "CI/CD Config", "Env Config"]
 ---

@@ -3,7 +3,7 @@ description: Điều tra, tái hiện, sửa lỗi và đảm bảo không tái 
 type: procedure
 risk: safe
 source: self
-required_skills: [backend-developer, frontend-developer]
+required_skills: [Development/backend-developer, Development/frontend-developer]
 inputs: ["Bug Report", "Error Message"]
 outputs: ["Fixed Code", "Regression Test"]
 context_from: ["/debug"]
