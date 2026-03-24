@@ -29,13 +29,27 @@ Agent tự tra `_routing.md` để chọn workflow phù hợp:
 
 ## Luồng làm việc phổ biến
 
-```
-🚀 Ship Feature:  /brainstorm → /plan → /git-branch → /cook → /gen-tests → /git-commit → /git-pr
-🐛 Fix Bug:       /debug → /bug-fix → /gen-tests → /git-commit → /git-pr
-🔒 Hotfix:        /hotfix → /git-commit → /git-pr (main) → /git-merge (dev)
-🛡️ Pre-Release:   /code-review → /security-audit → /performance-audit → /deploy
-🧹 Tech Debt:     /refactor → /gen-tests → /lint-format → /git-commit
-```
+Dưới đây là các luồng phối hợp workflow được khuyến nghị cho từng kịch bản cụ thể:
+
+**1. Khởi tạo Dự Án Mới (Full Lifecycle)**
+`/phase1-planning` → `/phase2-requirements` → `/phase3-design` → `/bootstrap` → `/implement-feature`
+
+**2. Phát triển Tính Năng / Epic Lớn**
+`/plan` → `/plan-detail` → `/git-branch` → `/implement-feature` (hoặc `/cook`) → `/qa` → `/git-commit` → `/git-pr`
+
+**3. Ship Nhanh Tính Năng (Agile)**
+`/brainstorm` → `/code` (hoặc `/cook`) → `/gen-tests` → `/git-commit` → `/git-pr`
+
+**4. Sửa Lỗi (Bug Fix & Hotfix)**
+
+- **Bug Fix**: `/debug` → `/bug-fix` → `/gen-tests` → `/git-commit` → `/git-pr`
+- **Hotfix (Production)**: `/hotfix` → `/git-commit` → `/git-pr` (vào main) → `/git-sync` (từ main về dev)
+
+**5. Tối ưu & Dọn dẹp Code (Tech Debt)**
+`/ask` (Đánh giá impact) → `/refactor` → `/gen-tests` → `/lint-format` → `/git-commit`
+
+**6. Release & Giao Hàng**
+`/code-review` → `/security-audit` → `/performance-audit` → `/deploy`
 
 ---
 
