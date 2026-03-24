@@ -77,22 +77,25 @@ User Input: "tạo REST API cho products với authentication"
 
 ## Step 1: Intent Analysis — Bảng Ánh xạ Keyword → Skill
 
-| Domain Keywords (VI / EN) | Skill | Priority |
-|---|---|---|
-| API, REST, GraphQL, database, server, backend, CRUD, migration | `backend-developer` | High |
-| UI, component, responsive, animation, CSS, React, Vue, frontend | `frontend-developer` | High |
-| bảo mật, OWASP, vulnerability, auth, JWT, encryption, security | `backend-developer` + rule `security.md` | High |
-| test, coverage, QA, unit test, E2E, acceptance | `qa-tester` | Medium |
-| CI/CD, deploy, Docker, Kubernetes, pipeline, infrastructure | `devops-engineer` | Medium |
-| wireframe, design, UX, UI design, mockup, prototype, figma | `designer` | Medium |
-| kiến trúc, microservice, monolith, scalability, system design | `lead-architect` | High |
-| AI, ML, RAG, LLM, embedding, agent, prompt engineering | `ai-engineer` | High |
-| data pipeline, ETL, warehouse, data lake, analytics | `data-engineer` | Medium |
-| smart contract, blockchain, solidity, web3 | `blockchain-engineer` | Medium |
-| PRD, roadmap, user story, epic, product, stakeholder | `product-manager` | Low |
-| nghiên cứu, research, compare, evaluate, spike | `researcher` | Low |
+| Domain Keywords (VI / EN)                                       | Skill                                    | Priority |
+| --------------------------------------------------------------- | ---------------------------------------- | -------- |
+| API, REST, GraphQL, database, server, backend, CRUD, migration  | `backend-developer`                      | High     |
+| UI, component, responsive, animation, CSS, React, Vue, frontend | `frontend-developer`                     | High     |
+| bảo mật, OWASP, vulnerability, auth, JWT, encryption, security  | `backend-developer` + rule `security.md` | High     |
+| test, coverage, QA, unit test, E2E, acceptance                  | `qa-tester`                              | Medium   |
+| CI/CD, deploy, Docker, Kubernetes, pipeline, infrastructure     | `devops-engineer`                        | Medium   |
+| wireframe, design, UX, UI design, mockup, prototype, figma      | `designer`                               | Medium   |
+| kiến trúc tổng thể, ERD, communication flow, HLD                | `solution-architect`                     | High     |
+| kiến trúc chi tiết, LLD, API contract, algorithm                | `technical-architect`                    | High     |
+| AI, ML, RAG, LLM, embedding, agent, prompt engineering          | `ai-engineer`                            | High     |
+| data pipeline, ETL, warehouse, data lake, analytics             | `data-engineer`                          | Medium   |
+| smart contract, blockchain, solidity, web3                      | `blockchain-engineer`                    | Medium   |
+| khảo sát, user requirements, phân tích nghiệp vụ, SRS           | `business-analysis`                      | High     |
+| PRD, roadmap, user story, epic, product, stakeholder            | `product-manager`                        | Low      |
+| nghiên cứu, research, compare, evaluate, spike                  | `researcher`                             | Low      |
 
 **Quy tắc ưu tiên:**
+
 - **High**: Load đầy đủ sections quan trọng từ SKILL.md.
 - **Medium**: Load phần "Core Responsibilities" / "When to Use".
 - **Low**: Chỉ note trong prompt, không load toàn bộ skill.
@@ -103,14 +106,14 @@ User Input: "tạo REST API cho products với authentication"
 
 Khi load SKILL.md, chỉ trích xuất các sections **thực sự cần thiết** (tránh nhồi context):
 
-| Section trong SKILL.md | Trích khi... |
-|---|---|
-| "Core Responsibilities" / "Core Philosophy" | **Luôn trích** — đây là standards chính |
-| "When to Use" / "When NOT to Use" | Luôn trích — giúp xác nhận skill đúng |
-| "Best Practices & Common Pitfalls" | Trích khi task là implementation |
-| "Project Structure" | Trích khi task là tạo mới project/module |
-| "Ví dụ Copy-Paste" | Trích khi task tương tự ví dụ |
-| "Related Skills" | Trích để phát hiện thêm skills cần load |
+| Section trong SKILL.md                      | Trích khi...                             |
+| ------------------------------------------- | ---------------------------------------- |
+| "Core Responsibilities" / "Core Philosophy" | **Luôn trích** — đây là standards chính  |
+| "When to Use" / "When NOT to Use"           | Luôn trích — giúp xác nhận skill đúng    |
+| "Best Practices & Common Pitfalls"          | Trích khi task là implementation         |
+| "Project Structure"                         | Trích khi task là tạo mới project/module |
+| "Ví dụ Copy-Paste"                          | Trích khi task tương tự ví dụ            |
+| "Related Skills"                            | Trích để phát hiện thêm skills cần load  |
 
 ---
 
@@ -118,25 +121,32 @@ Khi load SKILL.md, chỉ trích xuất các sections **thực sự cần thiết
 
 ```markdown
 ## 🎯 Yêu cầu
+
 [Yêu cầu gốc của user, giữ nguyên]
 
 ## 📚 Skills đã tham chiếu
+
 [Danh sách skills đã load, kèm lý do chọn]
 
 ## ✅ Standards phải tuân thủ
+
 [Trích xuất từ skills — chỉ liệt kê rules bắt buộc]
 
 ### Từ `backend-developer`:
+
 - [Rule 1]
 - [Rule 2]
 
 ### Từ `qa-tester`:
+
 - [Rule 1]
 
 ## ⚠️ Anti-patterns cần tránh
+
 [Trích "Common Pitfalls" từ skills]
 
 ## 🔀 Đề xuất Workflow
+
 - Workflow phù hợp: `/cook` (end-to-end implementation)
 - Lý do: Task phức tạp vừa, cần research + plan + code + test
 ```
@@ -145,14 +155,14 @@ Khi load SKILL.md, chỉ trích xuất các sections **thực sự cần thiết
 
 ## Step 4: Routing Handoff — Logic chọn Workflow
 
-| Tín hiệu từ phân tích | Workflow đề xuất |
-|---|---|
-| Task tạo mới end-to-end, cần research | `/cook` |
-| Đã có plan, chỉ cần code | `/code` |
-| Task nhỏ (1-3 file) | `/development` |
-| Chỉ cần plan/kiến trúc | `/plan` |
-| Cần debug/fix | `/debug` hoặc `/bug-fix` |
-| Cần audit | `/security-audit` hoặc `/performance-audit` |
+| Tín hiệu từ phân tích                 | Workflow đề xuất                            |
+| ------------------------------------- | ------------------------------------------- |
+| Task tạo mới end-to-end, cần research | `/cook`                                     |
+| Đã có plan, chỉ cần code              | `/code`                                     |
+| Task nhỏ (1-3 file)                   | `/development`                              |
+| Chỉ cần plan/kiến trúc chiến lược     | `/plan`                                     |
+| Cần debug/fix                         | `/debug` hoặc `/bug-fix`                    |
+| Cần audit                             | `/security-audit` hoặc `/performance-audit` |
 
 > [!IMPORTANT]
 > Nếu không chắc chắn workflow nào → **hỏi user** với 2-3 options kèm mô tả.

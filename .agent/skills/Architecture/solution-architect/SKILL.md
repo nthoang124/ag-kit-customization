@@ -46,14 +46,14 @@ Kỹ năng này cung cấp các hướng dẫn chuyên sâu cho vai trò Solutio
 
 **ACTION**: Khi thực hiện tác vụ, hãy chủ động load các file tham chiếu sau đây để lấy bối cảnh cụ thể:
 
-| Reference | Path | Purpose |
-| --- | --- | --- |
+| Reference             | Path                                  | Purpose                                                           |
+| --------------------- | ------------------------------------- | ----------------------------------------------------------------- |
 | Architecture Patterns | `references/architecture-patterns.md` | Các mẫu kiến trúc phổ biến (Microservices, EDA, Modular Monolith) |
 
 ## 📝 Templates
 
-| Template | Path | Purpose |
-| --- | --- | --- |
+| Template     | Path                        | Purpose                                             |
+| ------------ | --------------------------- | --------------------------------------------------- |
 | ADR Template | `templates/adr-template.md` | Mẫu tài liệu chuẩn để ghi nhận quyết định kiến trúc |
 
 ## Ví dụ Copy-Paste

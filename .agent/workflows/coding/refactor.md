@@ -3,7 +3,12 @@ description: Dọn dẹp code, tối ưu hóa, giảm nợ kỹ thuật (không 
 type: procedure
 risk: safe
 source: self
-required_skills: [Architecture/lead-architect, Development/backend-developer]
+required_skills:
+  [
+    Architecture/lead-architect,
+    Development/backend-developer,
+    Development/frontend-developer,
+  ]
 inputs: ["Legacy Code", "Deep Nested Logic", "Duplication"]
 outputs: ["Refactored Code", "Clean Code"]
 ---
@@ -71,6 +76,7 @@ outputs: ["Refactored Code", "Clean Code"]
 // turbo
 
 **Các kỹ thuật phổ biến**:
+
 1.  **Extract Method**: Tách đoạn code dài thành hàm nhỏ có tên rõ nghĩa.
 2.  **Rename Variable**: Đổi tên biến `a`, `b`, `c` thành `userEmail`, `isValidDate`.
 3.  **Remove Dead Code**: Xóa code không dùng, comment cũ.
@@ -97,11 +103,11 @@ outputs: ["Refactored Code", "Clean Code"]
 
 ```text
 # Refactor service quá dài
-/refactor Tách AuthService thành AuthService + TokenService + PasswordService. 
+/refactor Tách AuthService thành AuthService + TokenService + PasswordService.
 Hiện tại auth.service.ts có 500 dòng, quá nhiều responsibilities.
 
 # Refactor naming
-/refactor Chuẩn hóa naming convention trong folder /src/utils: 
+/refactor Chuẩn hóa naming convention trong folder /src/utils:
 đổi camelCase ↔ snake_case cho nhất quán.
 ```
 

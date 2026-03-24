@@ -1,5 +1,5 @@
 ---
-description: Tạo unit, E2E, security, và performance tests sử dụng qa-tester skill.
+description: Tạo Kiểm thử Đơn vị/Thành phần (Unit/Component), Kiểm thử Hệ thống (System/E2E), security, performance tests.
 type: procedure
 risk: safe
 source: self
@@ -16,8 +16,8 @@ outputs: ["Test Plan", "Test Cases", "Test Code"]
 
 ## Khi nào dùng (When to Use)
 
-- Viết unit tests cho code mới hoặc code chưa có test.
-- Tạo E2E tests cho user flow quan trọng.
+- Viết unit tests/component tests cho code mới hoặc code chưa có test.
+- Tạo system tests/E2E tests cho user flow quan trọng giả lập môi trường Production.
 - Bổ sung test coverage trước khi refactor.
 - Cần test plan có cấu trúc cho QA.
 
@@ -26,7 +26,7 @@ outputs: ["Test Plan", "Test Cases", "Test Code"]
 - Chỉ cần chạy test đã có → Dùng `npm test` trực tiếp.
 - Cần test plan nhưng không cần code → Dùng `/qa`.
 - Code đang broken → Fix bug trước, viết test sau.
-- Cần integration test phức tạp giữa nhiều service → Dùng `/integration-test`.
+- Cần Integration Testing (Component hoặc System Integration) -> Dùng `/integration-test`.
 
 ---
 
@@ -78,7 +78,7 @@ outputs: ["Test Plan", "Test Cases", "Test Code"]
 - Token refresh (valid, expired, revoked)
 
 # Tạo E2E tests
-/gen-tests Tạo E2E tests cho user registration flow: 
+/gen-tests Tạo E2E tests cho user registration flow:
 đăng ký → verify email → đăng nhập → xem profile.
 ```
 

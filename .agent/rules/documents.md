@@ -3,184 +3,226 @@ trigger: model_decision
 description: Luôn áp dụng khi tạo, tổ chức, đọc hoặc chỉnh sửa tài liệu
 ---
 
-# Documentation Structure Rule
+# Quy Tắc Cấu Trúc Tài Liệu
 
 > [!IMPORTANT]
-> This rule is **MANDATORY** for all documentation operations. Violations will result in incorrect project structure.
+> Quy tắc này **BẮT BUỘC** cho mọi thao tác tài liệu.
 
-## Critical Rules (MUST Follow)
+## Quy Tắc Bắt Buộc
 
-1. **MUST** save all documents to `docs/` folder - NEVER create documents in project root or other folders
-2. **MUST** use Dewey Decimal folder structure (010, 020, 030, etc.)
-3. **MUST** include YAML frontmatter in every document
-4. **MUST** use **Vietnamese** language for all content (except code/technical terms)
-5. **MUST** update relevant MOC file after creating a new document
-6. **MUST** use wiki-links `[[Document-Name]]` for cross-references
-6. **MUST NOT** create custom folder structures like `01-product/`, `02-analysis/`
-7. **MUST NOT** create documents without checking Document Type Mapping first
+1. Lưu tài liệu vào `docs/` — KHÔNG tạo ở thư mục gốc hoặc nơi khác
+2. Dùng cấu trúc Dewey Decimal (000, 010, 020, ...)
+3. Có YAML frontmatter trong mọi tài liệu
+4. Viết nội dung bằng **tiếng Việt** (trừ thuật ngữ kỹ thuật)
+5. Cập nhật MOC sau khi tạo tài liệu mới
+6. Dùng wiki-links `[[Tên-Tài-Liệu]]` để tham chiếu chéo
+7. **CẤM** tạo cấu trúc tùy ý ngoài cấu trúc đã định
 
-## Decision Flow
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│ BEFORE creating any document, ask yourself:                 │
-├─────────────────────────────────────────────────────────────┤
-│ 1. Does docs/ folder exist?                                 │
-│    NO  → Create FULL folder structure (see Required          │
-│          Structure). Use mkdir -p for all folders.           │
-│    YES → Continue                                           │
-├─────────────────────────────────────────────────────────────┤
-│ 2. What type of document is this?                           │
-│    → Look up in Document Type Mapping table                 │
-│    → Get exact target folder and naming convention          │
-├─────────────────────────────────────────────────────────────┤
-│ 3. Does target folder exist?                                │
-│    NO  → Create it with proper Dewey Decimal prefix         │
-│    YES → Continue                                           │
-├─────────────────────────────────────────────────────────────┤
-│ 4. Create document with:                                    │
-│    → Correct naming convention                              │
-│    → Required frontmatter                                   │
-│    → Wiki-links to related documents                        │
-├─────────────────────────────────────────────────────────────┤
-│ 5. AFTER creating document:                                 │
-│    → Update parent folder's MOC file                        │
-│    → Update 000-Index.md if major document                  │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## Document Type Mapping
-
-| Category             | Document Type       | Target Folder                          | Naming Convention          |
-| -------------------- | ------------------- | -------------------------------------- | -------------------------- |
-| **010-Planning**     | Roadmap             | `docs/010-Planning/`                   | `Roadmap.md`               |
-|                      | OKRs                | `docs/010-Planning/`                   | `OKRs.md`                  |
-|                      | Sprint              | `docs/010-Planning/Sprints/`           | `Sprint-{NNN}.md`          |
-| **020-Requirements** | PRD                 | `docs/020-Requirements/`               | `PRD-{ProjectName}.md`     |
-|                      | BRD                 | `docs/020-Requirements/BRD/`           | `BRD-{NNN}-{Title}.md`     |
-|                      | Use Case            | `docs/020-Requirements/Use-Cases/`     | `UC-{NN}-{Title}.md`       |
-| **022-User-Stories** | Epic                | `docs/022-User-Stories/Epics/`         | `Epic-{Title}.md`          |
-|                      | User Story          | `docs/022-User-Stories/Backlog/`       | `Story-{Title}.md`         |
-|                      | Active Story        | `docs/022-User-Stories/Active-Sprint/` | `Story-{Title}.md`         |
-| **030-Specs**        | ADR                 | `docs/030-Specs/Architecture/`         | `ADR-{NNN}-{Title}.md`     |
-|                      | RFC                 | `docs/030-Specs/Architecture/`         | `RFC-{NNN}-{Title}.md`     |
-|                      | SDD (System Design) | `docs/030-Specs/Architecture/`         | `SDD-{ProjectName}.md`     |
-|                      | Technical Spec      | `docs/030-Specs/`                      | `Spec-{Feature}.md`        |
-|                      | API Endpoint Spec   | `docs/030-Specs/API/`                  | `Endpoint-{Name}.md`       |
-|                      | DB Schema           | `docs/030-Specs/Schema/`               | `DB-Entity-{Name}.md`      |
-| **035-QA**           | Test Plan           | `docs/035-QA/Test-Plans/`              | `MTP-{Name}.md`            |
-|                      | Test Case           | `docs/035-QA/Test-Cases/`              | `TC-{Feature}-{NNN}.md`    |
-| **040-Design**       | Design System       | `docs/040-Design/Design-System/`       | `{Component}.md`           |
-|                      | Wireframe           | `docs/040-Design/Wireframes/`          | `WF-{Screen}-{Device}.png` |
-| **045-Tasks**        | Task List           | `docs/045-Tasks/`                      | `Task-{FeatureName}.md`    |
-|                      | Completed Task      | `docs/045-Tasks/Completed/`            | `Task-{FeatureName}.md`    |
-| **050-Research**     | Research/Analysis   | `docs/050-Research/`                   | `Analysis-{Topic}.md`      |
-| **060-Manuals**      | User Guide          | `docs/060-Manuals/User-Guide/`         | `{Topic}.md`               |
-|                      | Admin Guide         | `docs/060-Manuals/Admin-Guide/`        | `{Topic}.md`               |
-| **090-Archive**      | Deprecated Docs     | `docs/090-Archive/`                    | `{Original-Name}.md`       |
-| **999-Resources**    | Meeting Notes       | `docs/999-Resources/Meeting-Notes/`    | `{Type}-{Date}.md`         |
-|                      | Glossary            | `docs/999-Resources/`                  | `Glossary.md`              |
-|                      | Template            | `docs/999-Resources/Templates/`        | `Template-{Type}.md`       |
-
-## Required Folder Structure
+## Quy Trình
 
 ```
-docs/
-├── 000-Index.md                        # "Home Page" - MUST exist
-│
-├── 010-Planning/                       # Strategy, Timelines, Roadmaps
-│   ├── Planning-MOC.md                 # REQUIRED MOC
-│   ├── Roadmap.md
-│   ├── OKRs.md
-│   └── Sprints/
-│
-├── 020-Requirements/                   # Business Requirements
-│   ├── Requirements-MOC.md             # REQUIRED MOC
-│   ├── BRD/
-│   └── Use-Cases/
-│
-├── 022-User-Stories/                   # Agile Backlog
-│   ├── Stories-MOC.md                  # REQUIRED MOC
-│   ├── Epics/
-│   ├── Active-Sprint/
-│   └── Backlog/
-│
-├── 030-Specs/                          # Technical Specs
-│   ├── Specs-MOC.md                    # REQUIRED MOC
-│   ├── Architecture/
-│   ├── API/
-│   └── Schema/
-│
-├── 035-QA/                             # Quality Assurance
-│   ├── QA-MOC.md                       # REQUIRED MOC
-│   ├── Test-Plans/
-│   ├── Test-Cases/
-│   ├── Automation/
-│   ├── Reports/
-│   └── Performance/
-│
-├── 040-Design/                         # UI/UX & Frontend
-│   ├── Design-MOC.md                   # REQUIRED MOC
-│   ├── Wireframes/
-│   ├── Design-System/
-│   ├── Specs/
-│   └── Assets/
-│
-├── 045-Tasks/                          # Task Tracking & Breakdown
-│   ├── Tasks-MOC.md                    # REQUIRED MOC
-│   └── Completed/                      # Finished tasks moved here
-│
-├── 050-Research/                       # Discovery & Analysis
-│   ├── Research-MOC.md                 # REQUIRED MOC
-│   ├── Competitor-Analysis/
-│   └── User-Interviews/
-│
-├── 060-Manuals/                        # End-User Documentation
-│   ├── Manuals-MOC.md                  # REQUIRED MOC
-│   ├── User-Guide/
-│   └── Admin-Guide/
-│
-├── 090-Archive/                        # Deprecated docs (never delete)
-│
-└── 999-Resources/                      # Templates, Scripts, Glossary
-    ├── Templates/
-    ├── Glossary.md
-    └── Meeting-Notes/
+1. Thư mục docs/ chưa có? → Tạo TOÀN BỘ cấu trúc (mkdir -p)
+2. Tra Bảng Phân Loại → Xác định thư mục đích + tên file
+3. Tạo tài liệu với frontmatter + wiki-links
+4. Cập nhật MOC thư mục cha + 000-Index.md nếu cần
 ```
 
-## Frontmatter Template
-
-Every document MUST include this frontmatter:
+## Mẫu Frontmatter
 
 ```yaml
 ---
-id: {TYPE}-{NNN}           # Unique identifier (e.g., PRD-001, UC-01)
-type: {document_type}      # prd, brd, use-case, epic, story, spec, adr, etc.
+id: {LOẠI}-{NNN}
+type: {loại_tài_liệu}
 status: draft|review|approved|deprecated
-project: {project_name}    # Optional: for multi-project docs
-owner: "@{team_or_person}" # Optional: responsible party
-tags: [tag1, tag2]         # Optional: for search/filtering
-linked-to: [[Related-Doc]] # Optional: primary relationship
+project: {tên_dự_án}            # Tùy chọn
+owner: "@{người_phụ_trách}"     # Tùy chọn
+tags: [tag1, tag2]               # Tùy chọn
+linked-to: [[Tài-Liệu-Liên-Quan]]
 created: YYYY-MM-DD
-updated: YYYY-MM-DD        # Optional: last update date
+updated: YYYY-MM-DD
 ---
 ```
 
-## Linking Rules
+## Quy Tắc Liên Kết
 
-1. **PRD** → links to Epics it spawns: `## Related Epics\n- [[Epic-Feature1]]\n- [[Epic-Feature2]]`
-2. **Epic** → links to parent PRD: `Implements: [[PRD-ProjectName]]`
-3. **Use Case** → links to Epic: `Part of: [[Epic-Feature]]`
-4. **SDD** → links to PRD: `Implements: [[PRD-ProjectName]]`
-5. **ADR** → links to SDD: `Related to: [[SDD-ProjectName]]`
+- **PRD** → `[[Epic-*]]` | **Epic** → `[[PRD-*]]` | **Use Case** → `[[Epic-*]]`
+- **SDD** → `[[PRD-*]]` | **ADR** → `[[SDD-*]]`
 
-## Validation Checklist
+## Danh Sách Kiểm Tra
 
-Before finalizing any document, verify:
+- [ ] Đúng thư mục `docs/XXX-*/`
+- [ ] Tên file đúng quy ước
+- [ ] Frontmatter đầy đủ (id, type, status, created)
+- [ ] Wiki-links + MOC đã cập nhật
 
-- [ ] Document is in correct `docs/XXX-Category/` folder
-- [ ] Filename follows naming convention from mapping table
-- [ ] Frontmatter includes required fields (id, type, status, created)
-- [ ] Wiki-links to related documents are added
-- [ ] Parent folder's MOC file is updated with link to new document
-- [ ] 000-Index.md updated (for major documents like PRD, SDD)
+---
+
+## Bảng Phân Loại Tài Liệu Kỹ Thuật
+
+### 000-overview — Tổng quan
+
+| Tên file              | Mô tả               |
+| --------------------- | ------------------- |
+| `product-overview.md` | Tổng quan sản phẩm  |
+| `vision-goals.md`     | Tầm nhìn & mục tiêu |
+| `glossary.md`         | Bảng thuật ngữ      |
+
+### 010-requirements — Yêu cầu
+
+| Tên file          | Mô tả                  |
+| ----------------- | ---------------------- |
+| `prd.md`          | Yêu cầu sản phẩm (PRD) |
+| `user-stories.md` | User stories           |
+| `use-cases.md`    | Use cases chi tiết     |
+
+### 020-architecture — Kiến trúc
+
+| Tên file                    | Mô tả              |
+| --------------------------- | ------------------ |
+| `system-overview.md`        | Kiến trúc tổng thể |
+| `tech-stack.md`             | Công nghệ sử dụng  |
+| `architecture-decisions.md` | ADR                |
+| `diagrams/*.png`            | Sơ đồ hệ thống     |
+
+### 030-design — Thiết kế
+
+**database/**
+
+| Tên file           | Mô tả           |
+| ------------------ | --------------- |
+| `erd.md`           | Sơ đồ ERD       |
+| `schema-design.md` | Thiết kế schema |
+
+**api/**
+
+| Tên file             | Mô tả         |
+| -------------------- | ------------- |
+| `api-overview.md`    | Tổng quan API |
+| `authentication.md`  | Xác thực      |
+| `assets.md`          | API tài sản   |
+| `transactions.md`    | API giao dịch |
+| `{resource-name}.md` | Resource mới  |
+
+**system-design/**
+
+| Tên file     | Mô tả            |
+| ------------ | ---------------- |
+| `scaling.md` | Mở rộng hệ thống |
+| `caching.md` | Chiến lược cache |
+
+### 040-implementation — Triển khai mã nguồn
+
+| Tên file                 | Mô tả            |
+| ------------------------ | ---------------- |
+| `folder-structure.md`    | Cấu trúc thư mục |
+| `coding-guidelines.md`   | Quy tắc coding   |
+| `modules/auth.md`        | Module xác thực  |
+| `modules/asset.md`       | Module tài sản   |
+| `modules/transaction.md` | Module giao dịch |
+
+### 050-testing — Kiểm thử
+
+| Tên file           | Mô tả                |
+| ------------------ | -------------------- |
+| `test-strategy.md` | Chiến lược kiểm thử  |
+| `test-cases.md`    | Danh sách test cases |
+| `api-testing.md`   | Kiểm thử API         |
+
+### 060-deployment — Triển khai
+
+| Tên file              | Mô tả               |
+| --------------------- | ------------------- |
+| `deployment-guide.md` | Hướng dẫn deploy    |
+| `environments.md`     | Cấu hình môi trường |
+| `ci-cd.md`            | Pipeline CI/CD      |
+
+### 070-security — Bảo mật
+
+| Tên file             | Mô tả              |
+| -------------------- | ------------------ |
+| `security-policy.md` | Chính sách bảo mật |
+| `auth-flow.md`       | Luồng xác thực     |
+| `threat-model.md`    | Mô hình mối đe dọa |
+
+### 080-operations — Vận hành
+
+| Tên file                    | Mô tả           |
+| --------------------------- | --------------- |
+| `monitoring.md`             | Giám sát        |
+| `logging.md`                | Ghi log         |
+| `incident-response.md`      | Xử lý sự cố     |
+| `runbooks/{tên-runbook}.md` | Sổ tay vận hành |
+
+### 090-product — Sản phẩm
+
+| Tên file       | Mô tả               |
+| -------------- | ------------------- |
+| `roadmap.md`   | Lộ trình phát triển |
+| `changelog.md` | Nhật ký thay đổi    |
+
+### 100-guides — Hướng dẫn
+
+| Tên file            | Mô tả                  |
+| ------------------- | ---------------------- |
+| `dev-onboarding.md` | Onboarding cho dev mới |
+| `api-usage.md`      | Hướng dẫn dùng API     |
+| `user-guide.md`     | Hướng dẫn người dùng   |
+
+### 900-archive — Lưu trữ
+
+Tài liệu ngưng sử dụng → chuyển vào `docs/900-archive/`
+
+---
+
+## Cấu Trúc Thư Mục
+
+```
+docs/
+├── 000-overview/
+│   ├── product-overview.md
+│   ├── vision-goals.md
+│   └── glossary.md
+├── 010-requirements/
+│   ├── prd.md
+│   ├── user-stories.md
+│   └── use-cases.md
+├── 020-architecture/
+│   ├── system-overview.md
+│   ├── tech-stack.md
+│   ├── architecture-decisions.md
+│   └── diagrams/
+├── 030-design/
+│   ├── database/
+│   ├── api/
+│   └── system-design/
+├── 040-implementation/
+│   ├── folder-structure.md
+│   ├── coding-guidelines.md
+│   └── modules/
+├── 050-testing/
+│   ├── test-strategy.md
+│   ├── test-cases.md
+│   └── api-testing.md
+├── 060-deployment/
+│   ├── deployment-guide.md
+│   ├── environments.md
+│   └── ci-cd.md
+├── 070-security/
+│   ├── security-policy.md
+│   ├── auth-flow.md
+│   └── threat-model.md
+├── 080-operations/
+│   ├── monitoring.md
+│   ├── logging.md
+│   ├── incident-response.md
+│   └── runbooks/
+├── 090-product/
+│   ├── roadmap.md
+│   └── changelog.md
+├── 100-guides/
+│   ├── dev-onboarding.md
+│   ├── api-usage.md
+│   └── user-guide.md
+├── 900-archive/
+└── README.md
+```

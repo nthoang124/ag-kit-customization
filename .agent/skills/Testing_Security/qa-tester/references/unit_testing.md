@@ -2,8 +2,14 @@
 
 ## Core Philosophy
 
-**"Test Behavior, Not Implementation"**
-Unit tests should verify _what_ the code does, not _how_ it does it. This makes refactoring safer.
+**"Cô lập & Chứng minh bằng Toán học/Logic" (Isolate & Prove mathematically/logically)**
+
+Kiểm thử Đơn vị (Unit Testing) hay Kiểm thử Thành phần (Component Testing) là tuyến phòng thủ tầng thấp nhất nhưng mang lại hiệu quả chi phí (ROI) cao nhất trong việc diệt trừ khiếm khuyết.
+Đơn vị (Unit) là cấu trúc mã nguồn nhỏ nhất có thể chạy độc lập, chẳng hạn như một hàm tính toán thuế, một phương thức gọi dữ liệu, hoặc một thủ tục cục bộ.
+
+- **Mục tiêu cốt lõi**: Cô lập các thành phần và chứng minh bằng toán học/logic rằng các tính toán bên trong hệ thống không chứa rủi ro thuật toán. Việc phát hiện lỗi ngay tại lúc mã vừa được viết ra giúp cải thiện đáng kể tính ổn định trước khi đưa vào thư viện chung.
+- **Người thực thi**: Do yêu cầu mức độ truy cập mã nguồn tuyệt đối, Kiểm thử Đơn vị được thực thi trực tiếp bởi các nhà phát triển (Developers) chứ không phải đội ngũ QA.
+- **Test Behavior, Not Implementation**: Unit tests should verify _what_ the code does, not _how_ it does it. This makes refactoring safer.
 
 ## The AAA Pattern (Arrange, Act, Assert)
 

@@ -3,7 +3,12 @@ description: Review nhanh các thay đổi trước khi merge (Diff Review).
 type: procedure
 risk: none
 source: self
-required_skills: [Architecture/lead-architect, Development/backend-developer]
+required_skills:
+  [
+    Architecture/lead-architect,
+    Development/backend-developer,
+    Development/frontend-developer,
+  ]
 inputs: ["Git Diff", "Branch Name", "PR"]
 outputs: ["Review Comments", "Approval/Rejection"]
 ---
@@ -34,8 +39,8 @@ outputs: ["Review Comments", "Approval/Rejection"]
 // turbo
 
 1.  **Lấy Diff**:
-    -   Review local: `git diff dev...HEAD`.
-    -   Review file: `view_file`.
+    - Review local: `git diff dev...HEAD`.
+    - Review file: `view_file`.
 2.  **Adopt `[lead-architect]`**: Đánh giá cấu trúc, phát hiện Code Smell.
 
 ### Bước 2: Deep Dive (Logic & Security)
@@ -52,8 +57,8 @@ outputs: ["Review Comments", "Approval/Rejection"]
 
 1.  **Phân loại Comments**: `[CRITICAL]`, `[MAJOR]`, `[MINOR]`, `[NITPICK]`.
 2.  **Đề xuất**:
-    -   Reject: Nếu có lỗi Critical/Major.
-    -   Approve: Nếu chỉ có Minor/Nitpick.
+    - Reject: Nếu có lỗi Critical/Major.
+    - Approve: Nếu chỉ có Minor/Nitpick.
 3.  **Action**: Notify kết quả review cho user.
 
 ---
@@ -62,11 +67,11 @@ outputs: ["Review Comments", "Approval/Rejection"]
 
 ```text
 # Review PR
-/code-review Review PR #42: feat/user-auth. 
+/code-review Review PR #42: feat/user-auth.
 Focus: security (JWT implementation), performance (query optimization).
 
 # Self-review
-/code-review Review code hiện tại trên branch feat/dashboard 
+/code-review Review code hiện tại trên branch feat/dashboard
 trước khi tạo PR.
 ```
 

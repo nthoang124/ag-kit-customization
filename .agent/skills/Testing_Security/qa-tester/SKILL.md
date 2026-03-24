@@ -53,6 +53,7 @@ This skill provides expert QA standards and workflows for ensuring high-quality 
 ### 2. Comprehensive Test Design
 
 Use the **Standard Test Case Format**:
+
 - **ID**: `TC-[Module]-[Number]`
 - **Pre-conditions**: Exact state required.
 - **Steps**: Atomic actions.
@@ -65,24 +66,40 @@ Use the **Standard Test Case Format**:
 You do not have a visual browser. You rely on **Code Execution** or **User Feedback**.
 
 1.  **Automated (Preferred)**:
-    -   Write scripts (e.g., Playwright/Jest).
-    -   Run via `run_command` (`npm test ...`).
-    -   Analyze Text Output/Logs.
+    - Write scripts (e.g., Playwright/Jest).
+    - Run via `run_command` (`npm test ...`).
+    - Analyze Text Output/Logs.
 2.  **Manual (Visual/UI)**:
-    -   Write clear "Steps to Reproduce".
-    -   Ask User to verify visual aspects (`notify_user`).
+    - Write clear "Steps to Reproduce".
+    - Ask User to verify visual aspects (`notify_user`).
 
-### 4. Advanced Testing Patterns
+### 4. Hệ Thống Phân Cấp Kiểm Thử (The 4 Testing Levels)
 
--   **Unit Tests**: Mock dependencies, test pure logic.
--   **Integration**: Test database/API interactions (ensure Sandbox/Test DB is used).
--   **Security**: Check Auth guards, Input validation (Zod).
+Tuân thủ nghiêm ngặt 4 cấp độ kiểm thử sau để đảm bảo chất lượng toàn diện:
+
+1.  **Kiểm Thử Đơn Vị (Unit / Component Testing)**:
+    - Cô lập tuyến phòng thủ thấp nhất.
+    - Chứng minh bằng toán học/logic rằng thuật toán không chứa rủi ro.
+    - Do Developer thực hiện, đánh giá cấu trúc mã nguồn nhỏ nhất (hàm, phương thức).
+2.  **Kiểm Thử Tích Hợp (Integration Testing)**:
+    - Xác minh ranh giới (interfaces) giữa các thành phần phần mềm.
+    - **Component Integration Testing**: (Bottom-up) Đánh giá luồng nội bộ giữa các module liền kề. Thường do Developer thực hiện.
+    - **System Integration Testing**: Đánh giá cách hệ sinh thái kết nối với hệ thống ngoại vi bên ngoài (API ngân hàng, CRM...). Do Tester/QA quản lý.
+3.  **Kiểm Thử Hệ Thống (System Testing)**:
+    - Kiểm tra sản phẩm nguyên khối, toàn vẹn (end-to-end).
+    - Môi trường thử nghiệm phải gần như trùng khớp hoàn toàn với Production để triệt tiêu lỗi hệ điều hành/cấu hình mạng.
+    - Bao phủ cả Functional và Non-functional requirements.
+4.  **Kiểm Thử Chấp Nhận (Acceptance Testing)**:
+    - Thẩm định năng lực thực tiễn và xây dựng niềm tin của khách hàng, không phải để săn bug.
+    - **UAT**: Nhóm Business Users trực tiếp thao tác.
+    - **Alpha/Beta Testing**: Alpha (nội bộ công ty) và Beta (khách hàng ngoại vi môi trường thực tế) trước khi Grand Release.
+    - **Operational & Contractual Testing**: Đảm bảo hạ tầng phục hồi/sao lưu và tuân thủ điều khoản pháp lý hợp đồng thương mại.
 
 ## Deliverables
 
--   **Test Plans**: Markdown files in `docs/035-QA/`.
--   **Test Code**: Executable files in `tests/` or `__tests__/`.
--   **Reports**: Summary of Pass/Fail status.
+- **Test Plans**: Markdown files in `docs/035-QA/`.
+- **Test Code**: Executable files in `tests/` or `__tests__/`.
+- **Reports**: Summary of Pass/Fail status.
 
 ---
 
@@ -99,34 +116,34 @@ You do not have a visual browser. You rely on **Code Execution** or **User Feedb
 Đăng nhập → Thêm sản phẩm → Checkout → Thanh toán → Order confirmation
 
 # Bug report
-@Testing_Security/qa-tester Tạo bug report: API /api/orders trả 500 
+@Testing_Security/qa-tester Tạo bug report: API /api/orders trả 500
 khi filter theo ngày > 2025-12-31
 ```
 
 **Expected Output (Jest):**
 
 ```typescript
-describe('AuthService', () => {
-  describe('login', () => {
-    it('should return JWT token on valid credentials', async () => {
-      const result = await authService.login('user@test.com', 'Valid123!');
+describe("AuthService", () => {
+  describe("login", () => {
+    it("should return JWT token on valid credentials", async () => {
+      const result = await authService.login("user@test.com", "Valid123!");
       expect(result.accessToken).toBeDefined();
       expect(result.expiresIn).toBe(3600);
     });
 
-    it('should throw UnauthorizedException on wrong password', async () => {
-      await expect(
-        authService.login('user@test.com', 'wrong'),
-      ).rejects.toThrow(UnauthorizedException);
+    it("should throw UnauthorizedException on wrong password", async () => {
+      await expect(authService.login("user@test.com", "wrong")).rejects.toThrow(
+        UnauthorizedException,
+      );
     });
 
-    it('should throw 429 after 5 failed attempts', async () => {
+    it("should throw 429 after 5 failed attempts", async () => {
       for (let i = 0; i < 5; i++) {
-        await authService.login('user@test.com', 'wrong').catch(() => {});
+        await authService.login("user@test.com", "wrong").catch(() => {});
       }
-      await expect(
-        authService.login('user@test.com', 'wrong'),
-      ).rejects.toThrow(TooManyRequestsException);
+      await expect(authService.login("user@test.com", "wrong")).rejects.toThrow(
+        TooManyRequestsException,
+      );
     });
   });
 });

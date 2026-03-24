@@ -39,66 +39,82 @@ Agent tự tra `_routing.md` để chọn workflow phù hợp:
 
 ---
 
+## 💡 Đề xuất & Best Practices Sử Dụng AG-Kit Hiệu Quả
+
+Để AI thực sự biến thành "đồng đội", hãy tuân thủ các nguyên tắc sau:
+
+1. **Cung cấp đủ Context (Ngữ Cảnh):** Trước khi yêu cầu Agent làm việc, hãy mở sẵn các file liên quan (như file kiến trúc, file code cần sửa, file docs). Điều này giúp Agent nắm bắt ngữ cảnh dự án nhanh chóng mà không cần tốn nhiều step để tìm kiếm.
+2. **Lập Kế Hoạch & Chia Nhỏ (Micro-Tasking):** Tuyệt đối không giao cho Agent một task khổng lồ (ví dụ: "Code hoàn chỉnh app A"). Hãy tiếp cận qua các bước:
+   - Sử dụng phần mềm tư duy: Chạy `/brainstorm` để tạo PRD và Roadmap sơ bộ.
+   - Giai đoạn Thiết Kế: Hãy chạy `/plan` để lên bản thiết kế phần mềm ở cấp độ tổng thể (High-Level và Low-Level Design).
+   - Giai đoạn Chi Tiết: Chạy `/plan-detail` nếu logic quá phức tạp, Agent sẽ tự động đi sâu vào mức Unit (class, function, schema) và chốt lại bản LLD chặt chẽ nhất.
+   - Giai đoạn Coded: Sau khi có Plan rõ ràng, hãy dùng nhánh workflow `/code` (chỉ code) hoặc `/cook` (triển khai end-to-end từng tính năng một).
+3. **Dùng đúng Workflow chuyên biệt:** Thay vì prompt chung chung, hãy gọi đúng command (ví dụ: `/debug` khi sửa lỗi, hoặc `/refactor` khi tái cấu trúc code). Mỗi workflow đã được tinh chỉnh prompt chuyên sâu cho từng nhiệm vụ.
+4. **Kiểm soát & Review:** Bất kỳ thay đổi do AI tạo ra đều cần con người phê duyệt. Hãy dùng workflow `/code-review` để review các thay đổi mới trước khi tạo Pull Request, và đừng bao giờ bỏ qua bước chạy test tự động.
+5. **Chủ động phát triển Agent:** Framework (AG-Kit) được thiết kế mở. Nếu dự án có coding convention riêng, hoặc một quy trình lặp đi lặp lại, hãy gọi `/custom-behavior` để dạy Agent quy tắc đó, giúp đồng bộ tiêu chuẩn cho mọi thành viên.
+
+---
+
 ## Danh sách Workflow
 
 ### 💬 Hỏi & Nghiên cứu
 
-| Workflow | Mô tả |
-|:---|:---|
-| [`/ask`](./agent/workflows/analysis/ask.md) | Hỏi đáp về code/kiến trúc (read-only) |
-| [`/research`](./.agent/workflows/analysis/research.md) | Nghiên cứu chuyên sâu với báo cáo |
-| [`/brainstorm`](./.agent/workflows/analysis/brainstorm.md) | Brainstorm ý tưởng → PRD + Roadmap |
-| [`/plan`](./.agent/workflows/analysis/plan.md) | Lên kế hoạch kỹ thuật (không code) |
-| [`/ui-ux-design`](./.agent/workflows/analysis/ui-ux-design.md) | Thiết kế UI/UX |
+| Workflow                                                       | Mô tả                                 |
+| :------------------------------------------------------------- | :------------------------------------ |
+| [`/ask`](./agent/workflows/analysis/ask.md)                    | Hỏi đáp về code/kiến trúc (read-only) |
+| [`/research`](./.agent/workflows/analysis/research.md)         | Nghiên cứu chuyên sâu với báo cáo     |
+| [`/brainstorm`](./.agent/workflows/analysis/brainstorm.md)     | Brainstorm ý tưởng → PRD + Roadmap    |
+| [`/plan`](./.agent/workflows/analysis/plan.md)                 | Lên kế hoạch kỹ thuật (không code)    |
+| [`/ui-ux-design`](./.agent/workflows/analysis/ui-ux-design.md) | Thiết kế UI/UX                        |
 
 ### 💻 Phát triển
 
-| Workflow | Mô tả |
-|:---|:---|
-| [`/cook`](./.agent/workflows/coding/cook.md) | ⚡ End-to-end: research → plan → code → test |
-| [`/code`](./.agent/workflows/coding/code.md) | ⚡ Code theo plan có sẵn |
-| [`/development`](./.agent/workflows/coding/development.md) | Task nhỏ (1-3 file), fix nhanh |
-| [`/implement-feature`](./.agent/workflows/coding/implement-feature.md) | Feature phức tạp, review từng phase |
-| [`/bootstrap`](./.agent/workflows/coding/bootstrap.md) | Setup dự án mới từ đầu |
-| [`/refactor`](./.agent/workflows/coding/refactor.md) | Dọn dẹp code, không đổi behavior |
+| Workflow                                                               | Mô tả                                        |
+| :--------------------------------------------------------------------- | :------------------------------------------- |
+| [`/cook`](./.agent/workflows/coding/cook.md)                           | ⚡ End-to-end: research → plan → code → test |
+| [`/code`](./.agent/workflows/coding/code.md)                           | ⚡ Code theo plan có sẵn                     |
+| [`/development`](./.agent/workflows/coding/development.md)             | Task nhỏ (1-3 file), fix nhanh               |
+| [`/implement-feature`](./.agent/workflows/coding/implement-feature.md) | Feature phức tạp, review từng phase          |
+| [`/bootstrap`](./.agent/workflows/coding/bootstrap.md)                 | Setup dự án mới từ đầu                       |
+| [`/refactor`](./.agent/workflows/coding/refactor.md)                   | Dọn dẹp code, không đổi behavior             |
 
 ### 🐛 Debug & Fix
 
-| Workflow | Mô tả |
-|:---|:---|
-| [`/debug`](./.agent/workflows/debugging/debug.md) | Debug khoa học: giả thuyết → chứng minh → fix |
-| [`/bug-fix`](./.agent/workflows/debugging/bug-fix.md) | Fix bug đã biết root cause |
-| [`/hotfix`](./.agent/workflows/debugging/hotfix.md) | Fix khẩn cấp production |
+| Workflow                                              | Mô tả                                         |
+| :---------------------------------------------------- | :-------------------------------------------- |
+| [`/debug`](./.agent/workflows/debugging/debug.md)     | Debug khoa học: giả thuyết → chứng minh → fix |
+| [`/bug-fix`](./.agent/workflows/debugging/bug-fix.md) | Fix bug đã biết root cause                    |
+| [`/hotfix`](./.agent/workflows/debugging/hotfix.md)   | Fix khẩn cấp production                       |
 
 ### 🧪 Testing & QA
 
-| Workflow | Mô tả |
-|:---|:---|
-| [`/gen-tests`](./.agent/workflows/testing/gen-tests.md) | Sinh test tự động (unit/E2E) |
-| [`/qa`](./.agent/workflows/testing/qa.md) | Tạo test plan/cases (tài liệu) |
-| [`/integration-test`](./.agent/workflows/testing/integration-test.md) | Test tích hợp cross-service |
-| [`/code-review`](./.agent/workflows/testing/code-review.md) | Review code/diff |
-| [`/security-audit`](./.agent/workflows/testing/security-audit.md) | Audit bảo mật OWASP |
-| [`/performance-audit`](./.agent/workflows/testing/performance-audit.md) | Audit hiệu năng |
-| [`/lint-format`](./.agent/workflows/testing/lint-format.md) | Lint & format code |
+| Workflow                                                                | Mô tả                          |
+| :---------------------------------------------------------------------- | :----------------------------- |
+| [`/gen-tests`](./.agent/workflows/testing/gen-tests.md)                 | Sinh test tự động (unit/E2E)   |
+| [`/qa`](./.agent/workflows/testing/qa.md)                               | Tạo test plan/cases (tài liệu) |
+| [`/integration-test`](./.agent/workflows/testing/integration-test.md)   | Test tích hợp cross-service    |
+| [`/code-review`](./.agent/workflows/testing/code-review.md)             | Review code/diff               |
+| [`/security-audit`](./.agent/workflows/testing/security-audit.md)       | Audit bảo mật OWASP            |
+| [`/performance-audit`](./.agent/workflows/testing/performance-audit.md) | Audit hiệu năng                |
+| [`/lint-format`](./.agent/workflows/testing/lint-format.md)             | Lint & format code             |
 
 ### 🔀 Git & Deploy
 
-| Workflow | Mô tả |
-|:---|:---|
-| [`/git-branch`](./.agent/workflows/git-deploy/git-branch.md) | Tạo branch |
+| Workflow                                                     | Mô tả                                          |
+| :----------------------------------------------------------- | :--------------------------------------------- |
+| [`/git-branch`](./.agent/workflows/git-deploy/git-branch.md) | Tạo branch                                     |
 | [`/git-commit`](./.agent/workflows/git-deploy/git-commit.md) | Commit chuẩn Conventional Commits (tiếng Việt) |
-| [`/git-sync`](./.agent/workflows/git-deploy/git-sync.md) | Sync code từ dev (fetch & rebase) |
-| [`/git-merge`](./.agent/workflows/git-deploy/git-merge.md) | Merge trực tiếp (solo/gấp) |
-| [`/git-pr`](./.agent/workflows/git-deploy/git-pr.md) | Tạo Pull Request |
-| [`/deploy`](./.agent/workflows/git-deploy/deploy.md) | Deploy staging/production |
+| [`/git-sync`](./.agent/workflows/git-deploy/git-sync.md)     | Sync code từ dev (fetch & rebase)              |
+| [`/git-merge`](./.agent/workflows/git-deploy/git-merge.md)   | Merge trực tiếp (solo/gấp)                     |
+| [`/git-pr`](./.agent/workflows/git-deploy/git-pr.md)         | Tạo Pull Request                               |
+| [`/deploy`](./.agent/workflows/git-deploy/deploy.md)         | Deploy staging/production                      |
 
 ### ⚙️ Quản lý Agent
 
-| Workflow | Mô tả |
-|:---|:---|
-| [`/custom-behavior`](./.agent/workflows/management/custom-behavior.md) | Thêm/sửa rule hoặc workflow |
-| [`/prompt`](./.agent/workflows/meta/prompt.md) | Tổng hợp skills → enhanced prompt |
+| Workflow                                                               | Mô tả                             |
+| :--------------------------------------------------------------------- | :-------------------------------- |
+| [`/custom-behavior`](./.agent/workflows/management/custom-behavior.md) | Thêm/sửa rule hoặc workflow       |
+| [`/prompt`](./.agent/workflows/meta/prompt.md)                         | Tổng hợp skills → enhanced prompt |
 
 ---
 

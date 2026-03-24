@@ -188,7 +188,7 @@ _See `references/domain-guides.md` for deep dives._
 Team: 5 devs, Sprint 2 tuần.
 
 # Break down PRD
-@Business/product-manager Decompose PRD Payment Module 
+@Business/product-manager Decompose PRD Payment Module
 thành Epics → Stories → Tasks.
 Mỗi task ≤ 8 giờ.
 ```
@@ -198,11 +198,11 @@ Mỗi task ≤ 8 giờ.
 ```markdown
 ## Backlog Prioritization — RICE Framework
 
-| # | Feature | Reach | Impact | Confidence | Effort | Score |
-|:--|:---|:---:|:---:|:---:|:---:|:---:|
-| 1 | SSO Integration | 500 | 3 | 90% | 3w | **45.0** |
-| 2 | Export PDF Reports | 200 | 2 | 80% | 1w | **32.0** |
-| 3 | Dark Mode | 400 | 1 | 95% | 2w | **19.0** |
+| #   | Feature            | Reach | Impact | Confidence | Effort |  Score   |
+| :-- | :----------------- | :---: | :----: | :--------: | :----: | :------: |
+| 1   | SSO Integration    |  500  |   3    |    90%     |   3w   | **45.0** |
+| 2   | Export PDF Reports |  200  |   2    |    80%     |   1w   | **32.0** |
+| 3   | Dark Mode          |  400  |   1    |    95%     |   2w   | **19.0** |
 
 **Sprint 1 Recommendation**: SSO Integration + Export PDF (fit 4w sprint)
 ```

@@ -1,5 +1,5 @@
 ---
-description: Kiểm tra luồng tích hợp giữa nhiều module/service.
+description: Kiểm tra luồng tích hợp giữa nhiều module/service (Tích hợp Thành phần và Tích hợp Hệ thống).
 type: procedure
 risk: safe
 source: self
@@ -11,7 +11,7 @@ outputs: ["Integration Test Report", "Test Code"]
 # Workflow Integration Test (`/integration-test`)
 
 > [!NOTE]
-> Kiểm tra sự phối hợp giữa các module/service, không phải logic đơn lẻ (unit test).
+> Kiểm tra sự phối hợp ranh giới giữa các module/service theo hai cấp độ: Tích hợp Thành phần (Component Integration - ví dụ Controller với Service) và Tích hợp Hệ thống (System Integration - nền tảng nội bộ với API bên ngoài).
 
 ## Khi nào dùng (When to Use)
 
@@ -35,9 +35,9 @@ outputs: ["Integration Test Report", "Test Code"]
 // turbo
 
 1.  Xác định các luồng cần test:
-    -   API → Service → DB (CRUD operations)
-    -   FE → BE → External API
-    -   Event → Queue → Handler
+    - API → Service → DB (CRUD operations)
+    - FE → BE → External API
+    - Event → Queue → Handler
 
 ### Bước 2: Chuẩn bị dữ liệu test
 
@@ -57,16 +57,16 @@ outputs: ["Integration Test Report", "Test Code"]
 
 ```typescript
 // Ví dụ integration test
-describe('User Registration Flow', () => {
-  it('should create user, send email, and return JWT', async () => {
+describe("User Registration Flow", () => {
+  it("should create user, send email, and return JWT", async () => {
     const res = await request(app)
-      .post('/api/auth/register')
-      .send({ email: 'test@example.com', password: 'Str0ng!Pass' });
-    
+      .post("/api/auth/register")
+      .send({ email: "test@example.com", password: "Str0ng!Pass" });
+
     expect(res.status).toBe(201);
     expect(res.body.token).toBeDefined();
-    
-    const user = await db.user.findByEmail('test@example.com');
+
+    const user = await db.user.findByEmail("test@example.com");
     expect(user).toBeTruthy();
   });
 });
@@ -95,7 +95,7 @@ npm run test:integration
 Verify JWT tokens, DB records, và email service mock.
 
 # Test payment flow
-/integration-test Test flow: Tạo order → Thanh toán Stripe → 
+/integration-test Test flow: Tạo order → Thanh toán Stripe →
 Update order status → Send confirmation email.
 ```
 

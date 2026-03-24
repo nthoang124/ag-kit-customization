@@ -2,14 +2,22 @@
 
 ## Core Philosophy
 
-**"Verify the Handshake"**
-Integration tests ensure that your modules speak the same language. The most critical integration is usually between your **Logic Layer** and your **Persistence Layer**.
+**"Verify the Handshake" (Xác minh cái bắt tay)**
 
-## Scope of Integration
+Ngay cả khi mọi hàm tính toán đơn lẻ đều hoàn hảo, hệ thống vẫn có thể đổ vỡ khi chúng được ghép nối với nhau do các rủi ro về xung đột giao thức, lỗi định dạng dữ liệu truyền tải, hoặc nghẽn cổ chai giao tiếp.
+Kiểm thử tích hợp nhắm trực tiếp vào ranh giới (interfaces) giữa các thành phần phần mềm để xác minh chúng hoạt động hài hòa như mong đợi.
 
-1.  **Service + Database**: Does the ORM query actually work? adhere to constraints?
-2.  **Service + External API**: Does the adapter handle the 3rd party response format correctly?
-3.  **Controller + Service**: Does the HTTP layer correctly parse inputs before calling logic?
+## Hai Cấp Độ Tích Hợp (The Scope of Integration)
+
+Cấp độ này được phân giải thành hai phương thức:
+
+1.  **Tích hợp Thành phần (Component Integration Testing)**:
+    - Thường do Developers thực hiện.
+    - Đánh giá luồng giao tiếp nội bộ giữa các module liền kề (ví dụ: xác nhận module "giỏ hàng" chuyển đúng tổng giá tiền sang module "cổng thanh toán").
+    - Có thể áp dụng phương pháp "Từ dưới lên" (Bottom-up), trong đó các module cấp thấp được kiểm tra và ghép nối trước, làm nền tảng dần lên các hệ thống quản trị cấp cao hơn (ví dụ: Service + Database hoặc Controller + Service).
+2.  **Tích hợp Hệ thống (System Integration Testing)**:
+    - Được quản lý bởi đội ngũ QA/Testers.
+    - Đánh giá cách một hệ sinh thái (ecosystem) nội bộ kết nối với các hệ thống đồ sộ khác bên ngoài (ví dụ: Service + External API như cổng thanh toán quốc tế, dịch vụ gửi email).
 
 ## Testing Strategy
 
