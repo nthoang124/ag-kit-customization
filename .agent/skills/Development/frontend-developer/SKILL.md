@@ -69,10 +69,30 @@ _If you cannot find a source, you must PAUSE and use `search_web` or ask the use
 
 These are complete sub-skills with their own rules, examples, and guidelines. Load the entire sub-skill `SKILL.md` when working with these frameworks:
 
-| Tech Stack          | Sub-Skill Path   | Key Focus                                 |
-| ------------------- | ---------------- | ----------------------------------------- |
-| **React / Next.js** | `react/SKILL.md` | RSCs, Suspense, Streaming, Server Actions |
-| **Shadcn UI**       | `shadcn/SKILL.md`| Radix UI, Accessible Components, Tailwind |
+| Tech Stack          | Sub-Skill Path    | Key Focus                                 |
+| ------------------- | ----------------- | ----------------------------------------- |
+| **React / Next.js** | `react/SKILL.md`  | RSCs, Suspense, Streaming, Server Actions |
+| **Shadcn UI**       | `shadcn/SKILL.md` | Radix UI, Accessible Components, Tailwind |
+
+### FE Design Skills (Visual & Output Quality)
+
+Bộ skills nâng cao chất lượng thiết kế và output code frontend. Load skill phù hợp theo context:
+
+| Skill          | Sub-Skill Path                        | Khi nào dùng                                                                                   |
+| -------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Taste**      | `fe-skills/taste-skill/SKILL.md`      | Thiết kế UI mới từ đầu — layout, typography, color, motion, anti-slop patterns                 |
+| **Redesign**   | `fe-skills/redesign-skill/SKILL.md`   | Nâng cấp UI hiện có — audit design, fix generic patterns, không rewrite từ đầu                 |
+| **Soft**       | `fe-skills/soft-skill/SKILL.md`       | UI cao cấp kiểu agency ($150k+) — Double-Bezel cards, spring physics, haptic micro-aesthetics  |
+| **Output**     | `fe-skills/output-skill/SKILL.md`     | Chống lazy output — cấm placeholder comments, code phải đầy đủ 100%                            |
+| **Minimalist** | `fe-skills/minimalist-skill/SKILL.md` | UI editorial/minimal (Notion/Linear style) — warm monochrome, serif contrast, flat bento grids |
+
+**Quy tắc chọn FE Design Skill:**
+
+- **Tạo UI mới** → Load `taste-skill` (mặc định) + `output-skill`
+- **Nâng cấp UI cũ** → Load `redesign-skill` + `output-skill`
+- **UI cao cấp/agency** → Load `soft-skill` + `output-skill`
+- **UI minimal/editorial** → Load `minimalist-skill` + `output-skill`
+- **Mọi task frontend** → Luôn load `output-skill` để đảm bảo code đầy đủ
 
 ### Reference Files
 
@@ -89,18 +109,18 @@ General reference guides for frameworks without full sub-skills yet:
 
 Tài liệu định hướng phát triển Frontend lấy từ `awesome-skills`:
 
-| Reference File | Key Focus |
-| -------------- | --------- |
-| `references/common-patterns.md` | Các mẫu thiết kế UI/UX và logic phổ biến |
-| `references/complete-examples.md` | Component hoàn chỉnh (Best Practices) |
-| `references/component-patterns.md` | Phân chia component (Smart/Dumb) |
-| `references/data-fetching.md` | Quản lý state và API calls chuẩn |
-| `references/file-organization.md` | Cấu trúc thư mục (Feature-based) |
+| Reference File                           | Key Focus                                 |
+| ---------------------------------------- | ----------------------------------------- |
+| `references/common-patterns.md`          | Các mẫu thiết kế UI/UX và logic phổ biến  |
+| `references/complete-examples.md`        | Component hoàn chỉnh (Best Practices)     |
+| `references/component-patterns.md`       | Phân chia component (Smart/Dumb)          |
+| `references/data-fetching.md`            | Quản lý state và API calls chuẩn          |
+| `references/file-organization.md`        | Cấu trúc thư mục (Feature-based)          |
 | `references/loading-and-error-states.md` | Xử lý Loading Skeleton & Error Boundaries |
-| `references/performance.md` | Tối ưu hóa bundle, Web Vitals chuyên sâu |
-| `references/routing-guide.md` | Định tuyến và phân quyền Route |
-| `references/styling-guide.md` | Quy chuẩn CSS/Tailwind gốc |
-| `references/typescript-standards.md` | Chuẩn Typescript khắt khe cho Frontend |
+| `references/performance.md`              | Tối ưu hóa bundle, Web Vitals chuyên sâu  |
+| `references/routing-guide.md`            | Định tuyến và phân quyền Route            |
+| `references/styling-guide.md`            | Quy chuẩn CSS/Tailwind gốc                |
+| `references/typescript-standards.md`     | Chuẩn Typescript khắt khe cho Frontend    |
 
 ## 🛠 Workflow: The "Evidence-Based" Loop
 
@@ -175,9 +195,11 @@ Before showing code to the user, run this mental audit:
 ```tsx
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl
+    <div
+      className="group relative overflow-hidden rounded-2xl
                     bg-white shadow-md transition-all
-                    hover:shadow-xl hover:-translate-y-1">
+                    hover:shadow-xl hover:-translate-y-1"
+    >
       <img
         src={product.image}
         alt={product.name}
@@ -186,13 +208,13 @@ export function ProductCard({ product }: { product: Product }) {
       />
       <div className="p-4">
         <h3 className="font-semibold truncate">{product.name}</h3>
-        <p className="text-lg font-bold text-indigo-600">
-          ${product.price}
-        </p>
+        <p className="text-lg font-bold text-indigo-600">${product.price}</p>
         <StarRating value={product.rating} />
-        <button className="mt-3 w-full rounded-lg bg-indigo-600
+        <button
+          className="mt-3 w-full rounded-lg bg-indigo-600
                           py-2 text-white transition
-                          hover:bg-indigo-700">
+                          hover:bg-indigo-700"
+        >
           Add to Cart
         </button>
       </div>
