@@ -28,6 +28,7 @@ last_updated: "2026-03-22"
 
 ### 💬 "Tôi muốn..."
 
+<<<<<<< Updated upstream
 | Ý định                                           | Workflow        | Risk | Keywords (VI / EN)                                         |
 | :----------------------------------------------- | :-------------- | :--: | :--------------------------------------------------------- |
 | **Hỏi câu hỏi** về code/kiến trúc                | `/ask`          |  ⚪  | hỏi, giải thích, tại sao / ask, explain, why, how          |
@@ -36,6 +37,15 @@ last_updated: "2026-03-22"
 | **Lên kế hoạch** 2 cấp (chiến lược + chi tiết)   | `/plan`         |  ⚪  | kế hoạch, thiết kế, kiến trúc / plan, design, architecture |
 | **Chia nhỏ** yêu cầu thành tasks                 | `/break-tasks`  |  ⚪  | chia nhỏ, break, task list / breakdown, split, decompose   |
 | **Thiết kế UI/UX**                               | `/ui-ux-design` |  ⚪  | UI, UX, wireframe, mockup / design, layout, prototype      |
+=======
+| Ý định | Workflow | Risk | Keywords (VI / EN) |
+|:---|:---|:---:|:---|
+| **Hỏi câu hỏi** về code/kiến trúc | `/ask` | ⚪ | hỏi, giải thích, tại sao / ask, explain, why, how |
+| **Nghiên cứu** chủ đề kỹ thuật/thị trường | `/research` | ⚪ | nghiên cứu, tìm hiểu, so sánh / research, explore, compare |
+| **Brainstorm** ý tưởng sản phẩm, tạo PRD/Roadmap | `/brainstorm` | ⚪ | ý tưởng, brainstorm, PRD / idea, roadmap, vision |
+| **Lên kế hoạch** 2 cấp (chiến lược + chi tiết) | `/plan` | ⚪ | kế hoạch, thiết kế, kiến trúc / plan, design, architecture |
+| **Thiết kế UI/UX** | `/ui-ux-design` | ⚪ | UI, UX, wireframe, mockup / design, layout, prototype |
+>>>>>>> Stashed changes
 
 ---
 
@@ -74,6 +84,7 @@ last_updated: "2026-03-22"
 
 ### 🔍 "Tôi muốn REVIEW/AUDIT..."
 
+<<<<<<< Updated upstream
 | Tình huống                    | Workflow             | Risk | Keywords (VI / EN)                                   |
 | :---------------------------- | :------------------- | :--: | :--------------------------------------------------- |
 | Review code từ PR/diff        | `/code-review`       |  ⚪  | review code, PR review / code review, diff review    |
@@ -94,6 +105,16 @@ last_updated: "2026-03-22"
 
 ---
 
+=======
+| Tình huống | Workflow | Risk | Keywords (VI / EN) |
+|:---|:---|:---:|:---|
+| Review code từ PR/diff | `/code-review` | ⚪ | review code, PR review / code review, diff review |
+| Audit bảo mật (OWASP) | `/security-audit` | ⚪ | bảo mật, OWASP / security, vulnerability, pen-test |
+| Audit hiệu năng (performance) | `/performance-audit` | ⚪ | hiệu năng, tốc độ / performance, bottleneck, latency |
+
+---
+
+>>>>>>> Stashed changes
 ### 🔀 "Tôi muốn GIT..."
 
 | Tình huống                 | Workflow      | Risk | Keywords (VI / EN)                   |
@@ -115,14 +136,32 @@ last_updated: "2026-03-22"
 
 ---
 
+### 🌌 "Tôi muốn ĐIỀU PHỐI HỆ THỐNG..."
+
+| Tình huống | Workflow | Risk | Keywords (VI / EN) |
+|:---|:---|:---:|:---|
+| Xử lý sự cố/outage vĩ mô trên diện rộng | `/incident` | 🔴 | incident, outage, sập hệ thống, downtime / major incident, system down |
+| Gọi đa tác vụ chạy nền (parallel orchestration) | `/_agent-fleet` | 🔴 | multi-agent, parallel tasks, fleet, swarm / parallel, background jobs |
+| Dọn dẹp token, chống lặp lệnh (optimize context) | `/_optimize` | ⚪ | optimize, nén context, bot lặp / loop, compress context, token limit |
+
+---
+
 ### ⚙️ "Tôi muốn TÙY CHỈNH..."
 
+<<<<<<< Updated upstream
 | Tình huống                                    | Workflow           | Risk | Keywords (VI / EN)                                                               |
 | :-------------------------------------------- | :----------------- | :--: | :------------------------------------------------------------------------------- |
 | Auto-detect skills + enrich prompt + thực thi | `/prompt`          |  ⚪  | prompt, viết prompt, enrich, tăng cường / orchestrate, auto-detect, smart prompt |
 | Thêm/sửa rule hoặc workflow                   | `/custom-behavior` |  🟢  | rule, workflow, tùy chỉnh / customize, config                                    |
 | Cài .agent vào workspace mới                  | `/bootstrap-agent` |  🟢  | cài agent, install agent, global / install, setup agent                          |
 | Lint & format code                            | `/lint-format`     |  🟢  | lint, format / prettier, eslint, style                                           |
+=======
+| Tình huống | Workflow | Risk | Keywords (VI / EN) |
+|:---|:---|:---:|:---|
+| Auto-detect skills + enrich prompt + thực thi | `/prompt` | ⚪ | prompt, viết prompt, enrich, tăng cường / orchestrate, auto-detect, smart prompt |
+| Thêm/sửa rule hoặc workflow | `/custom-behavior` | 🟢 | rule, workflow, tùy chỉnh / customize, config |
+| Lint & format code | `/lint-format` | 🟢 | lint, format / prettier, eslint, style |
+>>>>>>> Stashed changes
 
 ---
 
@@ -147,13 +186,17 @@ last_updated: "2026-03-22"
    Chưa biết root cause → /debug, /research
    Chưa có plan         → /plan, /brainstorm
 
-4. ASK IF STILL AMBIGUOUS — Nếu vẫn match > 1 workflow
+4. DATA INTEGRITY FIRST — Cảnh báo thay đổi dữ liệu
+   Có tác động tới CSDL (DB/Migration) → Rẽ sang /plan thay vì /cook hay /development
+
+5. ASK IF STILL AMBIGUOUS — Nếu vẫn match > 1 workflow
    → Hỏi user: "Tôi thấy request này có thể dùng [A] hoặc [B].
       Anh muốn [mô tả A] hay [mô tả B]?"
 ```
 
 ### Bảng Compound Intent (Intent kết hợp)
 
+<<<<<<< Updated upstream
 | User nói...                                        | Rule áp dụng             | Chọn                                           |
 | :------------------------------------------------- | :----------------------- | :--------------------------------------------- |
 | "Fix bug + thêm validation"                        | Scope: 1-3 files         | `/development`                                 |
@@ -166,12 +209,29 @@ last_updated: "2026-03-22"
 | "Tạo project từ đầu" / "Start from scratch"        | Scope: full project      | `/bootstrap` → `/cook` (chain)                 |
 | "Deploy sau khi fix xong" / "Fix then deploy"      | Urgency + sequence       | `/bug-fix` → `/git-commit` → `/deploy` (chain) |
 | "Audit rồi release" / "Audit before release"       | Sequence: review first   | `/project-review` → `/deploy` (chain)          |
+=======
+| User nói... | Rule áp dụng | Chọn |
+|:---|:---|:---|
+| "Fix bug + thêm validation" | Scope: 1-3 files | `/development` |
+| "Nghiên cứu rồi code luôn" / "Research then build" | Scope: end-to-end | `/cook` |
+| "Debug xong fix luôn" / "Investigate and fix" | Knowledge: chưa rõ cause | `/debug` (tự bao gồm fix ở Bước 3) |
+| "Review code rồi fix" / "Review then patch" | Sequence: 2 workflows | `/code-review` → `/bug-fix` (chain) |
+| "Lên plan rồi chia task" / "Plan and break down" | Knowledge: chưa có plan | `/plan` (tự output `task.md`) |
+| "Fix production crash" / "Prod is down" | **Urgency First** | `/hotfix` (Rule 1) |
+| "Refactor + viết test" / "Refactor with tests" | Sequence: test first | `/gen-tests` → `/refactor` (chain) |
+| "Tạo project từ đầu" / "Start from scratch" | Scope: full project | `/bootstrap` → `/cook` (chain) |
+| "Deploy sau khi fix xong" / "Fix then deploy" | Urgency + sequence | `/bug-fix` → `/git-commit` → `/deploy` (chain) |
+>>>>>>> Stashed changes
 
 ---
 
-## Workflow Chains — với Context Flow
+## Workflow Chains — với Logic Điều Kiện (Condition-based Flow)
+
+> [!TIP]
+> Các chuỗi định tuyến dưới đây đã được nâng cấp đính kèm theo điều kiện Rẽ nhánh (IF/ELSE) để Agent tự phục hồi (Self-heal) khi có lỗi.
 
 ### 🚀 Ship Feature mới
+<<<<<<< Updated upstream
 
 ```
 /brainstorm ──[PRD.md]──→ /plan ──[high_level_plan.md + implementation_plan.md]──→ /git-branch → /cook ──[walkthrough.md]──→ /gen-tests ──[test-report.md]──→ /git-commit → /git-pr → /deploy
@@ -227,8 +287,48 @@ last_updated: "2026-03-22"
 
 ### 🔄 Fix → Deploy (nhanh)
 
+=======
+```text
+/brainstorm ──[PRD.md]──→ /plan ──[hl_plan.md + impl_plan.md]──→ /git-branch → /cook ──[walkthrough.md]──→ /gen-tests
+   ├─(IF test fail)──→ /bug-fix ──[walkthrough.md]──→ /gen-tests (Retry)
+   └─(IF test pass)──→ /git-commit → /git-pr → /deploy
 ```
-/bug-fix ──[walkthrough.md]──→ /git-commit → /git-pr → /deploy
+
+### 🐛 Fix Bug Cơ Bản
+```text
+/debug ──[debug-findings.md]──→ /bug-fix ──[walkthrough.md]──→ /gen-tests ──[test-report.md]──→ /git-commit
+   └─(IF rollback)──→ (REVERT) → /debug (Retry hypothesis)
+```
+
+### 🧪 QA → Fix → Retest
+```text
+/qa ──[test-plan.md]──→ /debug ──[debug-findings.md]──→ /bug-fix
+   ├─(IF fix pass)──→ /gen-tests → /git-commit
+   └─(IF fix fail 3x)──→ /notify_user ──→ /incident
+```
+
+### 🔄 Refactor An Toàn
+```text
+/gen-tests ──[test-report.md]──→ /refactor ──[walkthrough.md]──→ (Chạy lại test suite)
+   ├─(IF regression)──→ /git-sync (Reset) ──→ /refactor (Retry)
+   └─(IF green)──→ /git-commit → /git-pr
+>>>>>>> Stashed changes
+```
+
+### 🛡️ Pre-Release Audit & Deploy
+```text
+/security-audit ──(IF pass)──→ /performance-audit ──(IF pass)──→ /deploy
+   └─(IF vuln found)──→ /bug-fix (Khẩn cấp)
+```
+
+### 🔬 Kích Hoạt Đa Tác Vụ (Agent Fleet)
+```text
+/plan ──[task.md > 10 items]──→ /_agent-fleet ──[parallel artifacts]──→ /code-review ──→ /git-commit
+```
+
+### 🔒 Production Hotfix
+```text
+/hotfix ──[hotfix-branch]──→ /git-commit → /git-pr (to main) → /git-merge (to dev)
 ```
 
 ---

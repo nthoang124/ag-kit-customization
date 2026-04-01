@@ -6,6 +6,11 @@ source: self
 required_skills: []
 inputs: ["Task Name", "Ticket ID"]
 outputs: ["New Git Branch"]
+context_from: ["/bất_kỳ"]
+context_to: ["/bất_kỳ"]
+context_artifacts:
+  receives: ["task.md"]
+  produces: []
 ---
 
 # Workflow Tạo Branch (`/git-branch`)
@@ -94,3 +99,30 @@ git checkout -b fix/api-timeout-error
 - `/git-sync` — Cập nhật code từ dev khi branch chạy lâu.
 - `/git-pr` — Tạo PR sau khi hoàn thành.
 - `/hotfix` — Nếu cần tạo branch từ `main`.
+
+---
+
+## Context Protocol
+
+### Nhận Context (Input)
+- **Từ `{{args}}`**: Các tham số inline truyền vào từ lệnh gọi.
+- **Từ filesystem (`context_artifacts.receives`)**: Đọc file `task.md` hiện hành để nắm bắt state trước khi chạy.
+
+### Truyền Context (Output)  
+- **Cho workflow tiếp theo (`context_artifacts.produces`)**: Không bắt buộc sinh file artifact cấp cao trừ khi workflow ghi rõ. Thay đổi chủ yếu ở cấu trúc dự án.
+
+### Fallback
+- Nếu input rỗng hoặc không có context: Tự động xin ý kiến User hoặc quét Git Status hiện hành.
+
+---
+
+## Error Recovery
+
+> Tuân thủ `_workflow-protocol.md` — 3 cấp: Self-Heal → Rollback Step → Escalate.
+
+### Recovery Map
+
+| Step lỗi | Cấp 1: Self-Heal | Cấp 2: Rollback | Cấp 3: Escalate |
+|:---|:---|:---|:---|
+| Lệnh CLI/Test fail hoặc Lỗi phân tích | Xem logs, sửa syntax/params và chạy lại (max 3 lần) | Khôi phục trạng thái Git ẩn hoặc undo file | Báo cáo chi tiết bug để User quyết định |
+| Đứt gãy Context | Tự đọc lại log hệ thống | Không áp dụng | Hỏi User cấp lại Context |

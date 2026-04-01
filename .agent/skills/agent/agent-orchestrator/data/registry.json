@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-04-01T11:07:14.802157",
+  "skills_root": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent",
+  "skills": [
+    {
+      "name": "agent-evaluation",
+      "description": "Đóng vai trò là Kỹ sư Đảm bảo Chất lượng (Quality Engineer), người đã chứng kiến những agent vượt qua các bài kiểm tra benchmark dễ dàng nhưng lại thất bại thảm hại trên thực tế (production). Bạn hiểu rằng việc đánh giá LLM agent khác về cơ bản so với kiểm thử phần mềm truyền thống—cùng một đầu vào có thể tạo ra các kết quả khác nhau, và 'đúng' thường không có định nghĩa duy nhất.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-evaluation",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-evaluation\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:25:43.157380"
+    },
+    {
+      "name": "agent-framework-azure-ai-py",
+      "description": "Xây dựng các agent có tính bền bỉ (persistent agents) trên nền tảng Azure AI Foundry bằng Microsoft Agent Framework Python SDK.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-framework-azure-ai-py",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-framework-azure-ai-py\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:33:43.458855"
+    },
+    {
+      "name": "agent-manager-skill",
+      "description": "Quản lý nhiều CLI agent tại máy (local) thông qua các tmux sessions (khởi động/dừng/theo dõi/giao việc) hỗ trợ cả thiết lập lịch trình với cron.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-manager-skill",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-manager-skill\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:26:26.685828"
+    },
+    {
+      "name": "agent-memory-mcp",
+      "description": "Một hệ thống bộ nhớ lai ghép cung cấp khả năng lưu trữ tri thức lâu dài, có thể tìm kiếm được dành cho các AI agents (Bao gồm Architecture, Patterns, Decisions).",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-memory-mcp",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-memory-mcp\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:32:07.927705"
+    },
+    {
+      "name": "agent-memory-systems",
+      "description": "Bạn là một kiến trúc sư nhận thức học, người hiểu rõ rằng cấu trúc 'Bộ nhớ' mới là thứ giúp agent thông minh. Bạn chuyên xây dựng các bộ nhớ nhớ cho hàng triệu hội thoại (interactions). Bạn biết rõ, cất dữ liệu thì dễ - cái khó là Lấy Trích Xuất (retrieval) đúng thứ vào đúng lúc.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-memory-systems",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-memory-systems\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:32:26.288479"
+    },
+    {
+      "name": "agent-orchestration-improve-agent",
+      "description": "Quy trình cải tiến triệt để, có hệ thống các agents hiện có thông qua việc phân tích điểm hiệu năng, tùy biến prompt, và lặp lại liên tục.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-orchestration-improve-agent",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-orchestration-improve-agent\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:32:28.239314"
+    },
+    {
+      "name": "agent-orchestration-multi-agent-optimize",
+      "description": "Tối ưu hóa hệ thống máy học đa cấu trúc (multi-agent systems) với phương pháp phối hợp định profile luồng, chia tải công việc trơn tru, dàn xếp giá cước API Rẻ (cost-aware). Dùng khi bạn thấy bầy Agent chạy bị ngập, báo Error sập Server, hay Lề mề Chậm Nhịp Timeout.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-orchestration-multi-agent-optimize",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-orchestration-multi-agent-optimize\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [
+        "api-integration"
+      ],
+      "triggers": [
+        "api"
+      ],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:33:45.442480"
+    },
+    {
+      "name": "agent-tool-builder",
+      "description": "Bạn là chuyên gia về giao diện tiếp xúc giữa LLM và thế giới bên ngoài. Bạn đã thấy những công cụ hoạt động mượt mà và cả những công cụ khiến agent bị ảo giác (hallucinate), rơi vào vòng lặp vô tận (loop), hoặc lỗi ngầm (fail silently). Sự khác biệt gần như luôn nằm ở khâu thiết kế (design), chứ không phải khâu triển khai code (implementation).",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-tool-builder",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agent-tool-builder\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [
+        "image-generation"
+      ],
+      "triggers": [
+        "design"
+      ],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:27:17.479429"
+    },
+    {
+      "name": "agentfolio",
+      "description": "Kỹ năng dùng để khám phá và nghiên cứu các AI agent tự trị (autonomous AI agents), công cụ, và hệ sinh thái thông qua danh bạ thư mục AgentFolio.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agentfolio",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agentfolio\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:29:34.470657"
+    },
+    {
+      "name": "agentic-actions-auditor",
+      "description": "Kiểm duyệt (Audit) các workflow Github Actions để tìm lỗ hổng bảo mật  trong các phần tích hợp AI agent bao gồm Claude Code Action,  Gemini CLI, OpenAI Codex, và GitHub AI Inference. Phát hiện đường dẫn tấn công (attack vectors) nơi dữ liệu đầu vào bị kẻ xấu  kiểm soát lọt vào AI Agents đang chạy trong CI/CD pipelines.\n",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agentic-actions-auditor",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agentic-actions-auditor\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [
+        "monitoring"
+      ],
+      "triggers": [
+        "audit"
+      ],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:29:59.844194"
+    },
+    {
+      "name": "agentmail",
+      "description": "Hạ tầng Email dành cho các tác nhân AI (AI agents). Tạo tài khoản, gửi/nhận email, quản lý webhooks, và kiểm tra số dư karma (điểm uy tín) qua AgentMail API.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agentmail",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agentmail\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [
+        "api-integration"
+      ],
+      "triggers": [
+        "api"
+      ],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:31:00.453987"
+    },
+    {
+      "name": "agents-md",
+      "description": "Kỹ năng này được kích hoạt khi người dùng yêu cầu \"tạo AGENTS.md\", \"cập nhật AGENTS.md\", \"bảo trì tài liệu của agent\", \"thiết lập CLAUDE.md\", hoặc khi cần giữ cho các hướng dẫn dành cho agent thật ngắn gọn. Bắt buộc áp dụng các best practice đã được nghiên cứu nhằm tạo ra bộ tài liệu agent tối giản, mang lại tín hiệu/ngữ cảnh (high-signal) tốt nhất.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agents-md",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agents-md\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:31:22.928611"
+    },
+    {
+      "name": "agents-v2-py",
+      "description": "Xây dựng Container-based Foundry Agents sử dụng bộ Azure AI Projects SDK (ImageBasedHostedAgentDefinition). Sử dụng thiết lập này khi cần tạo các hosted agents với images container tùy biến (custom container images) nằm trên máy chủ Azure AI Foundry.",
+      "version": "",
+      "location": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agents-v2-py",
+      "skill_md": "C:\\Users\\NITRO\\Documents\\AI-agent\\ag-kit-customization\\.agent\\skills\\agent\\agents-v2-py\\SKILL.md",
+      "registered": false,
+      "has_scripts": false,
+      "has_references": false,
+      "has_data": false,
+      "capabilities": [],
+      "triggers": [],
+      "language": "none",
+      "status": "active",
+      "last_modified": "2026-03-23T22:31:25.011793"
+    }
+  ]
+}
