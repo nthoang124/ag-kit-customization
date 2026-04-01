@@ -1,6 +1,12 @@
-# 🚀 AG-Kit — Agent Framework
+# 🚀 AG-Kit — Trợ lý Agent Toàn Diện (Agent Operating System)
 
-> Bộ **Skills + Workflows + Rules** biến AI thành đồng đội phát triển phần mềm. Copy thư mục `.agent/` vào bất kỳ workspace nào là dùng được.
+> AG-Kit không đơn thuần là một file `.cursorrules`. Đây là một **Hệ điều hành vi mô (Micro OS)** — một bộ **Rules + Workflows + Skills** tiêu chuẩn giúp biến mọi hệ thống AI (Cursor, Windsurf, RooCode, Aider...) thành một kỹ sư phần mềm thực thụ. Copy thư mục `.agent/` vào cấu trúc dự án của bạn là dùng được lập tức.
+
+## 🌟 Giá Trị Cốt Lõi
+
+1. **Phân tách rõ ràng (Separation of Concerns)**: Không dồn nén mọi thứ vào một file Prompt/Rules khổng lồ. AG-Kit tách biệt độc lập Luật chung (`rules`), Chuyên môn (`skills`) và Chuỗi công việc (`workflows`).
+2. **Chống Ảo giác (Anti-Hallucination)**: Hơn 38+ Workflow đóng vai trò như các "đường ray" tiêu chuẩn, ép AI đi theo đúng quy trình phát triển chuyên nghiệp thay vì tự phỏng đoán (ví dụ: bắt buộc lập plan, bắt buộc sinh test, báo cáo rõ ràng).
+3. **Độc lập Nền tảng (Portable & Tool-Agnostic)**: Hoạt động trơn tru trên mọi IDE hoặc CLI (Cursor, Cline/RooCode, Aider, OpenHands) hỗ trợ tính năng đọc thẻ Context thông qua chuẩn thư mục `.agent/`.
 
 ---
 
