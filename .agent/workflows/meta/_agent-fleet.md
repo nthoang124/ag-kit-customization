@@ -25,7 +25,10 @@ Khi bắt đầu các tác vụ lớn, Agent có quyền (và nên) chủ độn
 ### 1.1 Khởi tạo công cụ Quản lý Agent
 Nếu script quản lý chưa tồn tại tại thư mục công cụ cục bộ:
 ```bash
-git clone https://github.com/fractalmind-ai/agent-manager-skill.git .agent/tools/agent-manager
+# Kiểm tra nếu thư mục chưa tồn tại mới tiến hành clone
+if [ ! -d ".agent/tools/agent-manager" ]; then
+  git clone https://github.com/fractalmind-ai/agent-manager-skill.git .agent/tools/agent-manager
+fi
 ```
 
 ### 1.2 Gán việc cho CONTEXT_WATCHER

@@ -1,3 +1,10 @@
+---
+description: Quy tắc tích hợp và điều phối các thành phần trong hệ sinh thái Agent.
+type: mandatory
+trigger: model_decision
+risk: low
+---
+
 # Hệ Sinh Thái Agent (Agent Ecosystem Rules)
 
 > [!IMPORTANT]

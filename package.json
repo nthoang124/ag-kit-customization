@@ -1,0 +1,20 @@
+{
+  "name": "ag-kit-customization",
+  "version": "3.0.0",
+  "description": "Customization framework for Antigravity Agent",
+  "scripts": {
+    "lint:agent": "node .agent/scripts/lint-agent.js",
+    "build:catalog": "node .agent/scripts/build-catalog.js"
+  },
+  "keywords": [
+    "agent",
+    "antigravity",
+    "workflow",
+    "ai"
+  ],
+  "author": "Fractal Mind AI",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

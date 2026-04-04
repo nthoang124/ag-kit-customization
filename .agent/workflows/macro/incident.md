@@ -18,6 +18,17 @@ context_artifacts:
 > [!CAUTION]
 > Tốc độ không có nghĩa là cẩu thả. Macro-Workflow này tập trung xử lý dập cháy khẩn cấp cho môi trường thật (Production) nhưng vẫn bảo kê bởi 4-Phase System Debug để cấm đoán triệt để ngõ cụt code mò.
 
+---
+
+## [XAI] Lộ trình Lập luận & Counterfactual Assessment
+
+**Trước khi thực hiện bất kỳ lệnh xử lý sự cố nào, Agent BẮT BUỘC phải tự trả lời:**
+1.  **Lập luận (Attribution)**: Tại sao tôi chọn workflow `/incident` ngay lúc này? (Dựa trên: Alert từ hệ thống, vỡ API production, hoặc Report từ người dùng).
+2.  **Đánh giá rủi ro nghịch đảo (Counterfactual)**: Nếu việc fix "nóng" này gây tác dụng phụ (side-effect), tôi có thể cô lập lỗi nhanh hơn không? Tôi đã có snapshot log trước khi tác động chưa?
+3.  **Bằng chứng (Evidence)**: Tôi đã tìm thấy file log/stack trace cụ thể chứng minh Root Cause chưa? (Tránh sửa mò theo triệu chứng).
+
+---
+
 ## Khi nào dùng (When to Use)
 
 - Có báo động đỏ (Alert) từ hệ thống giám sát.

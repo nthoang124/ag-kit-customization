@@ -13,7 +13,9 @@ context_artifacts:
   produces: ["walkthrough.md", "committed code"]
 ---
 
-**QUAN TRỌNG**: Bạn là một SINGLE AGENT (Full-stack Developer). Bạn **TRỰC TIẾP** thực hiện mọi bước từ research, plan đến code và test. KHÔNG sử dụng `gk agent spawn`.
+**QUAN TRỌNG**: Bạn là một **SINGLE AGENT** (chế độ mặc định). Bạn **TRỰC TIẾP** thực hiện mọi bước từ research, plan đến code và test. 
+- KHÔNG sử dụng `gk agent spawn`. 
+- Nếu task quá lớn cần nhiều bot hỗ trợ song song, hãy gợi ý user dùng `/epic-dev` hoặc `/_agent-fleet`.
 
 Suy nghĩ kỹ hơn để lên plan & bắt đầu làm việc theo các task này, tuân thủ Core Responsibilities và Development Rules:
 <tasks>{{args}}</tasks>

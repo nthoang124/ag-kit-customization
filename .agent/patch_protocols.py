@@ -1,8 +1,9 @@
 import os
 import glob
 
-# Ensure we're in the workflows directory
-base_dir = r"c:\Users\NITRO\Documents\AI-agent\ag-kit-customization\.agent\workflows"
+# Base directory relative to this script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.join(script_dir, "workflows")
 
 files_to_patch = [
     r"git-deploy\git-branch.md",

@@ -19,6 +19,17 @@ context_artifacts:
 > **NGUY CƠ CAO**: Workflow này thay đổi trạng thái production.
 > Phải có rollback plan trước khi deploy.
 
+---
+
+## [XAI] Lộ trình Lập luận & Counterfactual Assessment
+
+**Trước khi thực hiện bất kỳ lệnh deploy nào, Agent BẮT BUỘC phải tự trả lời:**
+1.  **Lập luận (Attribution)**: Tại sao tôi chọn deploy branch `X` vào thời điểm này? (Dựa trên `qa-report.md` pass 100% và approval từ `/git-pr`).
+2.  **Đánh giá rủi ro nghịch đảo (Counterfactual)**: Nếu việc deploy này thất bại (ví dụ: lỗi DB migration), hệ thống sẽ ở trạng thái nào? Tôi đã có lệnh rollback xác định sẵn ở Bước 5 chưa?
+3.  **Bằng chứng (Evidence)**: Tôi đã chạy `npm test` và `npm run build` cục bộ thành công chưa? (Ghi log output vào Terminal).
+
+---
+
 ## Khi nào dùng (When to Use)
 
 - Deploy code lên staging để test trước release.

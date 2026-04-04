@@ -59,6 +59,25 @@ Dưới đây là các luồng phối hợp workflow được khuyến nghị ch
 
 ---
 
+## 🤖 Chế độ hoạt động (Agent Modes)
+
+AG-Kit hỗ trợ hai chế độ vận hành chính tùy theo quy mô tác vụ:
+
+1.  **Single-Agent Mode (Mặc định)**:
+    - **Sử dụng**: `/cook`, `/debug`, `/development`, `/code`.
+    - **Đặc điểm**: Một Agent duy nhất thực hiện toàn bộ quy trình từ đầu đến cuối. Đảm bảo tính nhất quán cao nhất và tiết kiệm token.
+    - **Phù hợp**: Các task hoàn thành trong < 1 ngày, logic tập trung.
+
+2.  **Agent-Fleet Mode (Đa chuỗi/Hệ thống Bot)**:
+    - **Sử dụng**: `/_agent-fleet`, `/epic-dev`.
+    - **Đặc điểm**: Agent chính (Orchestrator) khởi tạo các Agent phụ (`CONTEXT_WATCHER`, `AUDITOR`) chạy song song hoặc xử lý các task độc lập.
+    - **Phù hợp**: Dự án cực lớn, cần giám sát context liên tục hoặc chạy nhiều task audit/test song song mà không làm nghẽn terminal chính.
+
+> [!TIP]
+> Luôn bắt đầu bằng **Single-Agent Mode**. Chỉ chuyển sang **Agent-Fleet** khi task có độ phức tạp vượt quá khả năng quản lý của một session đơn lẻ hoặc cần "nhiều mắt" cùng review code.
+
+---
+
 ## 💡 Đề xuất & Best Practices Sử Dụng AG-Kit Hiệu Quả
 
 Để AI thực sự biến thành "đồng đội", hãy tuân thủ các nguyên tắc sau:

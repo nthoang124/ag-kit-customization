@@ -19,6 +19,17 @@ context_artifacts:
 > **NGUY CƠ CAO**: Workflow này bỏ qua bước Code Review của người khác.
 > Bạn phải TỰ chịu trách nhiệm về chất lượng code.
 
+---
+
+## [XAI] Lộ trình Lập luận & Counterfactual Assessment
+
+**Trước khi thực hiện bất kỳ lệnh merge trực tiếp nào, Agent BẮT BUỘC phải tự trả lời:**
+1.  **Lập luận (Attribution)**: Tại sao tôi chọn merge trực tiếp mà không qua Pull Request? (Dựa trên: solo developer, hotfix khẩn cấp, hoặc branch cực nhỏ đã được verify).
+2.  **Đánh giá rủi ro nghịch đảo (Counterfactual)**: Nếu việc merge này làm hỏng branch `dev`, tôi đã biết cách revert chưa? (`git reset --hard HEAD~1` hoặc `git revert`).
+3.  **Bằng chứng (Evidence)**: Tôi đã tự chạy `npm test` và `npm run lint` pass hoàn toàn chưa? (Ghi log output vào Terminal).
+
+---
+
 ## Khi nào dùng (When to Use)
 
 - Dự án cá nhân (solo developer) không cần PR review.
